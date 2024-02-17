@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\AdminRole;
+use App\Models\Rt;
+use Illuminate\Http\Request;
+
+class RtController extends Controller
+{
+    public function storeRT(Request $request){
+        try {
+            $validateData=$request->validate([
+                'rt'=>'required',
+                'ketua_rt'=>'required|',
+                'wakil_ketua_rt'=>'required'
+            ]);
+            $data= Rt::create($validateData);
+            if($validateData){
+                $data= AdminRole::create([
+                    'nama'=>'Admin '.$validateData['rt']
+                ]);
+            }
+            return response()->json([
+                'data' => $data,
+                'message' => 'Berhasil',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
+    public function updateRT(Request $request){
+        try {
+            $validateData = $request->validate([
+                'rt' => 'required',
+                'ketua_rt' => 'required',
+                'wakil_ketua_rt' => 'required'
+            ]);
+            $rt = Rt::findOrFail($request->rt_id);
+            // dd($rt);
+            $adminRole = AdminRole::where('nama', 'Admin ' . $rt->rt);
+            if ($adminRole) {
+                $adminRole->update(['nama' => 'Admin ' . $validateData['rt']]);
+            }
+            $rt->update($validateData);
+
+            // Update juga data AdminRole jika diperlukan
+            return response()->json([
+                'data' => $rt,
+                'message' => 'Berhasil memperbarui data RT',
+                'success' => true
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th->getMessage(),
+                'success' => false
+            ], 500);
+        }
+    }
+
+    public function deleteRT($id){
+        try {
+            $rt = Rt::findOrFail($id);
+
+            $adminRole = AdminRole::where('nama', 'Admin ' . $rt->rt)->first();
+            if ($adminRole) {
+                $adminRole->Admins()->delete();
+                $adminRole->delete();
+            }
+            $rt->delete();
+            return response()->json([
+                'data' => null,
+                'message' => 'Berhasil menghapus data RT',
+                'success' => true
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th->getMessage(),
+                'success' => false
+            ], 500);
+        }
+    }
+}

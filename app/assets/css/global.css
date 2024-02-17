@@ -1,0 +1,260 @@
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+
+  /* background:  rgb(3, 0, 20);; */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8886;
+  ;
+  border-radius: 3px;
+}
+.routeactive{
+  background: #364F6B !important;
+}
+.gradienterror {
+  position: absolute;
+  top: 100px;
+  left: -40px;
+  --size: 400px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(100px);
+  /* background: linear-gradient(hsl(158, 82%, 57%), hsl(252, 82, 57)); */
+  background: #0E6AE3;
+  /* animation: rotate var(--speed) var(--easing) alternate infinite; */
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.btndefaultnshadow{
+  box-shadow: none !important;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.test{
+  background-clip: text !important;
+}
+.text-1{
+  color: #102E46 !important;
+}
+.text-logo{
+  color: #364F6B !important;
+}
+.bg-1{
+  background: #F8FBFF !important;
+}
+.bg-2{
+  background: #0E6AE3 !important;
+}
+.bgbrd-1{
+  background: #f0f0f0 !important;
+
+}
+.bgbrd-2{
+  background: #364F6B !important;
+
+}
+.bgbrd-3{
+  background: #3BD3F3 !important;
+}
+.text-4{
+  color: #3BD3F3 !important;
+
+}
+.text-5{
+  color: #0E6AE3 !important;
+}
+*,
+:before,
+:after {
+  --tw-gradient-from-position: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+}
+.backdrop-blur-lg {
+  background-color: #ffffff98 !important;
+  --tw-backdrop-blur: blur(16px) !important;
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+    var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+    var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+    var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+    var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+    var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+    var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+    var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+    var(--tw-backdrop-sepia);
+}
+.bg-whiteblur{
+  background: #ffffff36 !important;
+  backdrop-filter: blur(100px) !important;
+}
+.bg-whiteblur-card1{
+  background: #ffffff80 !important;
+  backdrop-filter: blur(100px) !important;
+}
+.bg-whiteblur-card{
+  background: #ffffff15 !important;
+  backdrop-filter: blur(80px) !important;
+}
+.bg-whiteblur2{
+  background: #7b7b7b36 !important;
+  backdrop-filter: blur(100px) !important;
+}
+.gradient {
+  position: absolute;
+  top: 100px;
+  left: -40px;
+  --size: 500px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(200px);
+  /* background: linear-gradient(hsl(158, 82%, 57%), hsl(252, 82, 57)); */
+  background: #0E6AE3;
+  /* animation: rotate var(--speed) var(--easing) alternate infinite; */
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.gradient2 {
+  position: absolute;
+  top: 0px;
+  right: -250px;
+  --size: 500px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(200px);
+  background: #0E6AE3;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.gradient3 {
+  position: absolute;
+  --size: 400px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(100px);
+  background: #0E6AE3;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.gradient4 {
+  position: absolute;
+  --size: 400px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(100px);
+  background: #0E6AE3;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.gradient5 {
+  position: absolute;
+  top:60px;
+  right: -100px;
+  --size: 500px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(100px);
+  background: #0E6AE3;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.gradient6 {
+  position: absolute;
+  top:60px;
+  left: -200px;
+  --size: 600px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(100px);
+  background: #0E6AE3;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.gradient7 {
+  position: absolute;
+  bottom:60px;
+  right: -200px;
+  --size: 600px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(200px);
+  background: #0E6AE3;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+/* @media (min-width: 720px) {
+  .gradient {
+    --size: 500px;
+    position: absolute;
+    top: 100px;
+  left: -40px;
+  }
+} */
+
+.haya{
+  background-color: #222;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  place-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* This is just to transition when you change the viewport size. */
+* {
+  transition: all 0.25s ease-out;
+}
+
+.gradient4-brd {
+  position: fixed ;
+  --size: 400px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(100px);
+  background: #0E6AE3;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.gradient5-brd {
+  position: fixed ;
+  top:60px;
+  right: -100px;
+  --size: 500px;
+  --speed: 20s;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(100px);
+  background: #0E6AE3;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
