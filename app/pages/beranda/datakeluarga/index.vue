@@ -33,7 +33,7 @@
     </p>
     <v-btn
       class="rounded-xl bg-2 text-capitalize my-4 d-flex white--text"
-      @click="tambah"
+      @click="tambah"  :disabled="loadingData"
     >
       Tambah Data</v-btn
     >
@@ -77,11 +77,11 @@
           </template>
           <template v-slot:[`item.aksi`]="{ item }">
             <div class="d-flex"  v-if="getDataUser?.user_id !==item?.user_id">
-              <v-btn icon @click="editwarga(item)" class="mr-2">
+              <v-btn icon @click="editwarga(item)"  :disabled="loadingData" class="mr-2">
                 <v-icon class="green--text">mdi-pencil</v-icon></v-btn
               >
               <v-btn icon @click="hapuswarga(item)">
-                <v-icon class="red--text">mdi-delete</v-icon></v-btn
+                <v-icon class="red--text"  :disabled="loadingData">mdi-delete</v-icon></v-btn
               >
             </div>
           </template>

@@ -26,7 +26,7 @@ Route::get('/', function () {
     return view('pdf.page1');
 });
 Route::get('/getUserLogin', [UserController::class, 'getUserLogin']);
-Route::get('/home', [PdfController::class, 'exportPDF']);
+Route::get('/pdfdownload', [PdfController::class, 'exportPDF']);
 
 Route::post('/register', [LoginController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);

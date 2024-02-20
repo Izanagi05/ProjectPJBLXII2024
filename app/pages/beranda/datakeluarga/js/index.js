@@ -93,7 +93,7 @@ export default {
       detail_alamat: null,
       inputData: [],
       idwarga:[],
-
+      loadingData:true,
       headers: [
         { text: "Nama", value: "nama" },
         { text: "NIK", value: "nik" },
@@ -189,5 +189,6 @@ export default {
 
     await this.$store.dispatch("user/fetchDataAgama");
     await this.$store.dispatch("user/fetchDataProvinsi");
+    this.loadingData=false
   },
 };
