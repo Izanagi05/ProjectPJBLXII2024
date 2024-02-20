@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('jenis_kelamin',['Laki-laki', 'Perempuan'])->nullable();
             $table->string('nik')->nullable();
             $table->string('no_kk')->nullable();
+            $table->string('foto_profil')->nullable();
             $table->string('foto_ktp')->nullable();
             $table->string('foto_kk')->nullable();
             $table->unsignedBigInteger('provinsi_lahir_id')->nullable();
@@ -31,7 +32,7 @@ return new class extends Migration
             $table->enum('status_perkawinan', ['Belum Menikah', 'Menikah', 'Duda', 'Janda', 'Lainnya'])->nullable();
             $table->unsignedBigInteger('agama_id')->nullable();
             $table->enum('status', ['Online', 'Offline'])->default('Offline');
-            $table->enum('edit',['aktif', 'mati'])->default('mati');
+            // $table->enum('edit',['aktif', 'mati'])->default('mati');
             $table->enum('role', ['User', 'Admin'])->default('User');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

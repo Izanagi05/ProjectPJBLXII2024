@@ -18,4 +18,8 @@ class Alamat extends Model
     public function DetailAlamats(){
         return $this->hasMany(DetailAlamat::class, 'alamat_id');
     }
+    public function RT(){
+        return $this->belongsTo(RT::class, 'rt_id');
+    }
+
 }

@@ -35,7 +35,6 @@ class UserSeeder extends Seeder
                 'status_perkawinan' => null,
                 'agama_id' => null,
                 'role'=>'User',
-                'edit' => 'mati'
             ]);
         }
         $adminRoles = [' RT 001', ' RT 002', ' RT 003'];
@@ -59,7 +58,6 @@ class UserSeeder extends Seeder
                 'status_perkawinan' => null,
                 'agama_id' => null,
                 'role'=>'Admin',
-                'edit' => 'mati'
             ]);
         }
          User::create([
@@ -81,7 +79,6 @@ class UserSeeder extends Seeder
                 'status_perkawinan' => null,
                 'agama_id' => null,
                 'role'=>'Admin',
-                'edit' => 'mati'
             ]);
     }
 }

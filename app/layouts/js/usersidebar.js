@@ -12,5 +12,6 @@ data() {
 },
 async created() {
   await this.$store.dispatch('user/fetchUserLogin')
+  await this.$store.dispatch('user/fetchallwargabyalamat')
 },
 }

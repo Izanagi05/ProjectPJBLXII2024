@@ -26,6 +26,7 @@ class User extends Authenticatable implements JWTSubject
         'jenis_kelamin',
         'nik',
         'no_kk',
+        'foto_profil',
         'foto_ktp',
         'foto_kk',
         'provinsi_lahir_id',
@@ -33,12 +34,12 @@ class User extends Authenticatable implements JWTSubject
         'tgl_lahir',
         'no_telp',
         'email',
+        'hubungan',
         'pekerjaan',
         'status_berktp',
         'status_perkawinan',
         'agama_id',
         'role',
-        'edit',
 
     ];
 
@@ -48,6 +49,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function DetailAlamats(){
         return $this->belongsToMany(DetailAlamat::class, 'user_alamats', 'user_id', 'detail_alamat_id');
+    }
+    public function UserAlamats(){
+        return $this->hasMany(UserAlamat::class, 'user_id');
+
     }
 
     /**

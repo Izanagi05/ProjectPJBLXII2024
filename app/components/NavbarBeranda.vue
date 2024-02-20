@@ -12,7 +12,7 @@
       <div class="mt-6  mb-10">
 
         <div class="text-h5 font-weight-medium  ">Yakin ingin  logout?</div>
-        <p class="black--text mt-2 text-body-1">Silah login lagi setelah logout</p>
+        <p class="black--text mt-2 text-body-1">Silahkan login lagi setelah logout</p>
       </div>
       <div class="d-flex justify-space-between">
               <v-btn
@@ -84,19 +84,14 @@
           </v-list>
         </div>
       </v-navigation-drawer>
-
-      <!-- <div> -->
-        <div class="text-h6" style="width:100%;">{{ hari }}</div>
-      <!-- </div> -->
-      <div class="d-flex align-center justify-end" style="width:100%;">
-        <v-btn icon class="red"><v-icon class ="white--text" @click="dialoglogout=true">mdi-logout</v-icon></v-btn>
-        <!-- <ListNotifikasi
-          :menunotif="(menunotif = true)"
-          :submenunotif="(submenunotif = true)"
-          @emithapusnotif="hapusnotif"
-        />
-        <ListProfil :logout="logout" @profilpushemit="profilpush" /> -->
+      <div class="d-flex justify-space-between" style="width:100%;">
+        <p class="font-weight-medium mb-0 text-body-1">
+          {{ hari }}
+        </p>
+        <v-btn icon class="red" @click="dialoglogout=true"><v-icon class="white--text" >mdi-logout</v-icon></v-btn>
       </div>
+      <!-- <div class="d-flex align-center justify-end" style="width:100%;"> -->
+      <!-- </div> -->
     </div>
   </div>
 </template>

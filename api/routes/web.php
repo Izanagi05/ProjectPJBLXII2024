@@ -38,6 +38,10 @@ Route::delete('/deleteRT/{id}', [RtController::class, 'deleteRT']);
 
 Route::post('/buatAkunVia', [UserController::class, 'buatAkunVia']);
 Route::post('/editUser', [UserController::class, 'editUser']);
+Route::post('/editUserbyid', [UserController::class, 'editUserbyid']);
+Route::post('/tambahUserbyid', [UserController::class, 'tambahUserbyid']);
+Route::get('/getallwargabyalamat', [UserController::class, 'getallwargabyalamat']);
+Route::delete('/deleteUserbyid/{id}', [UserController::class, 'deleteUserbyid']);
 
 Route::get('/getAgama', [AgamaController::class, 'getAgama']);
 

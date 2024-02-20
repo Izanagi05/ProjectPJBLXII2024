@@ -5,6 +5,9 @@ export default{
   getDataUser (state) {
     return state.dataUserLogin
   },
+  getDataAllWargaAlamat (state) {
+    return state.dataAllWargaAlamat
+  },
   getDataProvinsi (state) {
     return state.dataProvinsi
   },

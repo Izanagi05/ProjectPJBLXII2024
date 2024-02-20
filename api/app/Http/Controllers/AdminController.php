@@ -45,7 +45,7 @@ class AdminController extends Controller
             $requestnama = $validatedData['nama'];
             $namabersih = preg_replace('/[^a-zA-Z]/', '', $requestnama);
             $validatedData['nama'] = $namabersih;
-            $validatedData['email'] = strtolower($namabersih) . '@gmail.com';
+            $validatedData['email'] = strtolower($namabersih) .strtolower(Str::random(7)) .  '@gmail.com';
             $dataAlamat = Alamat::where('alamat_id', $request->alamat_id)->first();
             $dataDetailAlamat = DetailAlamat::where('alamat_id', $dataAlamat->alamat_id)->where('detail_alamat_id', $request->detail_alamat_id)->first();
 
