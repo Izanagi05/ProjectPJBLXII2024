@@ -3,11 +3,13 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgamaController;
 use App\Http\Controllers\AlamatController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RtController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WAController;
 use Database\Seeders\AdminSeeder;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +27,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pdf.page1');
 });
+Route::group(['middleware' => 'corscustom'], function () {
+    // Daftar rute yang ingin dikecualikan dari middleware CORS
+    Route::get('/exportPDF/{laporan_id}/{detail_alamat_id}/{alamat_id}', [PdfController::class, 'exportPDF']);
+});
+
 Route::get('/getUserLogin', [UserController::class, 'getUserLogin']);
-Route::get('/pdfdownload', [PdfController::class, 'exportPDF']);
+Route::post('/createLaporan', [LaporanController::class, 'createLaporan']);
+Route::get('/allLaporan', [LaporanController::class, 'allLaporan']);
+Route::delete('/deleteLaporan/{id}', [LaporanController::class, 'deleteLaporan']);
+Route::post('/updateLaporan', [LaporanController::class, 'updateLaporan']);
+
+Route::post('/postMessageCustomToGroup', [WAController::class, 'postMessageCustomToGroup']);
 
 Route::post('/register', [LoginController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);

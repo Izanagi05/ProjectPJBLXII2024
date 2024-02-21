@@ -348,7 +348,7 @@ export default {
         };
       }
     );
-    console.log("ojm", this.detail_alamat_pilihan);
+    // console.log("ojm", this.detail_alamat_pilihan);
     // this.inputTambah=Object
     await this.$store.dispatch("user/fetchDataAgama");
     await this.$store.dispatch("user/fetchDataProvinsi");

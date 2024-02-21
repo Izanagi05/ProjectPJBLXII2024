@@ -34,9 +34,34 @@ export default{
   TAMBAH_DATA_WARGA_ALAMAT(state, data){
     state.dataAllWargaAlamat?.detail_alamats.forEach((element, index) => {
       state.dataAllWargaAlamat.detail_alamats[index].wargas.push(data);
-      if (itemIndex !== -1) {
-      }
     });
+  },
+  TAMBAH_DATA_LAPORAN(state, data){
+   state.dataAllLaporan?.user_laporans.push(data)
+  },
+  UPDATE_DATA_LAPORAN(state, data){
+    const index = state.dataAllLaporan?.user_laporans.findIndex(item => item.laporan_id === data.laporan_id);
+    console.log(index);
+    if (index !== -1) {
+      const dataCopy= state.dataAllLaporan
+      dataCopy.user_laporans[index]= data
+      // console.log(  dataCopy.user_laporans[index]);
+      // state.dataAllLaporan=[...dataCopy]
+      state.dataAllLaporan = { ...state.dataAllLaporan, user_laporans: dataCopy };
+
+    }
+  },
+  GET_DATA_ALL_LAPORAN(state, data){
+   state.dataAllLaporan=data
+  },
+  DELETE_DATA_LAPORAN(state, data){
+  //  state.dataAllLaporan=data
+   const index = state.dataAllLaporan?.user_laporans.findIndex(item => item.laporan_id === data);
+   console.log('ppp',index);
+   if (index !== -1) {
+     state.dataAllLaporan?.user_laporans.splice(index, 1);
+   }
+
   },
   DELETE_DATA_BY_ID_WARGA_ALAMAT(state, data){
     state.dataAllWargaAlamat?.detail_alamats.forEach((element, index) => {

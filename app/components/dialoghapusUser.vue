@@ -2,6 +2,7 @@
   <div>
     <v-dialog  class="rounded-xl dialog-event"
       v-model="dialogVisible"
+      persistent
       style="box-shadow: 0px"
       max-width="600"
     >

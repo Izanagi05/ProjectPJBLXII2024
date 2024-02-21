@@ -80,8 +80,8 @@
               <v-btn icon @click="editwarga(item)"  :disabled="loadingData" class="mr-2">
                 <v-icon class="green--text">mdi-pencil</v-icon></v-btn
               >
-              <v-btn icon @click="hapuswarga(item)">
-                <v-icon class="red--text"  :disabled="loadingData">mdi-delete</v-icon></v-btn
+              <v-btn icon @click="hapuswarga(item)"  :disabled="loadingData">
+                <v-icon class="red--text" >mdi-delete</v-icon></v-btn
               >
             </div>
           </template>

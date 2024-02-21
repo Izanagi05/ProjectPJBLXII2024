@@ -127,6 +127,8 @@ export default {
   },
   methods: {
     tambah() {
+      this.inputTambah = Object.assign({}, null)
+      this.inputFileTambah = Object.assign({}, null)
       this.dialogtambah = true;
     },
   async  konfirmtambah() {
@@ -138,6 +140,8 @@ export default {
     },
     closetambah() {
       this.dialogtambah = false;
+      this.inputTambah = Object.assign({}, null)
+      this.inputFileTambah = Object.assign({}, null)
     },
     async editwarga(item) {
       this.inputEdit = Object.assign({}, item);
@@ -148,6 +152,7 @@ export default {
     },
     async closeedit() {
       this.editdialog = false;
+      this.inputFileEdit=Object.assign({}, null)
     },
     async konfrimdataedit() {
       await this.$store.dispatch("user/updateDataWargabyAlamat", {
@@ -155,6 +160,7 @@ export default {
         fotobaru: this.inputFileEdit,
       });
       this.editdialog = false;
+      this.inputFileEdit=Object.assign({}, null)
     },
     async hapuswarga(item){
       this.idwarga = Object.assign({}, item);
@@ -162,6 +168,7 @@ export default {
     },
     async closehapus() {
       this.hapusdialog = false;
+      this.idwarga = Object.assign({}, null);
     },
      konfrimdelete() {
        this.$store.dispatch("user/deleteDataUserbyid", this.idwarga?.user_id);

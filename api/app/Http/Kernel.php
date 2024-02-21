@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'userlogin'=>\App\Http\Middleware\UserLoginMiddleware::class,
         'admindata'=>\App\Http\Middleware\AdminMiddleware::class,
         'adminpusat'=>\App\Http\Middleware\AdminPusatMIddleware::class,
+        'corscustom'=>\App\Http\Middleware\CorsMiddlewareExport::class,
     ];
 }

@@ -8,6 +8,9 @@ export default{
   getDataAllWargaAlamat (state) {
     return state.dataAllWargaAlamat
   },
+  getDataAllLaporan (state) {
+    return state.dataAllLaporan
+  },
   getDataProvinsi (state) {
     return state.dataProvinsi
   },

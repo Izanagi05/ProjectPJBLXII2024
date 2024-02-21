@@ -41,6 +41,25 @@ export default {
       console.error("Error fetching data:", error);
     }
   },
+
+  async deleteLaporanUser({ commit }, data) {
+    try {
+      await this.$axios
+        .delete("/deleteLaporan/" + data, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          commit("DELETE_DATA_LAPORAN", data);
+          console.log(response.data?.data);
+          // return response.data?.data
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
   async fetchallwargabyalamat({ commit }, data) {
     try {
       const kondisi =
@@ -255,7 +274,10 @@ export default {
       formData.append("agama_id", data.agama_id);
       formData.append("status", data.status);
       formData.append("alamat_id", data.detail_alamat_id_and_alamat_id[1]);
-      formData.append("detail_alamat_id", data.detail_alamat_id_and_alamat_id[0]);
+      formData.append(
+        "detail_alamat_id",
+        data.detail_alamat_id_and_alamat_id[0]
+      );
 
       await this.$axios
         .post("/tambahUserbyid", formData, {
@@ -270,6 +292,128 @@ export default {
           commit("TAMBAH_DATA_WARGA_ALAMAT", response.data?.data);
           console.log(response.data?.data);
           // return response.data?.data
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async fetchAllLaporanUser({ commit }, data) {
+    try {
+      await this.$axios
+        .get("/allLaporan", {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          commit("GET_DATA_ALL_LAPORAN", response.data?.data);
+          console.log(response.data?.data);
+          // return response.data?.data
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async tambahDataLaporan({ commit }, payload) {
+    try {
+      const { data, detail_alamat } = payload;
+      const formData = new FormData();
+      // formData.append("user_id", data.user_id);
+      formData.append("keperluan", data.keperluan);
+      formData.append("alamat_id", data.detail_alamat_id_and_alamat_id[1]);
+      formData.append(
+        "detail_alamat_id",
+        data.detail_alamat_id_and_alamat_id[0]
+      );
+
+      await this.$axios
+        .post("/createLaporan", formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // this.fetchallwargabyalamat;
+
+          commit("TAMBAH_DATA_LAPORAN", response.data?.data);
+          // const blob = new Blob([response.data], { type: "application/pdf" });
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async updateDataLaporan({ commit }, payload) {
+    try {
+      const { data, detail_alamat } = payload;
+      const formData = new FormData();
+      formData.append("laporan_id", data.laporan_id);
+      formData.append("keperluan", data.keperluan);
+      formData.append("alamat_id", data.detail_alamat_id_and_alamat_id[1]);
+      formData.append(
+        "detail_alamat_id",
+        data.detail_alamat_id_and_alamat_id[0]
+      );
+
+      await this.$axios
+        .post("/updateLaporan", formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // this.fetchallwargabyalamat;
+          this.fetchAllLaporanUser
+          // commit("UPDATE_DATA_LAPORAN", response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async exportDataLaporan({ commit }, payload) {
+    try {
+      const formData = new FormData();
+      formData.append("laporan_id", payload.laporan_id);
+      formData.append("alamat_id", payload.detail_alamat_id_and_alamat_id[1]);
+      formData.append(
+        "detail_alamat_id",
+        payload.detail_alamat_id_and_alamat_id[0]
+      );
+      await this.$axios
+        .get(
+          "/exportPDF/" +
+            payload.laporan_id +
+            "/" +
+            payload.detail_alamat_id_and_alamat_id[0] +
+            "/" +
+            payload.detail_alamat_id_and_alamat_id[1],
+          {
+            headers: {
+              Authorization:
+                "Bearer " + this.$cookies.get("dataUser").data?.token,
+            },
+            responseType: 'blob'
+          }
+        )
+        .then((response) => {
+          const blob = new Blob([response.data], { type: "application/pdf" });
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = String(now.getMonth() + 1).padStart(2, "0"); //04
+          const day = String(now.getDate()).padStart(2, "0"); //09
+          const fileName = `data_${year}-${month}-${day}.pdf`;
+
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = fileName;
+          link.click();
+          this.$toast.success("Berhasil mengambil data pdf", {
+            duration: 3000,
+          });
+          console.log(response.data?.data);
+          // return response.data?.data;
         });
     } catch (error) {
       console.error("Error fetching data:", error);

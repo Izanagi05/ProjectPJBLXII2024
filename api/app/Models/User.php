@@ -54,6 +54,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserAlamat::class, 'user_id');
 
     }
+    public function UserLaporans(){
+        return $this->hasMany(Laporan::class, 'user_id');
+
+    }
 
     /**
      * The attributes that should be hidden for serialization.

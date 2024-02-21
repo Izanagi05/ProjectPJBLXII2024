@@ -101,9 +101,11 @@ export default {
 
       await this.$store.dispatch("user/updateDataUserLogin", { data: this.inputEdit, fotobaru: this.inputFileEdit });
       this.editdialog = false;
+      this.inputFileEdit = Object.assign({}, null)
     },
     closeprofil() {
       this.editdialog = false;
+      this.inputFileEdit = Object.assign({}, null)
     },
     required(v) {
       return !!v || "Input tidak boleh kosong";

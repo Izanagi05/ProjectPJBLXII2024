@@ -413,11 +413,15 @@ class UserController extends Controller
                     if(!empty(User::find($id)->foto_kk)) {
                         Storage::delete(User::find($id)->foto_kk);
                     }
-                    $dataupdate = User::where('user_id', $data->user_id)->first();
-                    $dataupdate->UserProvinsi ;
-                    $useralamats= $dataupdate->UserAlamats ;
+                    $dataDelete = User::where('user_id', $data->user_id)->first();
+                    $dataDelete->UserProvinsi ;
+                    $useralamats= $dataDelete->UserAlamats ;
+                    $userLaporans= $dataDelete->UserLaporans;
                     foreach ($useralamats as $key => $dtdetail) {
                         $dtdetail->delete();
+                    }
+                    foreach ($userLaporans as $key => $dtLaporan) {
+                        $dtLaporan->delete();
                     }
                     $data->delete();
 
