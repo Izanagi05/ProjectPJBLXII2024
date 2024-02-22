@@ -1,5 +1,6 @@
 export default {
   layout: "AdminSideBar",
+  middleware:['guestmiddleware', 'rolecheckmiddleware'],
   data() {
     return {
       cardData: [

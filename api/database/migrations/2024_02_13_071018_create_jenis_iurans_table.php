@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jenis_iurans', function (Blueprint $table) {
             $table->id('jenis_iuran_id');
-            $table->string('nama');
+            $table->string('nama')->unique();
             $table->text('deskripsi')->nullable();
             $table->decimal('jumlah', 15, 2);
             $table->timestamps();

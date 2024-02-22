@@ -4,6 +4,7 @@ import dialogInputtambahUser from "~/components/dialogInputtambahUser.vue";
 import dialoghapusUser from "~/components/dialoghapusUser.vue";
 export default {
   layout: "UserSideBar",
+  middleware:['guestmiddleware','adminrolemiddleware'],
   components: {
     dialogInputUser,
     dialogInputtambahUser,

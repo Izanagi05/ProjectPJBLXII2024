@@ -32,59 +32,7 @@
       </v-card>
     </v-dialog>
     <div class="px-4 py-2 d-flex justify-space-between backdrop-blur-lg   align-center "  style="z-index:40;position: fixed;width: 100%;">
-      <v-app-bar-nav-icon
-        v-if="$vuetify.breakpoint.smAndDown"
-        @click.stop="drawer = !drawer"
-      />
-      <v-navigation-drawer  floating class="pa-4 white rounded-r-xl"
-        v-if="$vuetify.breakpoint.smAndDown"
-        v-model="drawer"
-        style="position: fixed"
-        temporary
-      >
-        <div
-          class=""
-          style="
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-          "
-        >
-          <div>
-            <p class="font-weight-medium text-body-1 mb-">Menu</p>
-            <v-tooltip v-for="(item, index) in url" right :key="index">
-              <template v-slot:activator="{ on, attrs }">
-                <v-list-item
-                  text
-                  v-on="on"
-                  v-bind="attrs"
-                  rounded
-                  :ripple="false"
-                  :class="[
-                    'd-flex  align-center mb-4 justify-start text-capitalize text-2 rounded-lg',
-                    $route.path === item.rute ? 'routeactive white--text' : '',
-                  ]"
-                  @click="$router.push(item.rute)"
-                >
-                  <v-icon
-                    :color="$route.path === item.rute ? '#ffffff' : '#364F6B'"
-                    >{{ item.icon }}</v-icon
-                  >
-                  <div class="ma-0 text-body-2 text-truncate ml-2">
-                    {{ item.judul }}
-                  </div>
-                </v-list-item>
-              </template>
-              <span> {{ item.judul }}</span>
-            </v-tooltip>
-          </div>
-          <v-list>
-            <v-list-item> faq </v-list-item>
-          </v-list>
-        </div>
-      </v-navigation-drawer>
-      <div class="d-flex justify-space-between" style="width:100%;">
+      <div class="d-flex align-center justify-space-between" style="width:100%;">
         <p class="font-weight-medium mb-0 text-body-1">
           {{ hari }}
         </p>

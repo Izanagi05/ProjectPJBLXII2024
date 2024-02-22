@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Bulan;
+use App\Models\JenisIuran;
 use App\Models\Tahun;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,8 +19,13 @@ class BulanTahunSeeder extends Seeder
 
         $tahunArray = [];
         for ($tahun = 2020; $tahun <= $tahunSekarang; $tahun++) {
-            Tahun::create(['nama'=>$tahun]);
+            Tahun::create(['tahun'=>$tahun]);
         }
+        JenisIuran::create([
+            'nama'=>'budi',
+            'deskripsi'=>'orang',
+            'jumlah'=>'10000'
+    ]);
 
         $bulan = [
             ['nama' => 'Januari'],

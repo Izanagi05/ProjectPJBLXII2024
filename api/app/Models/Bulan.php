@@ -11,4 +11,7 @@ class Bulan extends Model
     protected $table = 'bulans';
     protected $primaryKey = 'bulan_id';
     protected $fillable = ['nama'];
+    public function TagihanBulanans(){
+        return $this->hasMany(TagihanBulanan::class, 'bulan_id');
+    }
 }

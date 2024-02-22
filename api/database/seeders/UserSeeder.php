@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
                 'role'=>'User',
             ]);
         }
-        $adminRoles = [' RT 001', ' RT 002', ' RT 003'];
+        $adminRoles = ['rt001', 'rt002', 'rt003'];
         for ($i = 0; $i < 3; $i++) {
             User::create([
                 'nama' => 'admin' . $i . $adminRoles[$i],

@@ -9,5 +9,8 @@ class Tahun extends Model
 {
     use HasFactory;
     protected $primaryKey='tahun_id';
-    protected $fillable=['nama'];
+    protected $fillable=['tahun'];
+    public function TagihanBulanans(){
+        return $this->hasMany(TagihanBulanan::class, 'tahun_id');
+    }
 }

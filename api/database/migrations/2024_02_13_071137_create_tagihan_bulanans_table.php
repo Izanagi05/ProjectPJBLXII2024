@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id('tagihan_bulanan_id');
             $table->foreignId('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->foreignId('tahun_id')->references('tahun_id')->on('tahuns')->onDelete('cascade');
-            $table->unsignedInteger('bulan');
+            $table->unsignedInteger('bulan_id');
             $table->foreignId('jenis_iuran_id')->references('jenis_iuran_id')->on('jenis_iurans')->onDelete('cascade');
-            $table->decimal('jumlah_pembayaran', 15, 2);
-            $table->enum('status_pembayaran', ['Belum Dibayar', 'Dibayar Sebagian', 'Lunas'])->default('Belum Dibayar');
+            $table->enum('status_pembayaran', ['Belum Dibayar','Belum Lunas', 'Lunas'])->default('Belum Dibayar');
             $table->timestamps();
         });
     }

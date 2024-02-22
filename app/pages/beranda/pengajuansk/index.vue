@@ -42,50 +42,7 @@
               class="rounded-xl bg-2 text-capitalize mt-2 d-flex white--text"
               @click="konfirmpengajuan"
             >
-              Buat Laporan</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-card></v-dialog
-    >
-    <v-dialog v-model="dialogEdit">
-      <v-card :class="['pa-6 mr-4   rounded-xl bg-whiteblur-card1']">
-        <div class="d-flex justify-end">
-          <v-icon @click="closeedit" class="text-1 white rounded-xl mb-3"
-            >mdi-close</v-icon
-          >
-        </div>
-        <p
-          class="text-h5 text-1 font-weight-medium"
-          style="position: relative; z-index: 8"
-        >
-          Edit Surat Pengantar
-        </p>
-        <v-row>
-          <v-col cols="6">
-            <v-autocomplete
-              class="rounded-xl"
-              v-model="inputEditLaporan.detail_alamat_id_and_alamat_id"
-              :items="detail_alamat_pilihan"
-              label="Masukan alamat "
-              item-text="concetdatalamat"
-              item-value="detail_alamat_id_and_alamat_id"
-              clearable
-            ></v-autocomplete
-          ></v-col>
-          <v-col cols="12">
-            <v-textarea
-              :rules="[required]"
-              v-model="inputEditLaporan.keperluan"
-              label="Keperluan"
-            ></v-textarea>
-          </v-col>
-          <v-col cols="12" class="d-flex justify-end">
-            <v-btn
-              class="rounded-xl bg-2 text-capitalize mt-2 d-flex white--text"
-              @click="konfirmeditpengajuan"
-            >
-              Edit Laporan</v-btn
+              Buat Surat Pengantar</v-btn
             >
           </v-col>
         </v-row>
@@ -147,8 +104,14 @@
       @click="tambahlaporan"
       :disabled="loadingData"
     >
-      Tambah Data</v-btn
+      Buat surat pengajuan</v-btn
     >
+    <p
+      class="text-h5 text-1 font-weight-medium"
+      style="position: relative; z-index: 8"
+    >
+      Riwayat data surat pengantar
+    </p>
     <v-data-table
       style="min-width: 100%"
       :headers="headers"
@@ -157,20 +120,14 @@
     >
       <template v-slot:[`item.aksi`]="{ item }">
         <div class="d-flex">
-          <v-btn
-            icon
-            @click="editlaporan(item)"
-            :disabled="loadingData"
-            class="mr-2"
-          >
-            <v-icon class="green--text">mdi-pencil</v-icon></v-btn
-          >
+
           <v-btn icon @click="hapuslaporan(item)" :disabled="loadingData">
             <v-icon class="red--text">mdi-delete</v-icon></v-btn
           >
           <v-btn
             @click="exportlaporan(item)"
-            class="text-capitalize red rounded-xl"
+            :disabled="loadingData"
+            class="text-capitalize red rounded-xl white--text"
           >
             <v-icon class="white--text mr-1">mdi-file-pdf-box</v-icon>
             Simpan PDF

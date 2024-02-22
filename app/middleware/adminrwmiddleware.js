@@ -1,8 +1,8 @@
 export default function ({ store, redirect, $cookies }) {
-  store.dispatch("loginuser/fetchdatacookie")?.data;
-  const adminbagiancheck = $cookies.get("userLogin").data;
+  store.dispatch("user/fetchdatacookie")?.data;
+  const adminbagiancheck = $cookies.get("dataUser").data;
   if (
-    store.state.loginuser.authenticated &&
+    store.state.user.authenticated &&
     adminbagiancheck.role === "Admin RW"
   ) {
   }else{

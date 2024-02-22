@@ -1,6 +1,6 @@
 export default function ({ store, redirect }) {
-  store.dispatch('loginuser/fetchdatacookie')?.data
-  if(!store.state.loginuser.authenticated){
+  store.dispatch('user/fetchdatacookie')?.data
+  if(!store.state.user.authenticated){
 
     return redirect('/login')
   }else{

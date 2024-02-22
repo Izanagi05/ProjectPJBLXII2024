@@ -46,6 +46,10 @@ class User extends Authenticatable implements JWTSubject
     public function UserProvinsi(){
         return $this->hasOne(Provinsi::class, 'provinsi_id', 'provinsi_lahir_id');
     }
+    public function Agama(){
+        return $this->belongsTo(Agama::class, 'agama_id');
+
+    }
 
     public function DetailAlamats(){
         return $this->belongsToMany(DetailAlamat::class, 'user_alamats', 'user_id', 'detail_alamat_id');
@@ -57,6 +61,9 @@ class User extends Authenticatable implements JWTSubject
     public function UserLaporans(){
         return $this->hasMany(Laporan::class, 'user_id');
 
+    }
+    public function TagihanBulanans(){
+        return $this->hasMany(TagihanBulanan::class, 'user_id');
     }
 
     /**

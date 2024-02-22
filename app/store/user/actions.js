@@ -41,7 +41,10 @@ export default {
       console.error("Error fetching data:", error);
     }
   },
-
+  fetchdatacookie({ commit }) {
+    const cookieku = this.$cookies.get("dataUser");
+    commit("GET_DATA_COOKIE", cookieku);
+  },
   async deleteLaporanUser({ commit }, data) {
     try {
       await this.$axios
@@ -344,34 +347,7 @@ export default {
       console.error("Error fetching data:", error);
     }
   },
-  async updateDataLaporan({ commit }, payload) {
-    try {
-      const { data, detail_alamat } = payload;
-      const formData = new FormData();
-      formData.append("laporan_id", data.laporan_id);
-      formData.append("keperluan", data.keperluan);
-      formData.append("alamat_id", data.detail_alamat_id_and_alamat_id[1]);
-      formData.append(
-        "detail_alamat_id",
-        data.detail_alamat_id_and_alamat_id[0]
-      );
 
-      await this.$axios
-        .post("/updateLaporan", formData, {
-          headers: {
-            Authorization:
-              "Bearer " + this.$cookies.get("dataUser").data?.token,
-          },
-        })
-        .then((response) => {
-          // this.fetchallwargabyalamat;
-          this.fetchAllLaporanUser
-          // commit("UPDATE_DATA_LAPORAN", response.data?.data);
-        });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  },
   async exportDataLaporan({ commit }, payload) {
     try {
       const formData = new FormData();

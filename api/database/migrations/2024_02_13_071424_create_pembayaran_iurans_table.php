@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pembayaran_iurans', function (Blueprint $table) {
             $table->id('pembayaran_iuran_id');
             $table->foreignId('tagihan_bulanan_id')->references('tagihan_bulanan_id')->on('tagihan_bulanans')->onDelete('cascade');
+            $table->foreignId('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->date('tanggal_pembayaran');
             $table->decimal('jumlah_pembayaran', 10, 2);
             $table->timestamps();

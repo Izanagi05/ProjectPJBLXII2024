@@ -2,6 +2,9 @@ export default{
   GET_DATA_AGAMA(state, data){
     state.dataAgama=data
   },
+  GET_DATA_COOKIE(state, payload) {
+    state.authenticated = payload;
+  },
   GET_DATA_USER_LOGIN(state, data){
     state.dataUserLogin=data
   },

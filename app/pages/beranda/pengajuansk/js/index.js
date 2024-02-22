@@ -1,6 +1,8 @@
 import { mapGetters } from "vuex";
 import dialoghapusUser from "~/components/dialoghapusUser.vue";
 export default{
+  middleware:['guestmiddleware','adminrolemiddleware'],
+
   components: {
     dialoghapusUser
   },
@@ -85,20 +87,6 @@ export default{
       });
       this.dialogTambah = false;
       this.inputLaporan = Object.assign({}, null)
-    },
-    async editlaporan(item){
-      this.inputEditLaporan = Object.assign({}, item)
-      this.dialogEdit = true;
-    },
-    async closeedit(){
-      this.dialogEdit = false;
-    },
-   async konfirmeditpengajuan(){
-      // console.log('simpan');
-      await this.$store.dispatch("user/updateDataLaporan", {
-        data: this.inputEditLaporan,
-      });
-      this.dialogEdit = false;
     },
    async closelaporanexport(){
      this.dataLaporanexport=Object.assign({}, null)

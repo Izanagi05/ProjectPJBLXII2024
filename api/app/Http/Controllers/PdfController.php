@@ -29,6 +29,13 @@ class PdfController extends Controller
         $dataLaporan = Laporan::where('laporan_id', $laporan_id)->first();
         $data = User::where('remember_token', $token)->first();
         $dataRw = RW::first();
+        if($data->nik===null||$data->pekerjaan===null||$data->no_kk ===null ){
+            return response()->json([
+                            'data' => null,
+                            'message' => 'Data tidak lengkap',
+                            'success' => false
+                        ], 500);
+        }
         // $data = User::where('remember_token', $token)->first();
 
         // dd($data);
@@ -78,7 +85,7 @@ class PdfController extends Controller
         $pdf->Cell(0, 15, 'SURAT PENGANTAR:', 0, false, 'C', false, '', 0, false, 'M', 'L');
         $pdf->Ln(5);
         $pdf->SetFont('times', 'B', 10); // Mengatur font menjadi bold
-        $pdf->Cell(0, 15, ':Nomor:' . $dataRw->no . '/' .  $dataAlamatterpilih->RT->rt  . '/' .  $dataRw->tanggal, 0, false, 'C', false, '', 0, false, 'M', 'L');
+        $pdf->Cell(0, 15, 'Nomor:' . $dataRw->no . '/' .  $dataAlamatterpilih->RT->rt  . '/' .  $dataRw->tanggal, 0, false, 'C', false, '', 0, false, 'M', 'L');
         $pdf->Ln(10);
 
         $pdf->SetFont('times', '', 12);
@@ -117,7 +124,7 @@ class PdfController extends Controller
         $pdf->Cell(0, 15, 'Demikian Surat Pengantar Dibuat untuk sebagaimana mestinya', 0, false, 'L', 0, '', 0, false, 'M', 'L');
         $pdf->Ln(10);
         $pdf->Cell(50, 15, 'NO', 0, false, 'L', 0, '', 0, false, 'M', 'L');
-        $pdf->Cell(0, 15, ':Nomor:' . $dataRw->no . '/' . $dataAlamatterpilih->RT->rt  . '/' . $dataRw->tanggal, 0, false, 'L', 0, '', 0, false, 'M', 'L');
+        $pdf->Cell(0, 15, ': Nomor:' . $dataRw->no . '/' . $dataAlamatterpilih->RT->rt  . '/' . $dataRw->tanggal, 0, false, 'L', 0, '', 0, false, 'M', 'L');
         $pdf->Ln(10);
         $pdf->Cell(50, 15, 'Tanggal', 0, false, 'L', 0, '', 0, false, 'M', 'L');
         $pdf->Cell(0, 15, ': '.$tanggalnow, 0, false, 'L', 0, '', 0, false, 'M', 'L');

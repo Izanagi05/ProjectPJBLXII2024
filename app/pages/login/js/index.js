@@ -1,5 +1,6 @@
 import {mapGetters} from 'vuex'
 export default{
+  middleware:['userauthmiddleware'],
   data() {
     return {
       loading: false,

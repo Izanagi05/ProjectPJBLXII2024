@@ -1,6 +1,7 @@
 
 
 export default{
+  middleware:['guestmiddleware','adminrolemiddleware'],
   layout:'UserSideBar',
 
   data() {

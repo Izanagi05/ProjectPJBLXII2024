@@ -423,6 +423,12 @@ class UserController extends Controller
                     foreach ($userLaporans as $key => $dtLaporan) {
                         $dtLaporan->delete();
                     }
+                    foreach ($dataDelete->TagihanBulanans as $key => $tagihanBulanan) {
+                        foreach ($tagihanBulanan->PembayaranIurans as $key => $pembayaranIuran) {
+                            $pembayaranIuran->delete();
+                        }
+                        $tagihanBulanan->delete();
+                    }
                     $data->delete();
 
             }
