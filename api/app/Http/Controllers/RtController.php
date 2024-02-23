@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminRole;
+use App\Models\Alamat;
+use App\Models\DetailAlamat;
 use App\Models\Rt;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RtController extends Controller
@@ -18,6 +21,47 @@ class RtController extends Controller
 
             return response()->json([
                 'data' => $data,
+                'message' => 'Berhasil',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
+    public function getDataAlamatByRt(Request $request){
+        try {
+            $authorizationHeader = $request->header('Authorization');
+            $token = str_replace('Bearer ', '', $authorizationHeader);
+            $data = User::where('remember_token', $token)->where('role', 'Admin')
+               ->first();
+            $data->admin_data_role = $data->AdminData->AdminRole;
+            // $data->user_alamats = $data->AdminData->AdminRole;
+            $dataAlamats= Alamat::where('rt_id', $data->admin_data_role->rt_id)->get();
+            return response()->json([
+                'data' => $dataAlamats,
+                'message' => 'Berhasil',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
+    public function getDataDetailAlamatByRt($alamat_id){
+        try {
+            // $data->user_alamats = $data->AdminData->AdminRole;
+            $dataDetailAlamats= DetailAlamat::where('alamat_id', $alamat_id)->get();
+            return response()->json([
+                'data' => $dataDetailAlamats,
                 'message' => 'Berhasil',
                 'success' => true
             ], 201);

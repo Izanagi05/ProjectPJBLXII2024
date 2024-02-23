@@ -115,7 +115,7 @@ class UserController extends Controller
                 'status' => 'nullable',
                 'role' => 'nullable'
             ]);
-            $tes = 'NAMA SAYA      2       [][=;/ DALAH#081209   p- 0-                   9288#Bl=====222Okd# Jalan M0948209320398               elati No #5';
+            // $tes = 'NAMA SAYA      2       [][=;/ DALAH#081209   p- 0-                   9288#Bl=====222Okd# Jalan M0948209320398               elati No #5';
             $requestalamat = $request->alamat;
             if(!$request->storedataviawa){
                 return response()->json([

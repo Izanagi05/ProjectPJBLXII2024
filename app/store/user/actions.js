@@ -186,6 +186,9 @@ export default {
           // return response.data?.data
         });
     } catch (error) {
+      this.$toast.error("Terjadi kesalahan mohon isi data dengan lengkap", {
+        duration: 3000
+      });
       console.error("Error fetching data:", error);
     }
   },

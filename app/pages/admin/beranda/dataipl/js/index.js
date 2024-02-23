@@ -24,6 +24,8 @@ export default {
   computed: {
     ...mapGetters({
       getDataAllUserTagihan: "admindata/getDataAllUserTagihan",
+      getAllDataAlamatByIdAlamat: "admindata/getAllDataAlamatByIdAlamat",
+      getAllDataDetailAlamatByIdAlamat: "admindata/getAllDataDetailAlamatByIdAlamat",
     }),
   },
   methods: {
@@ -60,5 +62,6 @@ export default {
       "admindata/fetchDataAllTagihanUserbyTahun",
       this.tahunterpilih
     );
+
   },
 };

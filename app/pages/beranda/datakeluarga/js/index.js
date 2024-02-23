@@ -121,9 +121,9 @@ export default {
     '$store.state.user.dataAllWargaAlamat': {
       handler(newData, oldData) {
         console.log('Data di state getDataAllWargaAlamat telah berubah:', newData);
-        this.dataTabel = newData; // Misalkan dataTabel adalah data yang digunakan dalam tabel
+        this.dataTabel = newData;
       },
-      deep: true // Jika perlu memantau perubahan dalam objek atau array secara mendalam
+      deep: true
     }
   },
   methods: {

@@ -5,5 +5,14 @@ export default{
   getjumlahWargaAndTransaksiAndLaporan (state) {
     return state.jumlahDataInBeranda
   },
+  getAllUserById (state) {
+    return state.allUsersByRt
+  },
+  getAllDataAlamatByIdAlamat (state) {
+    return state.allDataAlamatByIdAlamat
+  },
+  getAllDataDetailAlamatByIdAlamat (state) {
+    return state.allDataDetailAlamatByIdAlamat
+  },
 
 }

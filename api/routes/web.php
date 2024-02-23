@@ -90,7 +90,11 @@ Route::group(['middleware' => 'admindata'], function () {
 Route::group(['middleware' => 'admindata'], function () {
     Route::get('/jumlahWargaAndTransaksiAndLaporan', [AdminController::class, 'jumlahWargaAndTransaksiAndLaporan']);
     Route::post('/storeUser', [AdminController::class, 'storeUser']);
+    Route::get('/getDataAlamatByRt', [RtController::class, 'getDataAlamatByRt']);
+    Route::get('/getDataDetailAlamatByRt/{alamat_id}', [RtController::class, 'getDataDetailAlamatByRt']);
 });
 Route::get('/getAllTagihanUserbyTahun/{tahun_id?}', [TagihanBulananController::class, 'getAllTagihanUserbyTahun']);
 
 Route::get('/getAdminLogin', [AdminController::class, 'getAdminLogin']);
+Route::get('/getDataAlamatByRt', [RtController::class, 'getDataAlamatByRt']);
+Route::get('/getAllUserRt', [AdminController::class, 'getAllUserRt']);

@@ -55,7 +55,7 @@
         >
           <template v-slot:[`item.fotoktp`]="{ item }">
             <div>
-              <div class="image-container">
+              <div class="image-container  d-flex align-center justify-center">
                 <v-img
                   :src="'http://127.0.0.1:8000/storage/' + item?.foto_ktp"
                   width="80%"
@@ -66,7 +66,7 @@
           </template>
           <template v-slot:[`item.fotokk`]="{ item }">
             <div>
-              <div class="image-container">
+              <div class="image-container  d-flex align-center justify-center">
                 <v-img
                   :src="'http://127.0.0.1:8000/storage/' + item?.foto_kk"
                   width="80%"

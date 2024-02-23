@@ -215,12 +215,7 @@
                 </v-col>
               </v-row>
 
-              <v-textarea
-                :rules="[required]"
-                rows="3"
-                row-height="25"
-                label="Alamat"
-              ></v-textarea>
+
             </div>
             <div class="d-flex justify-end">
               <v-btn

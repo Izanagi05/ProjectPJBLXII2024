@@ -42,6 +42,40 @@ class AdminController extends Controller
         ], 500);
     }
     }
+    public function getAllUserRt(Request $request)
+    {
+        try {
+            $authorizationHeader = $request->header('Authorization');
+            $token = str_replace('Bearer ', '', $authorizationHeader);
+            $data = User::where('user_id', 17)->where('role', 'Admin')
+                ->first();
+            $data->provinsi = $data->UserProvinsi->provinsi;
+            $data->admin_data_role = $data->AdminData->AdminRole;
+            // $data->user_alamats = $data->AdminData->AdminRole;
+            unset($data->AdminData);
+            unset($data->UserProvinsi);
+            $dataUsers=[];
+            $dataAlamats=Alamat::where('rt_id',  $data->admin_data_role->rt_id)->get();
+            foreach ($dataAlamats as $key => $dtAlamat) {
+
+                $dataUsers= array_merge($dataUsers, $dtAlamat->Users->toArray());
+
+                // unset($dtAlamat->nama);
+                $dataUsersUnique = collect($dataUsers)->unique('user_id')->values()->all();
+            }
+            return response()->json([
+                'data' => $dataUsersUnique,
+                'message' => 'berhasil',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
     public function storeUser(Request $request)
     {
         try {
