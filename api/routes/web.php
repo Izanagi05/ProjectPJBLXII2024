@@ -38,6 +38,7 @@ Route::group(['middleware' => 'corscustom'], function () {
 
 Route::get('/getTagihanallUser', [TagihanBulananController::class, 'getTagihanallUser']);
 Route::get('/getUserBelumBayarTagihan', [TagihanBulananController::class, 'getUserBelumBayarTagihan']);
+Route::get('/getAllTagihanUserbyTahun/{tahun_id?}', [TagihanBulananController::class, 'getAllTagihanUserbyTahun']);
 
 
 Route::get('/getUserLogin', [UserController::class, 'getUserLogin']);
