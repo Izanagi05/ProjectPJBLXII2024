@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PembayaranIuran;
 use App\Models\TagihanBulanan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PembayaranIuranController extends Controller
@@ -15,32 +16,46 @@ class PembayaranIuranController extends Controller
             $validatedData = $request->validate([
                 'tagihan_bulanan_id' => 'required|exists:tagihan_bulanans,tagihan_bulanan_id',
                 'user_id' => 'required|numeric|exists:users,user_id',
-                'tanggal_pembayaran' => 'required',
+                'rt_id' => '',
+                'tanggal_pembayaran' => '',
                 'jumlah_pembayaran' => 'required|numeric',
             ]);
+            $authorizationHeader = $request->header('Authorization');
+            $token = str_replace('Bearer ', '', $authorizationHeader);
+            $data = User::where('remember_token', $token)->where('role', 'Admin')
+                ->first();
+            $data->provinsi = $data->UserProvinsi->provinsi;
+            $data->admin_data_role = $data->AdminData->AdminRole;
+            // $data->user_alamats = $data->AdminData->AdminRole;
+            unset($data->AdminData);
+            unset($data->UserProvinsi);
+            // echo  $validatedData['rt_id'];
             $TagihanBulanan = TagihanBulanan::where('user_id',  $validatedData['user_id'])->where('tagihan_bulanan_id',  $validatedData['tagihan_bulanan_id']);
-            if($TagihanBulanan->first()->status_pembayaran ==='Lunas'){
+            if ($TagihanBulanan->first()->status_pembayaran === 'Lunas') {
                 return response()->json([
                     'data' => 'Success',
                     'message' => 'Tagihan ini sudah lunas',
                     'success' => true
                 ], 201);
             }
-            if ( $validatedData['jumlah_pembayaran'] . '.00' === $TagihanBulanan->first()->JenisIuran->jumlah) {
+            if ($validatedData['jumlah_pembayaran'] . '.00' === $TagihanBulanan->first()->JenisIuran->jumlah) {
+                $validatedData['rt_id']= $data->admin_data_role->rt_id;
+                $validatedData['tanggal_pembayaran'] = Carbon::now()->toDateString();
                 $TransaksiIuran =  PembayaranIuran::create([
                     'tagihan_bulanan_id' => $validatedData['tagihan_bulanan_id'],
                     'user_id' => $validatedData['user_id'],
                     'tanggal_pembayaran' => $validatedData['tanggal_pembayaran'],
+                    'rt_id' => $validatedData['rt_id'],
                     'jumlah_pembayaran' => $validatedData['jumlah_pembayaran'],
                 ]);
-                    $statusLunas = 'Lunas';
-                    $TagihanBulanan->update([
-                        'status_pembayaran' => $statusLunas
-                    ]);
-                }
+                $statusLunas = 'Lunas';
+                $TagihanBulanan->update([
+                    'status_pembayaran' => $statusLunas
+                ]);
+            }
 
             return response()->json([
-                'data' => $TransaksiIuran,
+                'data' => $TransaksiIuran ?? null,
                 'message' => 'berhasil',
                 'success' => true
             ], 201);

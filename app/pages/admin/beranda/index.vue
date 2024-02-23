@@ -2,7 +2,7 @@
   <div>
     <div class="d-inline-flex">
       <v-card
-        v-for="(item, index) in cardData"
+        v-for="(item, index) in getjumlahWargaAndTransaksiAndLaporan"
         :key="index"
         width="300"
         :class="['pa-6 mr-4 bgbrd-2  rounded-xl', item.bgClass]"
@@ -12,10 +12,10 @@
             <p class="text-h4 font-weight-medium mb-2 white--text">
               {{ item.count }}
             </p>
-            <p class="text-body-1 white--text mb-0">{{ item.title }}</p>
+            <p class="text-body-1 white--text mb-0">{{ item.key }}</p>
           </div>
           <div style="width: 80px">
-            <v-img :src="require(`~/assets/icon/${item.logo}.svg`)"></v-img>
+            <v-img :src="require(`~/assets/icon/${item.icon}.svg`)"></v-img>
           </div>
         </div>
       </v-card>

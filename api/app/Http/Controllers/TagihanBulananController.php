@@ -70,12 +70,17 @@ class TagihanBulananController extends Controller
             $tahun= Tahun::where('tahun', $tahunNama)->first();
             // dd($tahun->tahun_id);
             $userAllTagihanByTahun = User::with(['TagihanBulanans' => function ($query) use ($tahun) {
-                $query->where('tahun_id', $tahun->tahun_id);
+                $query->where('tahun_id', $tahun->tahun_id)->orderBy('bulan_id', 'asc');;
             }])->get();
 
             foreach ($userAllTagihanByTahun as $key => $dt) {
                 // Di sini Anda dapat mengakses tagihan bulanan untuk tahun tertentu
-               $dt->TagihanBulanans;
+                $dt->TagihanBulanans;
+                foreach ($dt->TagihanBulanans as $key => $jenisiuran) {
+                    $jenisiuran->JenisIuran;
+                    $jenisiuran->Bulan;
+                    $jenisiuran->Tahun;
+                }
                 // Lakukan sesuatu dengan $tagihanBulanansTahunIni...
             }
             // $userAllTagihanByTahun= TagihanBulanan::where('tahun_id', $tahun->tahun_id)->get();

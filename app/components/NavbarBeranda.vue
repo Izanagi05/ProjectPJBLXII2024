@@ -31,7 +31,7 @@
             </div>
       </v-card>
     </v-dialog>
-    <div class="px-4 py-2 d-flex justify-space-between backdrop-blur-lg   align-center "  style="z-index:40;position: fixed;width: 100%;">
+    <div :class="['px-4 py-2 d-flex justify-space-between backdrop-blur-lg   align-center  ', dataCookies==='Admin'?'':'positionfixed']"  style="z-index:40;width: 100%;">
       <div class="d-flex align-center justify-space-between" style="width:100%;">
         <p class="font-weight-medium mb-0 text-body-1">
           {{ hari }}
@@ -47,7 +47,7 @@
 export default {
   data: () => ({
     menunotif: false,
-    dialoglogout:false,
+    dialoglogout: false,
     tanggal: new Date(),
     hari: "_",
     drawer: false,
@@ -115,6 +115,7 @@ export default {
       { icon: "mdi-logout", judul: "Logout", color: "red--text" },
       // Tambahkan item-item lain sesuai kebutuhan
     ],
+    dataCookies:[],
   }),
   computed: {
     formatTgl() {
@@ -144,10 +145,18 @@ export default {
   },
   computed: {},
   methods: {
-
-    konfirmlogout(){
-      this.$store.dispatch('user/postLogout')
-    }
+    konfirmlogout() {
+      this.$store.dispatch("user/postLogout");
+    },
+  },
+  async created() {
+   this.dataCookies= this.$cookies.get("dataUser").data.role
   },
 };
 </script>
+
+<style scoped>
+.positionfixed {
+  position: fixed !important;
+}
+</style>

@@ -8,6 +8,28 @@ use Illuminate\Http\Request;
 
 class RtController extends Controller
 {
+    public function getAllWargaRT(){
+        try {
+
+            $data= Rt::where('rt_id', 2)->first();
+            foreach ($data->Alamats as $key => $dtalamat) {
+                $dtalamat->Users;
+            }
+
+            return response()->json([
+                'data' => $data,
+                'message' => 'Berhasil',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
     public function storeRT(Request $request){
         try {
             $validateData=$request->validate([

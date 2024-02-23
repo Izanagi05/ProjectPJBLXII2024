@@ -38,7 +38,6 @@ Route::group(['middleware' => 'corscustom'], function () {
 
 Route::get('/getTagihanallUser', [TagihanBulananController::class, 'getTagihanallUser']);
 Route::get('/getUserBelumBayarTagihan', [TagihanBulananController::class, 'getUserBelumBayarTagihan']);
-Route::get('/getAllTagihanUserbyTahun/{tahun_id?}', [TagihanBulananController::class, 'getAllTagihanUserbyTahun']);
 
 
 Route::get('/getUserLogin', [UserController::class, 'getUserLogin']);
@@ -57,6 +56,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::post('/storeRT', [RtController::class, 'storeRT']);
+Route::get('/getAllWargaRT', [RtController::class, 'getAllWargaRT']);
 Route::post('/updateRT', [RtController::class, 'updateRT']);
 Route::delete('/deleteRT/{id}', [RtController::class, 'deleteRT']);
 
@@ -67,9 +67,6 @@ Route::delete('/deleteYear/{id}', [TahunController::class, 'deleteYear']);
 
 Route::post('/TransaksiPembayaranIuran', [PembayaranIuranController::class, 'TransaksiPembayaranIuran']);
 
-Route::get('/getAllJenisIurans', [JenisIuranController::class, 'getAllJenisIurans']);
-Route::post('/createJenisIuran', [JenisIuranController::class, 'createJenisIuran']);
-Route::post('/updateJenisIuran', [JenisIuranController::class, 'updateJenisIuran']);
 Route::delete('/deleteJenisIuran/{id}', [JenisIuranController::class, 'deleteJenisIuran']);
 
 Route::post('/buatAkunVia', [UserController::class, 'buatAkunVia']);
@@ -82,7 +79,18 @@ Route::delete('/deleteUserbyid/{id}', [UserController::class, 'deleteUserbyid'])
 Route::get('/getAgama', [AgamaController::class, 'getAgama']);
 
 Route::get('/getProvinsi', [ProvinsiController::class, 'getProvinsi']);
-
 Route::get('/getallalamat', [AlamatController::class, 'getallalamat']);
 
-Route::post('/storeUser', [AdminController::class, 'storeUser']);
+
+Route::post('/createJenisIuran', [JenisIuranController::class, 'createJenisIuran']);
+Route::group(['middleware' => 'admindata'], function () {
+    Route::post('/updateJenisIuran', [JenisIuranController::class, 'updateJenisIuran']);
+    Route::get('/getAllJenisIurans', [JenisIuranController::class, 'getAllJenisIurans']);
+});
+Route::group(['middleware' => 'admindata'], function () {
+    Route::get('/jumlahWargaAndTransaksiAndLaporan', [AdminController::class, 'jumlahWargaAndTransaksiAndLaporan']);
+    Route::post('/storeUser', [AdminController::class, 'storeUser']);
+});
+Route::get('/getAllTagihanUserbyTahun/{tahun_id?}', [TagihanBulananController::class, 'getAllTagihanUserbyTahun']);
+
+Route::get('/getAdminLogin', [AdminController::class, 'getAdminLogin']);

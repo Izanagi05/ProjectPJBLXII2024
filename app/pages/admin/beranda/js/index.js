@@ -1,3 +1,4 @@
+import { mapGetters } from "vuex";
 export default {
   layout: "AdminSideBar",
   middleware:['guestmiddleware', 'rolecheckmiddleware'],
@@ -36,5 +37,15 @@ export default {
         }
       ],
     }
+  },
+  computed: {
+    ...mapGetters({
+      getjumlahWargaAndTransaksiAndLaporan: "admindata/getjumlahWargaAndTransaksiAndLaporan",
+    }),
+  },
+  async created() {
+    await this.$store.dispatch(
+      "admindata/fetchjumlahWargaAndTransaksiAndLaporan"
+    );
   },
 };

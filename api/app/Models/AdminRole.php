@@ -11,9 +11,13 @@ class AdminRole extends Model
     protected $primaryKey='admin_role_id';
     protected $fillable = [
         'nama',
+        'rt_id',
     ];
 
     public function Admins(){
         return $this->hasMany(Admin::class, 'admin_id');
+    }
+    public function RT(){
+        return $this->belongsTo(RT::class, 'rt_id');
     }
 }

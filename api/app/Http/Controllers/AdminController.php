@@ -4,14 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Models\Alamat;
 use App\Models\DetailAlamat;
+use App\Models\Laporan;
+use App\Models\PembayaranIuran;
+use App\Models\TagihanBulanan;
 use App\Models\User;
 use App\Models\UserAlamat;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    public function getAdminLogin(Request $request){
+        try {
+
+        $authorizationHeader = $request->header('Authorization');
+        $token = str_replace('Bearer ', '', $authorizationHeader);
+        $data = User::where('remember_token', $token)->where('role', 'Admin')
+           ->first();
+        $data->provinsi = $data->UserProvinsi->provinsi;
+        $data->admin_data_role = $data->AdminData->AdminRole;
+        // $data->user_alamats = $data->AdminData->AdminRole;
+        unset($data->AdminData);
+        unset($data->UserProvinsi);
+        $tampung = [];
+        return response()->json([
+            'data' => $data,
+            'message' => 'data admin login',
+            'success' => true
+        ], 201);
+    } catch (\Throwable $th) {
+        return response()->json([
+            'data' => null,
+            'message' => 'Terjadi kesalahan: ' . $th,
+            'success' => false
+        ], 500);
+    }
+    }
     public function storeUser(Request $request)
     {
         try {
@@ -76,6 +106,39 @@ class AdminController extends Controller
             ], 201);
         } catch (\Throwable $th) {
             //throw $th;
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
+    public function jumlahWargaAndTransaksiAndLaporan(){
+        try {
+            $tahunSekarang = Carbon::now()->year;
+            $data=[
+                [
+                    'key' => 'Jumlah User',
+                    'count' => User::where('role', 'User')->count(),
+                    'icon' => 'icon1',
+                ],
+                [
+                    'key' => 'Jumlah Pembayaran ',
+                    'count' => PembayaranIuran::whereYear('tanggal_pembayaran', $tahunSekarang)->count(),
+                    'icon' => 'icon2',
+                ],
+                [
+                    'key' => 'Jumlah Laporan',
+                    'count' => Laporan::all()->count(),
+                    'icon' => 'icon6',
+                ],
+            ];
+            return response()->json([
+                'data' => $data,
+                'message' => 'Berhasil get ',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
             return response()->json([
                 'data' => null,
                 'message' => 'Terjadi kesalahan: ' . $th,

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('admin_roles', function (Blueprint $table) {
             $table->id('admin_role_id');
+            $table->foreignId('rt_id')->references('rt_id')->on('rts');
             $table->string('nama');
             $table->timestamps();
         });

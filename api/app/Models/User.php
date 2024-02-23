@@ -65,6 +65,10 @@ class User extends Authenticatable implements JWTSubject
     public function TagihanBulanans(){
         return $this->hasMany(TagihanBulanan::class, 'user_id');
     }
+    public function AdminData(){
+        return $this->hasOne(Admin::class, 'user_id',);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

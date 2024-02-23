@@ -23,8 +23,8 @@ export default {
     try {
       const kondisi =
         this.$cookies.get("dataUser").data?.role === "User"
-          ? "getUserLogin"
-          : "getDataAdmin";
+          ? "/getUserLogin"
+          : "/getAdminLogin";
       await this.$axios
         .get(kondisi, {
           headers: {

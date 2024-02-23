@@ -11,6 +11,7 @@ class PembayaranIuran extends Model
     protected $primaryKey = 'pembayaran_iuran_id';
     protected $fillable = [
         'tagihan_bulanan_id',
+        'rt_id',
         'user_id',
         'tanggal_pembayaran',
         'jumlah_pembayaran',
@@ -20,6 +21,9 @@ class PembayaranIuran extends Model
     }
     public function TagihanBulanans(){
         return $this->belongsTo(TagihanBulanan::class, 'tagihan_bulanan_id');
+    }
+    public function RT(){
+        return $this->belongsTo(RT::class, 'rt_id');
     }
 
 }

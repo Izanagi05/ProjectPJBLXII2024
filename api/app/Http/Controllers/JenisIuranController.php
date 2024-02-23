@@ -42,20 +42,35 @@ class JenisIuranController extends Controller
                     'bulan_id' => 'required|exists:bulans,bulan_id',
                 ]);
                 $Tahun = Tahun::findOrFail($validatedData['tahun_id']);
-                $Bulan = Bulan::findOrFail($validatedData['bulan_id']);
                 $jenisIuran = JenisIuran::create([
                     'nama' => $request->nama,
                     'deskripsi' => $request->deskripsi,
                     'jumlah' => $request->jumlah,
                 ]);
                 $users = User::where('role', 'User')->get();
-                foreach ($users as $user) {
-                    $tagihan = TagihanBulanan::create([
-                        'user_id' => $user->user_id,
-                        'tahun_id' => $Tahun->tahun_id,
-                        'bulan_id' => $Bulan->bulan_id,
-                        'jenis_iuran_id' => $jenisIuran->jenis_iuran_id,
-                    ]);
+                if ($request->semuabulan === 'true') {
+                    $bulans = Bulan::get();
+                    foreach ($users as $user) {
+                        foreach ($bulans as $bulan) {
+                            TagihanBulanan::create([
+                                'user_id' => $user->user_id,
+                                'tahun_id' => $Tahun->tahun_id,
+                                'bulan_id' => $bulan->bulan_id,
+                                'jenis_iuran_id' => $jenisIuran->jenis_iuran_id,
+                                'status_pembayaran' => 'Belum Dibayar',
+                            ]);
+                        }
+                    }
+                }else{
+                    $Bulan = Bulan::findOrFail($validatedData['bulan_id']);
+                    foreach ($users as $user) {
+                        $tagihan = TagihanBulanan::create([
+                            'user_id' => $user->user_id,
+                            'tahun_id' => $Tahun->tahun_id,
+                            'bulan_id' => $Bulan->bulan_id,
+                            'jenis_iuran_id' => $jenisIuran->jenis_iuran_id,
+                        ]);
+                    }
                 }
             } else {
                 $validatedData =     $request->validate([

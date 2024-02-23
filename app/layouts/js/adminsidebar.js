@@ -13,17 +13,12 @@ data() {
       },
       {
         judul: "Data Warga",
-        rute: "/beranda/notifikasi",
+        rute: "/admin/beranda/datawarga",
         icon: "mdi-bell-outline",
       },
       {
-        judul: "Data Keluarga",
-        rute: "/beranda/riwayatlaporan",
-        icon: "mdi-history",
-      },
-      {
         judul: "Data IPL",
-        rute: "/beranda/riwayatlaporan",
+        rute: "/admin/beranda/dataipl",
         icon: "mdi-history",
       },
       {
@@ -53,5 +48,8 @@ data() {
       },
     ],
   }
+},
+async created() {
+  await this.$store.dispatch('user/fetchUserLogin')
 },
 }

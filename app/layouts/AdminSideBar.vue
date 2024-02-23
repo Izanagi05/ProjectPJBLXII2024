@@ -78,7 +78,7 @@
           <navbar-beranda />
           <div
             class="view bgrbrd-1 pa-4"
-            style="height: 100vh; overflow-y: scroll"
+            style="height: 100vh; overflow-y: scroll;padding-top: 80px !important;"
           >
             <nuxt />
           </div>

@@ -18,6 +18,9 @@ class Alamat extends Model
     public function DetailAlamats(){
         return $this->hasMany(DetailAlamat::class, 'alamat_id');
     }
+    public function Users(){
+        return $this->belongsToMany(User::class,'user_alamats', 'alamat_id', 'user_id')->where('role', 'User'); ;
+    }
     public function RT(){
         return $this->belongsTo(RT::class, 'rt_id');
     }

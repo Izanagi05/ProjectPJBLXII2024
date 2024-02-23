@@ -15,4 +15,10 @@ class Rt extends Model
         'ketua_rt',
         'wakil_ketua_rt',
     ];
+    public function Alamats(){
+        return $this->hasMany(Alamat::class, 'rt_id');
+    }
+    public function Pembayarans(){
+        return $this->hasMany(PembayaranIuran::class, 'rt_id');
+    }
 }
