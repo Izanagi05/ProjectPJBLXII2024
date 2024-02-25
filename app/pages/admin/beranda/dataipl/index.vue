@@ -9,7 +9,7 @@
     >
       <v-card
         style="box-shadow: none"
-        class="rounded-xl bg-whiteblur-card1 pa-4"
+        class="rounded-xl pa-4"
       >
         <div class="d-flex justify-end">
           <v-icon

@@ -26,6 +26,14 @@ export default {
         { text: "Status Berktp", value: "status_berktp" },
         { text: "Aksi", value: "aksi" },
       ],
+      header2: [
+        { text: "Nama", value: "nama" },
+        { text: "nik", value: "nik" },
+        { text: "no_kk", value: "no_kk" },
+        { text: "Foto KTP", value: "foto_ktp" },
+        { text: "Foto KK", value: "foto_kk" },
+        { text: "Status Berktp", value: "status_berktp" },
+      ],
       hubunganOptions: [
         { text: "Kepala Keluarga", value: "Kepala Keluarga" },
         { text: "Istri", value: "Istri" },
@@ -83,14 +91,14 @@ export default {
         user_id: null,
         nama: null,
         jenis_kelamin: null,
-        nik: "3333",
-        no_kk: "333",
+        nik: null,
+        no_kk: null,
         foto_ktp: null,
         foto_kk: null,
         provinsi_lahir_id: null,
         tempat_lahir_lainnya: null,
         tgl_lahir: null,
-        no_telp: "081290991181",
+        no_telp: null,
         pekerjaan: null,
         hubungan: null,
         status_berktp: null,
@@ -119,6 +127,7 @@ export default {
         { text: "Aksi", value: "aksi" },
       ],
       selectRules: [(value) => !!value || "Input tidak boleh kosong"],
+      dataCookies:null
     };
   },
   computed: {
@@ -127,6 +136,8 @@ export default {
       getDataProvinsi: "user/getDataProvinsi",
       getDataUser: "user/getDataUser",
       getAllUserById: "admindata/getAllUserById",
+      getAllDataAlamatByIdAlamat: "admindata/getAllDataAlamatByIdAlamat",
+      getAllDataDetailAlamatByIdAlamat: "admindata/getAllDataDetailAlamatByIdAlamat",
     }),
   },
   watch: {
@@ -144,10 +155,16 @@ export default {
       this.inputFileTambah = Object.assign({}, null)
       this.dialogtambah = true;
     },
+    async inputalamat(id){
+      console.log('idcoyyy',id);
+      await this.$store.dispatch(
+        "admindata/fetchDataDetailAlamatByRt", id);
+
+    },
   async  konfirmtambah() {
       await this.$store.dispatch("admindata/tambahDataWargabyAdmin", {
         data: this.inputTambah,
-        fotobaru: this.inputFileTambah,
+        detail_alamat: this.data_alamat_by_rt,
       });
       this.$store.dispatch("admindata/fetchAllUserRt");
       this.dialogtambah = false;
@@ -155,7 +172,7 @@ export default {
     closetambah() {
       this.dialogtambah = false;
       this.inputTambah = Object.assign({}, null)
-      this.inputFileTambah = Object.assign({}, null)
+      this.data_alamat_by_rt = Object.assign({}, null)
     },
     async editwarga(item) {
       this.inputEdit = Object.assign({}, item);
@@ -169,10 +186,11 @@ export default {
       this.inputFileEdit=Object.assign({}, null)
     },
     async konfrimdataedit() {
-      await this.$store.dispatch("user/updateDataWargabyAlamat", {
+      await this.$store.dispatch("admindata/updateDataWargabyAlamat", {
         data: this.inputEdit,
         fotobaru: this.inputFileEdit,
       });
+      this.$store.dispatch("admindata/fetchAllUserRt");
       this.editdialog = false;
       this.inputFileEdit=Object.assign({}, null)
     },
@@ -184,9 +202,10 @@ export default {
       this.hapusdialog = false;
       this.idwarga = Object.assign({}, null);
     },
-     konfrimdelete() {
-       this.$store.dispatch("user/deleteDataUserbyid", this.idwarga?.user_id);
-      //  this.$store.dispatch("user/fetchallwargabyalamat");
+   async  konfrimdelete() {
+       this.$store.dispatch("admindata/deleteDataUserbyAdmin", this.idwarga?.user_id);
+       //  this.$store.dispatch("user/fetchallwargabyalamat");
+   await    this.$store.dispatch("admindata/fetchAllUserRt");
       this.hapusdialog = false;
     },
     required(v) {
@@ -201,9 +220,12 @@ export default {
    await this.$store.dispatch(
     "admindata/fetchDataAlamatByRt"
   );
-  await this.$store.dispatch(
-    "admindata/fetchDataDetailAlamatByRt", this.data_alamat_by_rt.alamat_id??1
-  );
+  // if(this.getAllDataAlamatByIdAlamat[0]){
+  // this.data_alamat_by_rt.alamat_id=this.getAllDataAlamatByIdAlamat[0].alamat_id
+  // // console.log('mommm', data_alamat_by_rt);
+
+  //   }
+  this.dataCookies=this.$cookies.get("dataUser").data?.role
     this.loadingData=false
   },
 };

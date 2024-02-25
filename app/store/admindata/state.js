@@ -3,5 +3,9 @@ export default () => ({
   jumlahDataInBeranda:[],
   allUsersByRt:[],
   allDataDetailAlamatByIdAlamat:[],
-  allDataAlamatByIdAlamat:[]
+  allDataAlamatByIdAlamat:[],
+  allSumPemasukan:null,
+  allPemasukan:[],
+  allSumPengeluarans:null,
+  allPengeluarans:[]
 })

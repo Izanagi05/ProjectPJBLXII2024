@@ -35,7 +35,7 @@ class TahunController extends Controller
             if ($request->yearwithtagihan === 'true') {
                 // dd('atas');
                 $validatedData = $request->validate([
-                    'tahun' => 'required',
+                    'tahun' => 'required|numeric',
                     'jenis_iuran_id' => 'required|numeric',
                 ]);
                 $jenisIuran = JenisIuran::findOrFail($validatedData['jenis_iuran_id']);
@@ -59,7 +59,7 @@ class TahunController extends Controller
             } else {
                 // dd('bh');
                 $validatedData = $request->validate([
-                    'tahun' => 'required',
+                    'tahun' => 'required|numeric',
                 ]);
                 $newYear = Tahun::create([
                     'tahun' => $validatedData['tahun'],
@@ -83,7 +83,7 @@ class TahunController extends Controller
     {
         try {
             $validateData = $request->validate([
-                'tahun' => 'required|numeric',
+                'tahun' => 'required',
             ]);
             $data = Tahun::findOrFail($request->tahun_id);
             $data->update($validateData);

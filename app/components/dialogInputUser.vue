@@ -8,7 +8,7 @@
     >
       <v-card
         style="box-shadow: none"
-        class="rounded-xl bg-whiteblur-card1 pa-4"
+        :class="['rounded-xl  pa-4', dataCookies==='Admin'?'':'bg-whiteblur-card1 ']"
       >
         <div class="d-flex justify-end">
           <v-icon @click="closeaction" class="text-1 white rounded-xl mb-3"
@@ -274,17 +274,18 @@ export default {
       checktmptlahir: false,
 
       detail_alamat: null,
+      dataCookies:null,
     };
   },
   computed: {
-    detailalamatt() {
-      this.getDataUser?.detail_alamats.map((detailAlamat) => {
-        return {
-          nama_alamat: detailAlamat.nama,
-          nama_blok: detailAlamat.alamat.nama,
-        };
-      });
-    },
+    // detailalamatt() {
+    //   this.getDataUser?.detail_alamats.map((detailAlamat) => {
+    //     return {
+    //       nama_alamat: detailAlamat.nama,
+    //       nama_blok: detailAlamat.alamat.nama,
+    //     };
+    //   });
+    // },
     ...mapGetters({
       getDataAgama: "user/getDataAgama",
       getDataProvinsi: "user/getDataProvinsi",
@@ -313,14 +314,16 @@ export default {
     },
   },
   async created() {
-    this.detail_alamat = this.getDataUser?.detail_alamats.map(
-      (detailAlamat) => {
-        return {
-          nama_alamat: detailAlamat.nama,
-          nama_blok: detailAlamat.alamat.nama,
-        };
-      }
-    );
+    this.dataCookies= this.$cookies.get("dataUser").data.role
+    await this.$store.dispatch('user/fetchUserLogin')
+    // this.detail_alamat = this.getDataUser?.detail_alamats.map(
+    //   (detailAlamat) => {
+    //     return {
+    //       nama_alamat: detailAlamat.nama,
+    //       nama_blok: detailAlamat.alamat.nama,
+    //     };
+    //   }
+    // );
       // this.inputEdit=Object
     await this.$store.dispatch("user/fetchDataAgama");
     await this.$store.dispatch("user/fetchDataProvinsi");

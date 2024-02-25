@@ -113,13 +113,13 @@ export default {
     try {
       await this.$axios
         .get(
-          "/getAgama"
-          // {
-          //   headers: {
-          //     Authorization:
-          //       "Bearer " + this.$cookies.get("dataUser").data?.token,
-          //   },
-          // }
+          "/getAgama",
+          {
+            headers: {
+              Authorization:
+                "Bearer " + this.$cookies.get("dataUser").data?.token,
+            },
+          }
         )
         .then((response) => {
           commit("GET_DATA_AGAMA", response.data?.data);

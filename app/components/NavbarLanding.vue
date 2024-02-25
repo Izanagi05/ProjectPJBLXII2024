@@ -89,14 +89,10 @@ export default {
       no_admin: '6281563151038',
       navigationLinks: [
         { judul: 'Beranda', id: '' },
-        { judul: 'Tentang kami', id: 'tentang' },
-        { judul: 'Bidang kami', id: 'bidang' },
         { judul: 'Kontak kami', id: 'kontak' }
       ],
       menu: false,
       lebihlanjutlinks: [
-        { judul: 'Tentang kami', id: 'tentang' },
-        { judul: 'Bidang kami', id: 'bidang' },
         { judul: 'Kontak kami', id: 'kontak' }
       ],
       scrollPosition: 0,

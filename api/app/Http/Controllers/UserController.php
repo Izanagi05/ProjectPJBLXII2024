@@ -29,11 +29,6 @@ class UserController extends Controller
                $wargaperalamats[]= $dtdetail->Wargas;
                $dtdetail['jumlah_wargas']=count($dtdetail->Wargas);
             }
-            // unset($data->UserProvinsi);
-            // $dataa=[
-            //     'AdminRole'=>$tampung['AdminRole']->name,
-            //     'UserName'=>$tampung['UserData'],
-            // ];
             return response()->json([
                 'data' => $data,
                 'message' => 'data user login',
@@ -192,8 +187,8 @@ class UserController extends Controller
                 'jenis_kelamin' => 'required',
                 'nik' => 'required|numeric',
                 'no_kk' => 'required|numeric',
-                'foto_ktp' => 'nullable|max:255',
-                'foto_kk' => 'nullable|max:255',
+                'foto_ktp' => 'nullable',
+                'foto_kk' => 'nullable',
                 'provinsi_lahir_id' => 'nullable',
                 'tempat_lahir_lainnya' => 'nullable|string|max:255',
                 'tgl_lahir' => 'required',

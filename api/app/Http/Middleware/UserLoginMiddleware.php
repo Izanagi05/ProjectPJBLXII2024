@@ -23,7 +23,7 @@ class UserLoginMiddleware
             $userModel = User::where('remember_token', $token)->first();
             if ($token) {
                 if ($userModel) {
-                    // return $next($request);
+                    return $next($request);
                 }else{
                     return response()->json(['message' => 'Invalidd Token'], 401);
                 }

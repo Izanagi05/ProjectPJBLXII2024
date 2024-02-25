@@ -14,7 +14,7 @@ class UserAlamat extends Model
     // public function DetailAlamat(){
     //     return $this->belongsTo(DetailAlamat::class, 'detail_alamat_id');
     // }
-    // public function Alamat(){
-    //     return $this->belongsTo(Alamat::class, 'alamat_id');
-    // }
+        public function Alamat(){
+            return $this->belongsTo(Alamat::class, 'alamat_id');
+        }
 }

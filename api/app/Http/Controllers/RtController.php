@@ -11,10 +11,11 @@ use Illuminate\Http\Request;
 
 class RtController extends Controller
 {
-    public function getAllWargaRT(){
+    public function getAllWargaRT($rt_id = null)
+    {
         try {
 
-            $data= Rt::where('rt_id', 2)->first();
+            $data = Rt::where('rt_id', 2)->first();
             foreach ($data->Alamats as $key => $dtalamat) {
                 $dtalamat->Users;
             }
@@ -33,15 +34,16 @@ class RtController extends Controller
             ], 500);
         }
     }
-    public function getDataAlamatByRt(Request $request){
+    public function getDataAlamatByRt(Request $request)
+    {
         try {
             $authorizationHeader = $request->header('Authorization');
             $token = str_replace('Bearer ', '', $authorizationHeader);
             $data = User::where('remember_token', $token)->where('role', 'Admin')
-               ->first();
+                ->first();
             $data->admin_data_role = $data->AdminData->AdminRole;
             // $data->user_alamats = $data->AdminData->AdminRole;
-            $dataAlamats= Alamat::where('rt_id', $data->admin_data_role->rt_id)->get();
+            $dataAlamats =    $data->admin_data_role->nama === 'Admin' ? Alamat::where('rt_id', $data->admin_data_role->rt_id)->get() : Alamat::get();
             return response()->json([
                 'data' => $dataAlamats,
                 'message' => 'Berhasil',
@@ -56,10 +58,11 @@ class RtController extends Controller
             ], 500);
         }
     }
-    public function getDataDetailAlamatByRt($alamat_id){
+    public function getDataDetailAlamatByRt($alamat_id)
+    {
         try {
             // $data->user_alamats = $data->AdminData->AdminRole;
-            $dataDetailAlamats= DetailAlamat::where('alamat_id', $alamat_id)->get();
+            $dataDetailAlamats = DetailAlamat::where('alamat_id', $alamat_id)->get();
             return response()->json([
                 'data' => $dataDetailAlamats,
                 'message' => 'Berhasil',
@@ -74,17 +77,18 @@ class RtController extends Controller
             ], 500);
         }
     }
-    public function storeRT(Request $request){
+    public function storeRT(Request $request)
+    {
         try {
-            $validateData=$request->validate([
-                'rt'=>'required',
-                'ketua_rt'=>'required|',
-                'wakil_ketua_rt'=>'required'
+            $validateData = $request->validate([
+                'rt' => 'required',
+                'ketua_rt' => 'required|',
+                'wakil_ketua_rt' => 'required'
             ]);
-            $data= Rt::create($validateData);
-            if($validateData){
-                $data= AdminRole::create([
-                    'nama'=>'Admin '.$validateData['rt']
+            $data = Rt::create($validateData);
+            if ($validateData) {
+                $data = AdminRole::create([
+                    'nama' => 'Admin ' . $validateData['rt']
                 ]);
             }
             return response()->json([
@@ -101,7 +105,8 @@ class RtController extends Controller
             ], 500);
         }
     }
-    public function updateRT(Request $request){
+    public function updateRT(Request $request)
+    {
         try {
             $validateData = $request->validate([
                 'rt' => 'required',
@@ -131,7 +136,8 @@ class RtController extends Controller
         }
     }
 
-    public function deleteRT($id){
+    public function deleteRT($id)
+    {
         try {
             $rt = Rt::findOrFail($id);
 

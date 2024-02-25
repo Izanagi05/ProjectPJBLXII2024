@@ -24,7 +24,7 @@ class AdminPusatMiddleware
             $userModel = User::where('remember_token', $token)->first();
             if ($token) {
                 if ($userModel && $userModel->role === 'Admin') {
-                    if ($userModel->AdminData->AdminRole->name === 'Admin Pusat') {
+                    if ($userModel->AdminData->AdminRole->nama === 'Admin RW') {
                         return $next($request);
                     } else {
                         return response()->json(['message' => 'kamu bukan admin'], 401);

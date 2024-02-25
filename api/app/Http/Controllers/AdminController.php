@@ -47,7 +47,7 @@ class AdminController extends Controller
         try {
             $authorizationHeader = $request->header('Authorization');
             $token = str_replace('Bearer ', '', $authorizationHeader);
-            $data = User::where('user_id', 17)->where('role', 'Admin')
+            $data = User::where('remember_token', $token)->where('role', 'Admin')
                 ->first();
             $data->provinsi = $data->UserProvinsi->provinsi;
             $data->admin_data_role = $data->AdminData->AdminRole;
@@ -64,7 +64,24 @@ class AdminController extends Controller
                 $dataUsersUnique = collect($dataUsers)->unique('user_id')->values()->all();
             }
             return response()->json([
-                'data' => $dataUsersUnique,
+                'data' => $dataUsersUnique??null,
+                'message' => 'berhasil',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
+    public function getAllUser(Request $request)
+    {
+        try {
+          $data=User::get();
+            return response()->json([
+                'data' => $data,
                 'message' => 'berhasil',
                 'success' => true
             ], 201);

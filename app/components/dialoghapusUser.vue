@@ -8,7 +8,7 @@
     >
       <v-card
         style="box-shadow: none"
-        class="rounded-xl bg-whiteblur-card1 py-10 px-8"
+        :class="['rounded-xl py-10 px-8', dataCookies==='Admin'?'':'bg-whiteblur-card1 ']"
       >
       <div class="mt-6  mb-10">
 
@@ -40,6 +40,14 @@ export default {
     'konfrimdelete',
     'closehapus',
     'dialogVisible'
-  ]
+  ],
+  data() {
+    return {
+      dataCookies:null
+    }
+  },
+  async created() {
+    this.dataCookies= this.$cookies.get("dataUser").data.role
+  },
 }
 </script>

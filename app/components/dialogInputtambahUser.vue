@@ -36,7 +36,7 @@
           </v-col>
           <v-col lg="8" md="8">
             <p class="text-center text-h6 mb-0 mb-4 font-weight-medium">
-              Tambah data {{ detail_alamat_pilihan }}
+              Tambah data
             </p>
             <div style="overflow-y: scroll; overflow-x: hidden; height: 400px">
               <v-text-field

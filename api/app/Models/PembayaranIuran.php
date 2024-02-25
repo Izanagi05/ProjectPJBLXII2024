@@ -13,6 +13,7 @@ class PembayaranIuran extends Model
         'tagihan_bulanan_id',
         'rt_id',
         'user_id',
+        'jenis_iuran_id',
         'tanggal_pembayaran',
         'jumlah_pembayaran',
     ];
@@ -21,6 +22,9 @@ class PembayaranIuran extends Model
     }
     public function TagihanBulanans(){
         return $this->belongsTo(TagihanBulanan::class, 'tagihan_bulanan_id');
+    }
+    public function JenisIuran(){
+        return $this->belongsTo(JenisIuran::class, 'jenis_iuran_id');
     }
     public function RT(){
         return $this->belongsTo(RT::class, 'rt_id');

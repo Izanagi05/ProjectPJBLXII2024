@@ -62,7 +62,7 @@
             <v-col cols="12" lg="4" md="8" sm="12" xs="12">
               <div class="d-flex align-center" style="height: 100%">
                 <div>
-                  <p class="text-h4">Fitur? Banyak banget coyy</p>
+                  <p class="text-h4">Lorem ipsum dolor sit.</p>
                   <div class="text-caption grey--text">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Error incidunt magnam excepturi eaque eum nesciunt ducimus

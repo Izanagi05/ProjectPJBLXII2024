@@ -14,7 +14,7 @@
           <v-col lg="8">
             <v-row>
               <v-col lg="4">
-                <ul class="text-1 list-none pa-0 text-decoration-none" style="list-style: none;">
+                <!-- <ul class="text-1 list-none pa-0 text-decoration-none" style="list-style: none;">
                   <li class="font-weight-bold mb-4 text-2">
                     Tentang kami
                   </li>
@@ -28,7 +28,7 @@
                       bidang
                     </nuxt-link>
                   </li>
-                </ul>
+                </ul> -->
               </v-col>
               <v-col lg="4">
                 <ul class="text-1 list-none pa-0 text-decoration-none"  style="list-style: none;">

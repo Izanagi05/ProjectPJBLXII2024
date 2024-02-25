@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class JenisIuranController extends Controller
 {
-    public function getAllJenisIuran()
+    public function getAllJenisIuransData()
     {
         try {
             $data=JenisIuran::get();
@@ -37,7 +37,7 @@ class JenisIuranController extends Controller
                 $validatedData =     $request->validate([
                     'nama' => 'required|string',
                     'deskripsi' => 'required|string',
-                    'jumlah' => 'required|numeric',
+                    'jumlah' => 'required|numeric|min:0',
                     'tahun_id' => 'required|exists:tahuns,tahun_id',
                     'bulan_id' => 'required|exists:bulans,bulan_id',
                 ]);
@@ -75,7 +75,7 @@ class JenisIuranController extends Controller
             } else {
                 $validatedData =     $request->validate([
                     'nama' => 'required|string',
-                    'jumlah' => 'required|numeric',
+                    'jumlah' => 'required|numeric|min:0',
                     'deskripsi' => 'required|string',
                 ]);
                 $jenisIuran = JenisIuran::create([

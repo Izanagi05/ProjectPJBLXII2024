@@ -58,9 +58,18 @@ class TagihanBulananController extends Controller
             ], 500);
         }
     }
-    public function getAllTagihanUserbyTahun($tahunNama=null){
+    public function getAllTagihanUserbyTahun(Request $request, $tahunNama=null){
         try {
             $tahunSekarang = Carbon::now()->year;
+            $authorizationHeader = $request->header('Authorization');
+            $token = str_replace('Bearer ', '', $authorizationHeader);
+            $data = User::where('remember_token', $token)->where('role', 'Admin')
+                ->first();
+            $data->provinsi = $data->UserProvinsi->provinsi;
+            $data->admin_data_role = $data->AdminData->AdminRole;
+            // $data->user_alamats = $data->AdminData->AdminRole;
+            unset($data->AdminData);
+            unset($data->UserProvinsi);
             // dd($tahunSekarang);
 
             // Set nilai default untuk $tahunNama jika tidak diberikan
@@ -69,9 +78,16 @@ class TagihanBulananController extends Controller
             }
             $tahun= Tahun::where('tahun', $tahunNama)->first();
             // dd($tahun->tahun_id);
-            $userAllTagihanByTahun = User::with(['TagihanBulanans' => function ($query) use ($tahun) {
+            $userAllTagihanByTahun = User::where('role', 'User')->whereHas('UserAlamats', function ($query2) use($data){
+                $query2->whereHas('Alamat', function ($query3)use($data){
+                    $query3->where('rt_id',  $data->admin_data_role->rt_id);
+                });
+            } )->with(['TagihanBulanans' => function ($query) use ($tahun) {
                 $query->where('tahun_id', $tahun->tahun_id)->orderBy('bulan_id', 'asc');;
             }])->get();
+            // $userAllTagihanByTahun = User::with(['TagihanBulanans' => function ($query) use ($tahun) {
+            //     $query->where('tahun_id', $tahun->tahun_id)->orderBy('bulan_id', 'asc');;
+            // }])->get();
 
             foreach ($userAllTagihanByTahun as $key => $dt) {
                 // Di sini Anda dapat mengakses tagihan bulanan untuk tahun tertentu

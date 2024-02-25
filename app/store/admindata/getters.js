@@ -14,5 +14,17 @@ export default{
   getAllDataDetailAlamatByIdAlamat (state) {
     return state.allDataDetailAlamatByIdAlamat
   },
+  getSumDataPemasukan (state) {
+    return state.allSumPemasukan
+  },
+  getAllDataPemasukan (state) {
+    return state.allPemasukan
+  },
+  getSumDataPengeluarans (state) {
+    return state.allSumPengeluarans
+  },
+  getAllDataPengeluarans (state) {
+    return state.allPengeluarans
+  },
 
 }

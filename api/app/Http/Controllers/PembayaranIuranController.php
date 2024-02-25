@@ -17,8 +17,9 @@ class PembayaranIuranController extends Controller
                 'tagihan_bulanan_id' => 'required|exists:tagihan_bulanans,tagihan_bulanan_id',
                 'user_id' => 'required|numeric|exists:users,user_id',
                 'rt_id' => '',
+                'jenis_iuran_id' => '',
                 'tanggal_pembayaran' => '',
-                'jumlah_pembayaran' => 'required|numeric',
+                'jumlah_pembayaran' => 'required|numeric|min:0',
             ]);
             $authorizationHeader = $request->header('Authorization');
             $token = str_replace('Bearer ', '', $authorizationHeader);
@@ -41,8 +42,10 @@ class PembayaranIuranController extends Controller
             if ($validatedData['jumlah_pembayaran'] . '.00' === $TagihanBulanan->first()->JenisIuran->jumlah) {
                 $validatedData['rt_id']= $data->admin_data_role->rt_id;
                 $validatedData['tanggal_pembayaran'] = Carbon::now()->toDateString();
+                $validatedData['jenis_iuran_id'] =    $TagihanBulanan->first()->JenisIuran->jenis_iuran_id;
                 $TransaksiIuran =  PembayaranIuran::create([
                     'tagihan_bulanan_id' => $validatedData['tagihan_bulanan_id'],
+                    'jenis_iuran_id' => $validatedData['jenis_iuran_id'],
                     'user_id' => $validatedData['user_id'],
                     'tanggal_pembayaran' => $validatedData['tanggal_pembayaran'],
                     'rt_id' => $validatedData['rt_id'],
