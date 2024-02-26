@@ -25,7 +25,7 @@
           :rules="[required]"
           v-model="inputTambah.jumlah"
           type="number"
-          label="Jumlah"
+          label="Terbilang"
         ></v-text-field>
         <div class="d-flex justify-end">
               <v-btn
@@ -87,7 +87,7 @@
       Tambah Data</v-btn
     >
     <v-data-table :headers="header" :items="getAllDataPengeluarans">
-      <template v-slot:[`item.aksi`]="{ item }">
+      <template  v-if="dataCookies==='Admin'" v-slot:[`item.aksi`]="{ item }">
         <div class="d-flex">
           <v-btn
             icon
@@ -104,7 +104,7 @@
       </template>
     </v-data-table>
     <div class="d-flex justify-end">
-      <p class="text-h4 mt-4 font-weight-mmediu">Total Pengeluaran: Rp.{{getSumDataPengeluarans}}</p>
+      <p class="text-h5 mt-4 font-weight-mmediu">Total Pengeluaran: Rp.{{getSumDataPengeluarans}}</p>
     </div>
   </div>
 </template>

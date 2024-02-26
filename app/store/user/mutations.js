@@ -1,4 +1,7 @@
 export default{
+  GET_DATA_IPL_USER_LOGIN(state, data){
+    state.userLoginIPL=data
+  },
   GET_DATA_AGAMA(state, data){
     state.dataAgama=data
   },

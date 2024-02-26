@@ -4,4 +4,5 @@ export default () => ({
   adminDataRoles: [],
   dataAllYears: [],
   dataAllJenisIurans: [],
+  dataAllBulan: [],
 });

@@ -14,4 +14,7 @@ export default {
   getdataAllJenisIurans (state) {
     return state.dataAllJenisIurans
   },
+  getdataAlldataAllBulan (state) {
+    return state.dataAllBulan
+  },
 }

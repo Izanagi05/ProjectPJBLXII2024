@@ -6,4 +6,5 @@ export default () => ({
   dataUserLogin:null,
   dataAgama:[],
   dataProvinsi:[],
+  userLoginIPL:[],
 })

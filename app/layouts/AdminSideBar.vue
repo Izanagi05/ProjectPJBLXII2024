@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app>
-      <v-row class="ma-0 bgbrd-1" style="overflow-y: hidden; height: 100vh">
+      <v-row class="ma-0 bgbrd-1" style=" height: 100vh">
         <v-col
           v-if="!$vuetify.breakpoint.smAndDown"
           cols="12"
@@ -30,12 +30,12 @@
           <v-navigation-drawer permanent floating class="white rounded-xl">
             <p class="font-weight-medium text-body-1 ma-4">Menu</p>
             <div
-              style="height: 90vh; overflow-y: scroll"
+              style="height: 100%; overflow-y: scroll"
               class="pa-4 rounded-xl"
             >
               <!-- <div> -->
 
-              <v-tooltip v-for="(item, index) in urladmin" right :key="index">
+              <v-tooltip v-for="(item, index) in filteredUrlAdmin" right :key="index">
                 <template v-slot:activator="{ on, attrs }">
                   <v-list-item
                     text

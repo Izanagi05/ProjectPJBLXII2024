@@ -32,7 +32,7 @@
                       individu untuk beraksi dan membangun komunitas
                     </p>
                     <v-btn
-                      to="/"
+                      to="/login"
                       depressed
                       text
                       color="#102E46"
@@ -99,7 +99,7 @@
               $vuetify.breakpoint.smAndDown ? 'text-h5' : 'text-h4',
             ]"
           >
-            Musuh terlihat hati hati didepan
+           Lorem ipsum dolor, sit amet consectetur adipisicing
           </p>
           <v-row>
             <v-col cols="12" lg="4" md="4" sm="12" xs="12" style="z-index: 9">

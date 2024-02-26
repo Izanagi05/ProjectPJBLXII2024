@@ -45,6 +45,24 @@ export default {
     const cookieku = this.$cookies.get("dataUser");
     commit("GET_DATA_COOKIE", cookieku);
   },
+  async getUserLoginbyTahun({ commit }, data) {
+    try {
+      await this.$axios
+        .get("/getUserLoginbyTahun", {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          commit("GET_DATA_IPL_USER_LOGIN", response.data?.data);
+          console.log(response.data?.data);
+          // return response.data?.data
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
   async deleteLaporanUser({ commit }, data) {
     try {
       await this.$axios

@@ -21,6 +21,10 @@
         <p>{{ inputPembayaranIuran?.nama }}</p>
         <p>Bulan {{ inputPembayaranIuran?.bulan?.nama }}</p>
         <p>Jenis Tagihan {{ inputPembayaranIuran?.jenis_iuran?.nama }}</p>
+        {{inputPembayaranIuran?.jenis_iuran?.jumlah ===
+                  inputPembayaranIuran.jumlah_pembayaran
+                  ? false
+                  : true}}
         <p>Terbilang: Rp. {{ inputPembayaranIuran?.jenis_iuran?.jumlah }}</p>
         <v-text-field
           clearable
@@ -36,11 +40,11 @@
             Batal</v-btn
           >
           <v-btn
-            class="rounded-xl text-capitalize d-flex primary white--text"
+            class="rounded-xl text-capitalize d-flex bgbrd-2 white--text"
             @click="konfirmPembayaranIuran"
             :disabled="
               inputPembayaranIuran.jumlah_pembayaran
-                ? inputPembayaranIuran?.jenis_iuran?.jumlah.slice(0, -3) ===
+                ? inputPembayaranIuran?.jenis_iuran?.jumlah ==
                   inputPembayaranIuran.jumlah_pembayaran
                   ? false
                   : true
@@ -52,6 +56,15 @@
         </div>
       </v-card>
     </v-dialog>
+    <v-autocomplete
+              class="rounded-xl"
+              @input="inputtahun"
+              :items="getdataAllYears"
+              item-text="tahun"
+              item-value="tahun"
+              label="Masukan data tahun"
+              clearable
+            ></v-autocomplete>
     <v-data-table :headers="headers" :items="getDataAllUserTagihan">
       <template v-slot:[`item.tagihan_bulanans`]="{ item }">
         <div>
@@ -64,10 +77,10 @@
                 'mr-4  pa-4 rounded-xl my-4',
                 tagihan.status_pembayaran === 'Lunas' ? 'bg-green' : 'bg-red',
               ]"
-              @click="
+              @click="dataCookies==='Admin'?
                 tagihan.status_pembayaran === 'Lunas'
                   ? sudahlunas()
-                  : tambahPembayaranIuran(item, tagihan)
+                  : tambahPembayaranIuran(item, tagihan):nohit()
               "
             >
               <p class="font-weight-medium text-body-1">

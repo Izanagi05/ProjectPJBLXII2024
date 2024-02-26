@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('jenis_iuran_id');
             $table->string('nama')->unique();
             $table->text('deskripsi')->nullable();
-            $table->decimal('jumlah', 15, 2);
+            $table->unsignedBigInteger('jumlah');
             $table->timestamps();
         });
     }

@@ -28,9 +28,10 @@
               >
                 {{ rute.judul }}
               </nuxt-link>
+
               <!-- Tombol Login -->
-              <v-btn v-if="dataLoginCookies"
-                :class="['text-capitalize px-4 text-body-1 font-weight-medium rounded-lg ml-4', textcolor === '#ffffff' ? 'text-1' : 'white--text']"
+              <v-btn v-if="!dataCookies"
+                :class="['text-capitalize px-4 bg-2 text-body-1 font-weight-medium rounded-lg ml-4', textcolor === '#ffffff' ? 'text-1' : 'white--text']"
                 :color="textcolor"
                 to="/login"
                 style="transition: background-color 0.3s ease-in-out"
@@ -46,7 +47,7 @@
       v-if="$vuetify.breakpoint.smAndDown"
       v-model="drawer"
       class="rounded-e-lg"
-      style="position: fixed"
+      style="position: fixed;z-index: 200;"
       temporary
     >
       <v-card class="sidebar-profil pa-4   rounded-lg" style="height:100%;">
@@ -66,8 +67,8 @@ Menu
             {{ rute.judul }}
           </nuxt-link>
         </div>
-        <v-btn v-if="!dataLoginCookies"
-                :class="['text-capitalize px-4 text-body-1 bg-1 white--text font-weight-medium rounded-lg ']"
+        <v-btn v-if="!dataCookies"
+                :class="['text-capitalize px-4 text-body-1 bg-2 white--text font-weight-medium rounded-lg ']"
 
                 to="/login"
                 style="transition: background-color 0.3s ease-in-out;width: 100%;"
@@ -99,7 +100,8 @@ export default {
       textcolor: '#102E46',
       menucolor: '#102E46',
       navBackgroundColor: 'transparent',
-      elevation: 0
+      elevation: 0,
+      dataCookies:null
     }
   },
   mounted () {
@@ -123,6 +125,10 @@ export default {
         this.elevation = 0
       }
     }
+  },
+  async created(){
+    this.dataCookies= this.$cookies.get("dataUser")?.data.role??null
+
   }
 }
 </script>

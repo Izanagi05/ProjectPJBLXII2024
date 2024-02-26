@@ -24,7 +24,7 @@ export default {
       header:[
         {text:'Nama', value:'nama_pengeluaran'},
         {text:'Deskripsi', value:'deskripsi'},
-        {text:'Jumlah', value:'jumlah'},
+        {text:'Terbilang', value:'jumlah'},
         {text:'Aksi', value:'aksi'},
       ],
       dataPengeluaranId: null,
@@ -49,6 +49,7 @@ export default {
       this.inputTambah = Object.assign({}, null);
     },
     async konfirmTambahPengeluaran() {
+      this.dialogTambah = false;
       await  this.$store.dispatch(
         "admindata/tambahDataPengeluaranRt",
         this.inputTambah
@@ -57,7 +58,6 @@ export default {
         await this.$store.dispatch('admindata/fetchDataSumPengeluaranIuran', this.$cookies.get("dataUser").data?.role)
 
         console.log('p');
-        this.dialogTambah = false;
       this.inputTambah = Object.assign({}, null);
     },
     editPengeluaran(item) {
@@ -70,6 +70,7 @@ export default {
       this.inputEdit = Object.assign({}, null);
     },
    async konfirmEditPengeluaran() {
+     this.dialogEdit = false;
     await  this.$store.dispatch(
       "admindata/updateDataPengeluaranRt",
       this.inputEdit
@@ -78,7 +79,6 @@ export default {
     await this.$store.dispatch('admindata/fetchDataPengeluaranIuran', this.$cookies.get("dataUser").data?.role)
     await this.$store.dispatch('admindata/fetchDataSumPengeluaranIuran', this.$cookies.get("dataUser").data?.role)
 
-    this.dialogEdit = false;
     this.inputEdit = Object.assign({}, null);
    },
     hapusPengeluaran(item) {
@@ -90,13 +90,13 @@ export default {
 
     },
   async konfirmHapusPengeluaran() {
+    this.dialogHapus = false;
     await  this.$store.dispatch(
       "admindata/deleteDataPengeluaranRt",
       this.dataPengeluaranId
       );
       await this.$store.dispatch('admindata/fetchDataPengeluaranIuran', this.$cookies.get("dataUser").data?.role)
       await this.$store.dispatch('admindata/fetchDataSumPengeluaranIuran', this.$cookies.get("dataUser").data?.role)
-      this.dialogHapus = false;
 
     },
     required(v) {

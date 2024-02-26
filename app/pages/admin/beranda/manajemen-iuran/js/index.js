@@ -21,8 +21,37 @@ export default {
         tahun: null,
         jenis_iuran_id: null,
       },
+
+      dialogtambahJenisIuran: false,
+      dialogEditJenisIuran: false,
+      dialogHapusJenisIuran: false,
+      inputHapusJenisIuran:[],
+      inputTambahJenisIuran: {
+        nama:null,
+        deskripsi:null,
+        jumlah:null,
+        tahun_id:null,
+        bulan_id:null,
+        withtagihan: false,
+        semuabulan: false,
+      },
+      inputEditJenisIuran: {
+        nama:null,
+        deskripsi:null,
+        jumlah:null,
+        tahun_id:null,
+        bulan_id:null,
+        withtagihan: false,
+        semuabulan: false,
+      },
       headers: [
         { text: "Tahun", value: "tahun" },
+        { text: "Aksi", value: "aksi" },
+      ],
+      headersIuran: [
+        { text: "Nama", value: "nama" },
+        { text: "Deskripsi", value: "deskripsi" },
+        { text: "Terbilang", value: "jumlah" },
         { text: "Aksi", value: "aksi" },
       ],
     };
@@ -31,6 +60,7 @@ export default {
     ...mapGetters({
       getdataAllJenisIurans: "adminrw/getdataAllJenisIurans",
       getdataAllYears: "adminrw/getdataAllYears",
+      getdataAlldataAllBulan: "adminrw/getdataAlldataAllBulan",
     }),
   },
   methods: {
@@ -79,6 +109,53 @@ export default {
       );
       await  this.$store.dispatch('adminrw/getAllTahun')
     },
+
+
+    tambahJenisIuran() {
+      this.inputTambahJenisIuran = Object.assign({}, null);
+      this.dialogtambahJenisIuran = true;
+    },
+    closeTambahJenisIuran() {
+      this.dialogtambahJenisIuran = false;
+      this.inputTambahJenisIuran = Object.assign({}, null);
+    },
+    async konfirmTambahJenisIuran() {
+      this.dialogtambahJenisIuran = false;
+      await this.$store.dispatch("adminrw/createJenisIuran",
+         this.inputTambahJenisIuran,
+      );
+      await this.$store.dispatch("adminrw/getAllJenisIurans");
+    },
+    EditJenisIuran(item) {
+      this.inputEditJenisIuran = Object.assign({}, item);
+      this.dialogEditJenisIuran = true;
+    },
+    closeEditJenisIuran() {
+      this.dialogEditJenisIuran = false;
+      this.inputEditJenisIuran = Object.assign({}, null);
+    },
+    async konfirmEditJenisIuran() {
+      this.dialogEditJenisIuran = false;
+      await this.$store.dispatch("adminrw/updateJenisIuran",
+        this.inputEditJenisIuran,
+      );
+      await this.$store.dispatch("adminrw/getAllJenisIurans")
+    },
+    HapusJenisIuran(item) {
+      this.inputHapusJenisIuran = Object.assign({}, item);
+      this.dialogHapusJenisIuran = true;
+    },
+    closeHapusJenisIuran() {
+      this.dialogHapusJenisIuran = false;
+      this.inputHapusJenisIuran = Object.assign({}, null);
+    },
+    async konfirmHapusJenisIuran() {
+      this.dialogHapusJenisIuran = false;
+      await this.$store.dispatch("adminrw/deleteJenisIuran",
+         this.inputHapusJenisIuran,
+      );
+      await this.$store.dispatch("adminrw/getAllJenisIurans");
+    },
     required(v) {
       return !!v || "Input tidak boleh kosong";
     },
@@ -86,6 +163,7 @@ export default {
   async created() {
     this.loadingData = false;
     await this.$store.dispatch("adminrw/getAllJenisIurans");
+    await this.$store.dispatch("adminrw/getAllBulan");
     await this.$store.dispatch("adminrw/getAllTahun");
   },
 };

@@ -36,4 +36,7 @@ export default {
   DATA_ALL_JENIS_IURAN(state,data){
     state.dataAllJenisIurans=data
   },
+  DATA_ALL_BULAN(state,data){
+    state.dataAllBulan=data
+  },
 };

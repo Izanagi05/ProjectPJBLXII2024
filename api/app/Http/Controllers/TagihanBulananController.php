@@ -114,4 +114,51 @@ class TagihanBulananController extends Controller
             ], 500);
         }
     }
+    public function getUserLoginbyTahun(Request $request, $tahunNama=null){
+        try {
+            $tahunSekarang = Carbon::now()->year;
+            $authorizationHeader = $request->header('Authorization');
+            $token = str_replace('Bearer ', '', $authorizationHeader);
+            $data = User::where('remember_token', $token)->where('role', 'User')
+                ->first();
+            // $data->provinsi = $data->UserProvinsi->provinsi;
+            // $data->admin_data_role = $data->AdminData->AdminRole;
+            // // $data->user_alamats = $data->AdminData->AdminRole;
+            // unset($data->AdminData);
+            // unset($data->UserProvinsi);
+            // dd($tahunSekarang);
+
+            // Set nilai default untuk $tahunNama jika tidak diberikan
+            if(!$tahunNama){
+                $tahunNama = $tahunSekarang;
+            }
+            $tahun= Tahun::where('tahun', $tahunNama)->first();
+            // dd($tahun->tahun_id);
+            // $userLoginTagihanByTahun = User::where('user_id', $data->user_id)->whereHas('UserAlamats', function ($query2) use($data){
+            //     $query2->whereHas('Alamat', function ($query3)use($data){
+            //         $query3->where('rt_id',  $data->admin_data_role->rt_id);
+            //     });
+            // } )->with(['TagihanBulanans' => function ($query) use ($tahun) {
+            //     $query->where('tahun_id', $tahun->tahun_id)->orderBy('bulan_id', 'asc');;
+            // }])->get();
+                // Di sini Anda dapat mengakses tagihan bulanan untuk tahun tertentu
+                $data->TagihanBulanans;
+                foreach ($data->TagihanBulanans as $key => $jenisiuran) {
+                    $jenisiuran->JenisIuran;
+                    $jenisiuran->Bulan;
+                    $jenisiuran->Tahun;
+                }
+            return response()->json([
+                'data' => $data,
+                'message' => 'Berhasil get ',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
 }

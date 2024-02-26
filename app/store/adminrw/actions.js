@@ -100,13 +100,13 @@ export default {
           },
         })
         .then((response) => {
-          this.$toast.success("Berhasil mengubah password", {
+          this.$toast.success("Berhasil menambah password", {
             duration: 3000,
           });
           console.log(response);
         });
     } catch (error) {
-      this.$toast.error("Terjadi kesalahan saat mengubah password", {
+      this.$toast.error("Terjadi kesalahan saat menambah password", {
         duration: 3000,
       });
       console.error("Error fetching data:", error);
@@ -123,7 +123,7 @@ export default {
         })
         .then((response) => {
           commit("DATA_ALL_JENIS_IURAN", response.data?.data);
-          this.$toast.success("Berhasil mengubah password", {
+          this.$toast.success("Berhasil mengambil data", {
             duration: 3000,
           });
           console.log(response);
@@ -135,6 +135,109 @@ export default {
       console.error("Error fetching data:", error);
     }
   },
+  async getAllBulan({ commit }, payload) {
+    try {
+      await this.$axios
+        .get("/getAllBulan", {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          commit("DATA_ALL_BULAN", response.data?.data);
+          this.$toast.success("Berhasil mengambil data", {
+            duration: 3000,
+          });
+          console.log(response);
+        });
+    } catch (error) {
+      this.$toast.error("Terjadi kesalahan ", {
+        duration: 3000,
+      });
+      console.error("Error fetching data:", error);
+    }
+  },
+  async createJenisIuran({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append("nama", data.nama);
+      formData.append("deskripsi", data.deskripsi);
+      formData.append("jumlah", data.jumlah??null);
+      formData.append("tahun_id", data.tahun_id??null);
+      formData.append("bulan_id", data.bulan_id??1);
+      formData.append("withtagihan", data.withtagihan??false);
+      formData.append("semuabulan", data.semuabulan??false);
+      await this.$axios
+        .post("/createJenisIuran", formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          this.$toast.success("Berhasil menambah data", {
+            duration: 3000,
+          });
+          console.log(response);
+        });
+    } catch (error) {
+      this.$toast.error("Terjadi kesalahan ", {
+        duration: 3000,
+      });
+      console.error("Error fetching data:", error);
+    }
+  },
+  async updateJenisIuran({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append("jenis_iuran_id", data.jenis_iuran_id);
+      formData.append("nama", data.nama);
+      formData.append("deskripsi", data.deskripsi);
+      formData.append("jumlah", data.jumlah??null);
+      await this.$axios
+        .post("/updateJenisIuran", formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          this.$toast.success("Berhasil mengubah data", {
+            duration: 3000,
+          });
+          console.log(response);
+        });
+    } catch (error) {
+      this.$toast.error("Terjadi kesalahan ", {
+        duration: 3000,
+      });
+      console.error("Error fetching data:", error);
+    }
+  },
+  async deleteJenisIuran({ commit }, payload) {
+    try {
+      await this.$axios
+        .delete("/deleteJenisIuran/"+payload.jenis_iuran_id, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          this.$toast.success("Berhasil menghapus data", {
+            duration: 3000,
+          });
+          console.log(response);
+        });
+    } catch (error) {
+      this.$toast.error("Terjadi kesalahan ", {
+        duration: 3000,
+      });
+      console.error("Error fetching data:", error);
+    }
+  },
+
   async getAllTahun({ commit }, payload) {
     try {
       await this.$axios
@@ -146,7 +249,7 @@ export default {
         })
         .then((response) => {
           commit("DATA_ALL_YEARS", response.data?.data);
-          this.$toast.success("Berhasil mengubah password", {
+          this.$toast.success("Berhasil mengambil data", {
             duration: 3000,
           });
           console.log(response);
@@ -163,7 +266,7 @@ export default {
       const formData = new FormData();
       formData.append("tahun", data.tahun);
       formData.append("jenis_iuran_id", data.jenis_iuran_id??null);
-      formData.append("yearwithtagihan", data.checkyearwithtagihan);
+      formData.append("yearwithtagihan", data.checkyearwithtagihan??false);
       await this.$axios
         .post("/createNewYear", formData, {
           headers: {
@@ -172,7 +275,7 @@ export default {
           },
         })
         .then((response) => {
-          this.$toast.success("Berhasil mengubah password", {
+          this.$toast.success("Berhasil menambah data", {
             duration: 3000,
           });
           console.log(response);
@@ -200,7 +303,7 @@ export default {
           },
         })
         .then((response) => {
-          this.$toast.success("Berhasil mengubah password", {
+          this.$toast.success("Berhasil mengubah data", {
             duration: 3000,
           });
           console.log(response);
@@ -222,7 +325,7 @@ export default {
           },
         })
         .then((response) => {
-          this.$toast.success("Berhasil mengubah password", {
+          this.$toast.success("Berhasil menghapus data", {
             duration: 3000,
           });
           console.log(response);

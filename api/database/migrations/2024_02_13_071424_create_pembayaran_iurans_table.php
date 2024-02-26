@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('jenis_iuran_id')->references('jenis_iuran_id')->on('jenis_iurans')->onDelete('cascade');
             $table->foreignId('rt_id')->references('rt_id')->on('rts');
             $table->date('tanggal_pembayaran');
-            $table->decimal('jumlah_pembayaran', 10, 2);
+            $table->unsignedBigInteger('jumlah_pembayaran');
             $table->timestamps();
         });
     }

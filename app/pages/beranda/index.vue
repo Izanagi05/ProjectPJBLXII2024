@@ -1,7 +1,7 @@
 <template>
   <div >
     <div >
-    <v-row class="">
+    <v-row class="justify-center">
       <v-col
         cols="6"
         lg="3"
@@ -25,11 +25,15 @@
             </div>
             <div class="mt-4">
               <p
-                class="text-h6 text-center font-weight-medium mb-2" :style="{color: item.bgClass + ' !important' }"
+                class="text-h6 text-center font-weight-medium mb-2"
               >
+              <!-- <p
+                class="text-h6 text-center font-weight-medium mb-2" :style="{color: item.bgClass + ' !important' }"
+              > -->
                 {{ item.judul }}
               </p>
-              <p class="text-body-1 text-center FF74A0--text mb-0" :style="{color: item.bgClass + ' !important' }">
+              <p class="text-body-1 text-center FF74A0--text mb-0" >
+              <!-- <p class="text-body-1 text-center FF74A0--text mb-0" :style="{color: item.bgClass + ' !important' }"> -->
                 {{ item.deskripsi }}
               </p>
             </div>

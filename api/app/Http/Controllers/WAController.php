@@ -57,15 +57,15 @@ class WAController extends Controller
             $requestNoTelp=substr($no_telp,0,-5);
             $data=User::where('no_telp', $requestNoTelp)->first();
             $dataProfil=[
-                'nama'=> $data->nama,
-                'nik'=> $data->nik,
-                'no_kk'=>$data->no_kk,
-                'tempat_tanggal_lahir'=> $data->UserProvinsi->provinsi.', '.$data->tgl_lahir,
-                'pekerjaan'=>$data->pekerjaan,
-                'status_berktp'=>$data->status_berktp,
-                'hubungan'=>$data->hubungan,
-                'status_perkawinan'=>$data->status_perkawinan,
-                'agama'=>$data->Agama->nama
+                'nama'=> $data->nama??'Belum di set',
+                'nik'=> $data->nik??'Belum di set',
+                'no_kk'=>$data->no_kk??'Belum di set',
+                'tempat_tanggal_lahir'=> $data->UserProvinsi->provinsi??'Belum di set'.', '.$data->tgl_lahir??'Belum di set',
+                'pekerjaan'=>$data->pekerjaan??'Belum di set',
+                'status_berktp'=>$data->status_berktp??'Belum di set',
+                'hubungan'=>$data->hubungan??'Belum di set',
+                'status_perkawinan'=>$data->status_perkawina??'Belum di set',
+                'agama'=>$data->Agama->nama??'Belum di set'
             ];
 
             return response()->json([

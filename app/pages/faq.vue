@@ -81,7 +81,7 @@
           <div v-for="(dt, i) in datacontact" :key="i" class="mr-4" style="z-index: 9;">
             <div class="d-flex align-center justify-center">
               <v-avatar size="80" class="">
-                <v-img :src="require('~/assets/img/' + dt.image)"></v-img>
+                <v-img :src="require('~/assets/img/' + dt.image)" style="background-position: top;"></v-img>
               </v-avatar>
             </div>
             <div  class="text-body-2 text-center text-1 font-weight-medium">

@@ -39,7 +39,7 @@ class PembayaranIuranController extends Controller
                     'success' => true
                 ], 201);
             }
-            if ($validatedData['jumlah_pembayaran'] . '.00' === $TagihanBulanan->first()->JenisIuran->jumlah) {
+            if ($validatedData['jumlah_pembayaran']  == $TagihanBulanan->first()->JenisIuran->jumlah) {
                 $validatedData['rt_id']= $data->admin_data_role->rt_id;
                 $validatedData['tanggal_pembayaran'] = Carbon::now()->toDateString();
                 $validatedData['jenis_iuran_id'] =    $TagihanBulanan->first()->JenisIuran->jenis_iuran_id;

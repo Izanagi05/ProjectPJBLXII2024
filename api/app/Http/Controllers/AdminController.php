@@ -169,17 +169,17 @@ class AdminController extends Controller
             $tahunSekarang = Carbon::now()->year;
             $data=[
                 [
-                    'key' => 'Jumlah User',
+                    'key' => 'User',
                     'count' => User::where('role', 'User')->count(),
                     'icon' => 'icon1',
                 ],
                 [
-                    'key' => 'Jumlah Pembayaran ',
+                    'key' => 'Pembayaran ',
                     'count' => PembayaranIuran::whereYear('tanggal_pembayaran', $tahunSekarang)->count(),
                     'icon' => 'icon2',
                 ],
                 [
-                    'key' => 'Jumlah Laporan',
+                    'key' => 'Pembuatan Surat',
                     'count' => Laporan::all()->count(),
                     'icon' => 'icon6',
                 ],

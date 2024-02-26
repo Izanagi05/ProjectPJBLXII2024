@@ -32,7 +32,7 @@
       </v-card>
     </v-dialog>
     <v-navigation-drawer  floating class="pa-4 white rounded-r-xl"
-        v-if="$vuetify.breakpoint.smAndDown &&dataCookies==='Admin'"
+    v-if="$vuetify.breakpoint.smAndDown && dataCookies.includes('Admin')"
         v-model="drawer"
         style="position: fixed"
         temporary
@@ -48,7 +48,7 @@
         >
           <div>
             <p class="font-weight-medium text-body-1 mb-">Menu</p>
-            <v-tooltip v-for="(item, index) in url" right :key="index">
+            <v-tooltip v-for="(item, index) in filteredUrlAdmin" right :key="index">
               <template v-slot:activator="{ on, attrs }">
                 <v-list-item
                   text
@@ -74,14 +74,11 @@
               <span> {{ item.judul }}</span>
             </v-tooltip>
           </div>
-          <v-list>
-            <v-list-item> faq </v-list-item>
-          </v-list>
         </div>
       </v-navigation-drawer>
-    <div :class="['px-4 py-2 d-flex justify-space-between backdrop-blur-lg   align-center  ', dataCookies==='Admin'?'':'positionfixed']"  style="z-index:40;width: 100%;">
+    <div :class="['px-4 py-2 d-flex justify-space-between backdrop-blur-lg   align-center  ', dataCookies.includes('Admin')?'':'positionfixed']"  style="z-index:40;width: 100%;">
       <v-app-bar-nav-icon
-        v-if="$vuetify.breakpoint.smAndDown &&dataCookies==='Admin'"
+      v-if="$vuetify.breakpoint.smAndDown && dataCookies.includes('Admin')"
         @click.stop="drawer = !drawer"
       />
       <div class="d-flex align-center justify-space-between" style="width:100%;">
@@ -132,32 +129,7 @@ export default {
         icon: "mdi-history",
       },
     ],
-    url2: [
-      {
-        judul: "Beranda",
-        rute: "/admin/beranda",
-        icon: "mdi-view-dashboard-outline",
-      },
-      {
-        judul: "Admin Control",
-        rute: "/admin/beranda/admin-control",
-        icon: "mdi-account-cog",
-      },
-      {
-        judul: "Data Laporan",
-        rute: "/admin/beranda/data-laporan",
-        icon: "mdi-file-chart",
-      },
-      {
-        judul: "Notifikasi",
-        rute: "/admin/beranda/notifikasi",
-        icon: "mdi-bell-outline",
-      },
-      {
-        judul: "Log Aktivitas",
-        rute: "/admin/beranda/log-aktivitas",
-        icon: "mdi-history",
-      },
+    urladmin: [
     ],
     descdialogpanic: false,
     menu: false,
@@ -171,7 +143,11 @@ export default {
     dataCookies:[],
   }),
   computed: {
-    formatTgl() {
+    filteredUrlAdmin() {
+    return this.urladmin.filter((item) => this.itemcek(item));
+
+  },
+    formatTgl2() {
       const formatter = new Intl.DateTimeFormat("id-ID", {
         day: "numeric",
         month: "long",
@@ -196,13 +172,65 @@ export default {
       this.hari = "_";
     }
   },
-  computed: {},
   methods: {
+    itemcek(item) {
+    if (
+      (item.judul === "Admin Control" ||item.judul === "Manajemen Iuran")&&
+      this.$cookies.get("dataUser").data.role !=='Admin RW'
+    ) {
+      return false;
+    }
+    return true;
+  },
     konfirmlogout() {
       this.$store.dispatch("user/postLogout");
     },
   },
   async created() {
+    this.urladmin=[
+    {
+      kondisi:true,
+      judul: "Beranda",
+      rute: "/admin/beranda",
+      icon: "mdi-view-dashboard-outline",
+    },
+    {
+      kondisi:true,
+      judul: "Data Warga",
+      rute: "/admin/beranda/datawarga",
+      icon: "mdi-bell-outline",
+    },
+    {
+      kondisi:true,
+      judul: "Data IPL",
+      rute: "/admin/beranda/dataipl",
+      icon: "mdi-history",
+    },
+    {
+      kondisi:true,
+      judul: "Pembayaran Masuk",
+      rute: "/admin/beranda/laporaniuran",
+      icon: "mdi-history",
+    },
+    {
+      kondisi:true,
+      judul: "Pengeluaran",
+      rute: "/admin/beranda/laporanpengeluaran",
+      icon: "mdi-history",
+    },
+    {
+      kondisi:this.$cookies.get("dataUser").data.role==='Admin RW',
+      judul: "Admin Control",
+      rute: "/admin/beranda/admin-control",
+      icon: "mdi-history",
+    },
+    {
+      kondisi:this.$cookies.get("dataUser").data.role==='Admin RW',
+      judul: "Manajemen Iuran",
+      rute: "/admin/beranda/manajemen-iuran",
+      icon: "mdi-history",
+    },
+  ]
    this.dataCookies= this.$cookies.get("dataUser").data.role
   },
 };

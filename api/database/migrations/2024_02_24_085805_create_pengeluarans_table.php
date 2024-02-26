@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('deskripsi')->nullable();
             $table->date('tanggal_pengeluaran');
             $table->foreignId('rt_id')->references('rt_id')->on('rts');
-            $table->decimal('jumlah', 15, 2);
+            $table->unsignedBigInteger('jumlah');
             $table->timestamps();
         });
     }

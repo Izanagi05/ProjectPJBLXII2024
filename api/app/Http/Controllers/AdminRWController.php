@@ -108,9 +108,9 @@ class AdminRWController extends Controller
             if ($search) {
                 $adminDatas = Admin::where(function ($query) use ($search) {
                     $query->whereHas('AdminRole', function ($query) use ($search) {
-                        $query->where('name', 'LIKE', '%' . $search . '%');
+                        $query->where('nama', 'LIKE', '%' . $search . '%');
                     })->orWhereHas('UserData', function ($query) use ($search) {
-                        $query->where('name', 'LIKE', '%' . $search . '%')->orWhere('email', 'LIKE', '%' . $search . '%')
+                        $query->where('nama', 'LIKE', '%' . $search . '%')->orWhere('email', 'LIKE', '%' . $search . '%')
                             ->orWhereHas('UserProvinsi', function ($query) use ($search) {
                                 $query->where('provinsi', 'LIKE', '%' . $search . '%');
                             });

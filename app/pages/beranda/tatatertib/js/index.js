@@ -7,8 +7,8 @@ export default{
         {
           time: 'Baru saja',
           icon: 'mdi-flag-outline',
-          title: 'Awikwokwik',
-          description: 'Lorem ipsum nndolor sit amet consectetur adipisicing elit. Laborum, quis in neque facilis excepturi dignissimos molestias doloremque explicabo voluptatum eos.'
+          title: 'Lorem Ipsum',
+          description: 'Lorem ipsum nndolor sit amet consectetur'
         },
         {
           time: '2 jam yang lalu',

@@ -73,17 +73,17 @@ export default{
       ],
       datacontact:[
         {
-          image:'landingimage2.png',
+          image:'uun.jpeg',
           name:'Uun Sakinah Aeni',
           mail:'izanagifarisaslam5@Gmail.com'
         },
         {
-          image:'landingimage2.png',
+          image:'akmal.jpeg',
           name:'Akmal Abrisal Rizki',
           mail:'izanagifarisaslam5@Gmail.com'
         },
         {
-          image:'landingimage2.png',
+          image:'iza.jpeg',
           name:'Izanagi Faris Aslam',
           mail:'izanagifarisaslam5@Gmail.com'
         }

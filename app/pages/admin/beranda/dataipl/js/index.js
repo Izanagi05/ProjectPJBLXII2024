@@ -13,6 +13,7 @@ export default {
       dialoginputPembayaranIuran: false,
       loadingData: true,
       inputPembayaranIuran:[],
+      dataCookies:null,
       // inputPembayaranIuran: {
       //   tagihan_bulanan_id: null,
       //   user_id: null,
@@ -25,13 +26,24 @@ export default {
     ...mapGetters({
       getDataAllUserTagihan: "admindata/getDataAllUserTagihan",
       getAllDataAlamatByIdAlamat: "admindata/getAllDataAlamatByIdAlamat",
+      getdataAllYears: "adminrw/getdataAllYears",
       getAllDataDetailAlamatByIdAlamat: "admindata/getAllDataDetailAlamatByIdAlamat",
     }),
   },
   methods: {
+    async nohit(){
+
+    },
     async tambahPembayaranIuran(item,tagihan) {
       this.inputPembayaranIuran = Object.assign({}, item, tagihan);
       this.dialoginputPembayaranIuran = true;
+    },
+    async inputtahun(item){
+
+      await this.$store.dispatch(
+        "admindata/fetchDataAllTagihanUserbyTahun",
+        item
+      );
     },
     async sudahlunas(){
       this.$toast.error("Tagihan ini sudah lunas", {
@@ -43,6 +55,7 @@ export default {
       this.inputPembayaranIuran = Object.assign({}, null);
     },
     async konfirmPembayaranIuran() {
+      this.dialoginputPembayaranIuran = false;
       await this.$store.dispatch(
         "admindata/postTransaksiPembayaranIuran",
         this.inputPembayaranIuran
@@ -51,13 +64,14 @@ export default {
           "admindata/fetchDataAllTagihanUserbyTahun",
           this.tahunterpilih
         );
-        this.dialoginputPembayaranIuran = false;
         this.inputPembayaranIuran = Object.assign({}, null);
     },
     edittagihan(item) {},
     hapustagihan(item) {},
   },
   async created() {
+    this.dataCookies= this.$cookies.get("dataUser").data.role
+    await this.$store.dispatch("adminrw/getAllTahun");
     await this.$store.dispatch(
       "admindata/fetchDataAllTagihanUserbyTahun",
       this.tahunterpilih
