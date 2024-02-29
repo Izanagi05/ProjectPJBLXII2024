@@ -18,7 +18,6 @@ class AdminController extends Controller
 {
     public function getAdminLogin(Request $request){
         try {
-
         $authorizationHeader = $request->header('Authorization');
         $token = str_replace('Bearer ', '', $authorizationHeader);
         $data = User::where('remember_token', $token)->where('role', 'Admin')

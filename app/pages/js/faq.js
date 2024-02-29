@@ -1,13 +1,18 @@
 import NavbarLanding from "~/components/NavbarLanding.vue";
 import Footer from "~/components/Footer.vue";
+import BottomNavigation from "~/components/BottomNavigation.vue";
+import NavbarBeranda from'~/components/NavbarBeranda.vue'
 export default{
   layout: "default",
   components: {
     NavbarLanding,
+    BottomNavigation,
+    NavbarBeranda,
     Footer
   },
   data() {
     return {
+      dataCookies:null,
       cardData: [
         {
           icon: 'mdi-account',
@@ -89,5 +94,8 @@ export default{
         }
       ]
     }
+  },
+  created() {
+    this.dataCookies= this.$cookies.get("dataUser")?.data??null
   },
 }

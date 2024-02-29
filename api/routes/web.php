@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminRWController;
 use App\Http\Controllers\AgamaController;
 use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\BulanController;
+use App\Http\Controllers\DetailAlamatController;
 use App\Http\Controllers\JenisIuranController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
@@ -14,10 +15,12 @@ use App\Http\Controllers\PembayaranIuranController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RtController;
+use App\Http\Controllers\RWController;
 use App\Http\Controllers\TagihanBulananController;
 use App\Http\Controllers\TahunController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WAController;
+use App\Http\Controllers\WaGroupController;
 use Database\Seeders\AdminSeeder;
 use Illuminate\Support\Facades\Route;
 
@@ -70,9 +73,7 @@ Route::post('/TransaksiPembayaranIuran', [PembayaranIuranController::class, 'Tra
 
 
 Route::post('/buatAkunVia', [UserController::class, 'buatAkunVia']);
-
 Route::get('/getAgama', [AgamaController::class, 'getAgama']);
-
 Route::get('/getProvinsi', [ProvinsiController::class, 'getProvinsi']);
 Route::get('/getallalamat', [AlamatController::class, 'getallalamat']);
 Route::group(['middleware' => 'adminpusat'], function () {
@@ -93,8 +94,28 @@ Route::group(['middleware' => 'userlogin'], function () {
     Route::delete('/deleteUserbyid/{id}', [UserController::class, 'deleteUserbyid']);
 });
 
+Route::get('/getwhereizinBerizin/{group_data_id}', [WaGroupController::class, 'getwhereizinBerizin']);
+Route::post('/createGroupData', [WaGroupController::class, 'createGroupData']);
 Route::group(['middleware' => 'adminpusat'], function () {
+    Route::post('/tambahallalamat', [AlamatController::class, 'tambahallalamat']);
+    Route::post('/updateAlamat', [AlamatController::class, 'updateAlamat']);
+    Route::delete('/deleteAlamat/{id}', [AlamatController::class, 'deleteAlamat']);
+
+    Route::post('/tambahDetailAlamat', [DetailAlamatController::class, 'tambahDetailAlamat']);
+    Route::post('/updateDetailAlamat', [DetailAlamatController::class, 'updateDetailAlamat']);
+    Route::delete('/deleteDetailAlamat/{id}', [DetailAlamatController::class, 'deleteDetailAlamat']);
+
+
+
+
+    Route::get('/getRW', [RWController::class, 'getRW']);
+    Route::delete('/deleteGroupData/{id}', [WaGroupController::class, 'deleteGroupData']);
+    Route::get('/getQrCodeinUrl', [WAController::class, 'getQrCodeinUrl']);
+    Route::post('/updateIzinGroupData', [WaGroupController::class, 'updateIzinGroupData']);
     Route::get('/getAllJenisIurans', [JenisIuranController::class, 'getAllJenisIuransData']);
+    Route::get('/getAllGroupData', [WaGroupController::class, 'getAllGroupData']);
+    Route::post('/updateRW', [RWController::class, 'updateRW']);
+    Route::get('/getAllRT', [RtController::class, 'getAllRT']);
 
     Route::post('/createNewYear', [TahunController::class, 'createNewYear']);
     Route::post('/updateTahun', [TahunController::class, 'updateTahun']);

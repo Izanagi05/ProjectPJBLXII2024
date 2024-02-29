@@ -86,7 +86,7 @@ export default {
      this.dataPengeluaranId=item
     },
     closeHapusPengeluaran() {
-      this.dialogHapus = true;
+      this.dialogHapus = false;
 
     },
   async konfirmHapusPengeluaran() {

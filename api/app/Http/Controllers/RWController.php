@@ -10,7 +10,7 @@ class RWController extends Controller
     public function getRW(){
         try {
             //code...
-            $data=RW::get();
+            $data=RW::first();
             return response()->json([
                 'data' => $data,
                 'message' => 'Berhasil ubah ',
@@ -32,10 +32,11 @@ class RWController extends Controller
                 'tanggal' => 'required',
                 'kota' => 'required|string|max:255',
                 'alamat' => 'required|string',
+                'alamat_lengkap' => 'string',
                 'ketua_rw' => 'required|string|max:255',
                 'wakil_rw' => 'required|string|max:255',
             ]);
-            $data=RW::findOrFail($request->rw_id);
+            $data=RW::where('rw_id',$request->rw_id)->first();
             $data->update($validateData);
             return response()->json([
                 'data' => $data,

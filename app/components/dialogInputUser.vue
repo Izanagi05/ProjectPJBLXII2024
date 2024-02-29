@@ -115,7 +115,7 @@
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
                         v-model="dataEdit.tgl_lahir"
-                        label="Birthday date"
+                        label="Tanggal Lahir"
                         prepend-icon="mdi-calendar"
                         readonly
                         v-bind="attrs"

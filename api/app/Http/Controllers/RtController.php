@@ -34,6 +34,26 @@ class RtController extends Controller
             ], 500);
         }
     }
+    public function getAllRT()
+    {
+        try {
+
+            $data = Rt::get();
+
+            return response()->json([
+                'data' => $data,
+                'message' => 'Berhasil',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
     public function getDataAlamatByRt(Request $request)
     {
         try {
@@ -88,7 +108,8 @@ class RtController extends Controller
             $data = Rt::create($validateData);
             if ($validateData) {
                 $data = AdminRole::create([
-                    'nama' => 'Admin ' . $validateData['rt']
+                    'nama' => 'Admin ' . $validateData['rt'],
+                    'rt_id' => $data->rt_id
                 ]);
             }
             return response()->json([
@@ -115,7 +136,7 @@ class RtController extends Controller
             ]);
             $rt = Rt::findOrFail($request->rt_id);
             // dd($rt);
-            $adminRole = AdminRole::where('nama', 'Admin ' . $rt->rt);
+            $adminRole = AdminRole::where('rt_id', $rt->rt_id)->first();
             if ($adminRole) {
                 $adminRole->update(['nama' => 'Admin ' . $validateData['rt']]);
             }
@@ -141,7 +162,7 @@ class RtController extends Controller
         try {
             $rt = Rt::findOrFail($id);
 
-            $adminRole = AdminRole::where('nama', 'Admin ' . $rt->rt)->first();
+            $adminRole = AdminRole::where('rt_id', $rt->rt_id)->first();
             if ($adminRole) {
                 $adminRole->Admins()->delete();
                 $adminRole->delete();

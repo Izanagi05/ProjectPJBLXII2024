@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-app>
-      <v-row class="ma-0 bgbrd-1" style=" height: 100vh">
+    <v-app><div class="bgbrd-1">
+        <v-row class="ma-0 " >
         <v-col
           v-if="!$vuetify.breakpoint.smAndDown"
           cols="12"
@@ -10,6 +10,7 @@
           sm="12"
           xs="12"
           class="pa-4"
+          style="height: 100vh;"
         >
           <nuxt-link to="/beranda" class="text-decoration-none">
             <div class="d-flex align-center mt-4 mb-6">
@@ -30,7 +31,7 @@
           <v-navigation-drawer permanent floating class="white rounded-xl">
             <p class="font-weight-medium text-body-1 ma-4">Menu</p>
             <div
-              style="height: 100%; overflow-y: scroll"
+
               class="pa-4 rounded-xl"
             >
               <!-- <div> -->
@@ -78,12 +79,14 @@
           <navbar-beranda />
           <div
             class="view bgrbrd-1 pa-4"
-            style="height: 100vh; overflow-y: scroll;padding-top: 80px !important;"
+            style="height: 100%; overflow-y: scroll;padding-top: 80px !important;"
           >
             <nuxt />
           </div>
         </v-col>
       </v-row>
+    </div>
+
     </v-app>
   </div>
 </template>

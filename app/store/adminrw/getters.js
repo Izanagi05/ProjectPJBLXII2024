@@ -17,4 +17,16 @@ export default {
   getdataAlldataAllBulan (state) {
     return state.dataAllBulan
   },
+  getdataAllRt (state) {
+    return state.dataAllRt
+  },
+  getadminAllGroup (state) {
+    return state.adminAllGroup
+  },
+  getdataQRcODE (state) {
+    return state.dataQRcODE
+  },
+  getdataRw (state) {
+    return state.dataRw
+  },
 }

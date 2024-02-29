@@ -1,6 +1,7 @@
 <template>
   <div>
-    <navbar-landing />
+    <navbar-beranda   v-if="dataCookies"/>
+    <navbar-landing  v-if="!dataCookies"/>
     <div class="bg-2" style="height: 50vh">
       <v-container style="height: 100%;position: relative;">
         <div class="d-flex align-center justify-center" style="height: 100%">
@@ -100,6 +101,7 @@
         <div class="gradient7"></div>
       </v-container>
     </div>
+    <BottomNavigation v-if="dataCookies" />
     <Footer />
   </div>
 </template>

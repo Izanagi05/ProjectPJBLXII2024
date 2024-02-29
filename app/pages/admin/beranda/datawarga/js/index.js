@@ -162,12 +162,12 @@ export default {
 
     },
   async  konfirmtambah() {
+    this.dialogtambah = false;
       await this.$store.dispatch("admindata/tambahDataWargabyAdmin", {
         data: this.inputTambah,
         detail_alamat: this.data_alamat_by_rt,
       });
       this.$store.dispatch("admindata/fetchAllUserRt");
-      this.dialogtambah = false;
     },
     closetambah() {
       this.dialogtambah = false;

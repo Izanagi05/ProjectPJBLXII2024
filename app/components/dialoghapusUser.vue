@@ -8,7 +8,7 @@
     >
       <v-card
         style="box-shadow: none"
-        :class="['rounded-xl py-10 px-8', dataCookies==='Admin'?'':'bg-whiteblur-card1 ']"
+        :class="['rounded-xl py-10 px-8', dataCookies.includes('Admin')?'white':'bg-whiteblur-card1 ']"
       >
       <div class="mt-6  mb-10">
 

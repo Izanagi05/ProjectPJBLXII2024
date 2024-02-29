@@ -5,4 +5,8 @@ export default () => ({
   dataAllYears: [],
   dataAllJenisIurans: [],
   dataAllBulan: [],
+  dataAllRt: [],
+  adminAllGroup: [],
+  dataQRcODE:null,
+  dataRw:null
 });

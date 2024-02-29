@@ -1,4 +1,13 @@
 export default {
+  GET_ADMIN_DATA_GROUP(state, data) {
+    state.adminAllGroup = data;
+  },
+  GET_BOT_QR_CODE(state, data) {
+    state.dataQRcODE = data;
+  },
+  GET_RW_DATA(state, data) {
+    state.dataRw = data;
+  },
   GET_ADMIN_DATA_CONTROL(state, data) {
     state.adminDataControl = data;
   },
@@ -14,6 +23,9 @@ export default {
   },
   GET_CATEGORY_DETAIL_CONTROL(state, data) {
     state.dataDetailCategory = data;
+  },
+  GET_DATA_ALL_RT(state, data) {
+    state.dataAllRt = data;
   },
   UPDATE_CATEGORY_DETAIL_CONTROL (state, data) {
     const index =state.dataDetailCategory.findIndex(item=> parseInt(item.category_detail_id) === parseInt(data.category_detail_id))

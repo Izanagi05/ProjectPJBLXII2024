@@ -1,5 +1,96 @@
 import axios from "axios";
 export default {
+  async updateRW({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append("nama", data.nama);
+      formData.append("no", data.no);
+      formData.append("tanggal", data.tanggal);
+      formData.append("kota", data.kota);
+      formData.append("alamat", data.alamat);
+      formData.append("alamat_lengkap", data.alamat_lengkap);
+      formData.append("ketua_rw", data.ketua_rw);
+      formData.append("wakil_rw", data.wakil_rw);
+      await this.$axios
+        .post("/updateRW",formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async getRW({ commit }, data) {
+    try {
+      await this.$axios
+        .get("/getRW", {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          commit("GET_RW_DATA", response.data?.data);
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async getAllGroupData({ commit }, data) {
+    try {
+      await this.$axios
+        .get("/getAllGroupData", {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          commit("GET_ADMIN_DATA_GROUP", response.data?.data);
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async getQrCodeinUrl({ commit }, data) {
+    try {
+      await this.$axios
+        .get("/getQrCodeinUrl", {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          commit("GET_BOT_QR_CODE", response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async deleteGroupData({ commit }, data) {
+    try {
+      await this.$axios
+        .delete("/deleteGroupData/"+data.wa_group_id, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
   async fetchDataAdminControl({ commit }, data) {
     try {
       await this.$axios
@@ -11,7 +102,152 @@ export default {
         })
         .then((response) => {
           commit("GET_ADMIN_DATA_CONTROL", response.data?.data);
-          console.log(response.data?.data);
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async fetchDataAllRT({ commit }, data) {
+    try {
+      await this.$axios
+        .get("/getAllRT", {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          commit("GET_DATA_ALL_RT", response.data?.data);
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async postMessageCustomToGroup({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append("to", data.group_data_id);
+      formData.append("message", data.message);
+      await this.$axios
+        .post("/postMessageCustomToGroup",formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async storeRT({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append("rt", data.rt);
+      formData.append("ketua_rt", data.ketua_rt);
+      formData.append("wakil_ketua_rt", data.wakil_ketua_rt);
+      await this.$axios
+        .post("/storeRT",formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // commit("GET_DATA_ALL_RT", response.data?.data);
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async updateIzinGroupData({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append("wa_group_id", data.wa_group_id);
+      formData.append("izin", data.izin);
+      formData.append("rt_id", data.rt_id);
+      await this.$axios
+        .post("/updateIzinGroupData",formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // commit("GET_DATA_ALL_RT", response.data?.data);
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async updateRT({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append("rt_id", data.rt_id);
+      formData.append("rt", data.rt);
+      formData.append("ketua_rt", data.ketua_rt);
+      formData.append("wakil_ketua_rt", data.wakil_ketua_rt);
+      await this.$axios
+        .post("/updateRT",formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // commit("GET_DATA_ALL_RT", response.data?.data);
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async updateRW({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append("rw_id", data.rw_id);
+      formData.append("nama", data.nama);
+      formData.append("no", data.no);
+      formData.append("tanggal", data.tanggal);
+      formData.append("kota", data.kota);
+      formData.append("wakil_ketua_rt", data.wakil_ketua_rt);
+      formData.append("alamat", data.alamat);
+      formData.append("alamat_lengkap", data.alamat_lengkap);
+      formData.append("ketua_rw", data.ketua_rw);
+      formData.append("wakil_rw", data.wakil_rw);
+      await this.$axios
+        .post("/updateRW",formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // commit("GET_DATA_ALL_RT", response.data?.data);
+          // console.log(response.data?.data);
+        });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  },
+  async deleteRT({ commit }, data) {
+    try {
+      await this.$axios
+        .delete("/deleteRT/"+data?.rt_id??null, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+          // commit("GET_DATA_ALL_RT", response.data?.data);
+          // console.log(response.data?.data);
         });
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -28,7 +264,7 @@ export default {
         })
         .then((response) => {
           commit("GET_ADMIN_DATA_ROLES", response.data?.data);
-          console.log(response.data?.data);
+          // console.log(response.data?.data);
         });
     } catch (error) {
       console.error("Error fetching data:", error);

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('kota');
             $table->string('alamat');
+            $table->string('alamat_lengkap')->nullable();
             $table->string('ketua_rw');
             $table->string('wakil_rw');
             $table->timestamps();

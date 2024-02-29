@@ -66,16 +66,12 @@
               <div class="text-1 text-h6 font-weight-medium">
                 Isi data dibawah
               </div>
-              <v-text-field label="Masukan Email"></v-text-field>
-              <v-text-field label="Masukan Nama"></v-text-field>
-              <v-textarea label="Masukan Deskripsi"></v-textarea>
-              <v-textarea
-                label="Masukan Alamat"
-                rows="3"
-                row-height="25"
-              ></v-textarea>
+              <v-text-field v-model="dataku.email" label="Masukan Email"></v-text-field>
+              <v-text-field v-model="name" label="Masukan Nama"></v-text-field>
+              <v-text-field v-model="sub" label="Masukan Subjek"></v-text-field>
+              <v-textarea v-model="mes" label="Masukan Deskripsi"></v-textarea>
               <div class="d-flex justify-end">
-                <v-btn outlined color="#0E6AE3" class="rounded-xl">Kirim</v-btn>
+                <v-btn outlined color="#0E6AE3" class="rounded-xl"  @click="buat" :disabled="truekondisi">Kirim</v-btn>
               </div>
             </v-card>
           </v-col>
