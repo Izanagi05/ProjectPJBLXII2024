@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('bulan_id');
             $table->foreignId('jenis_iuran_id')->references('jenis_iuran_id')->on('jenis_iurans')->onDelete('cascade');
             $table->enum('status_pembayaran', ['Belum Dibayar','Belum Lunas', 'Lunas'])->default('Belum Dibayar');
+            $table->unique(['user_id', 'tahun_id', 'bulan_id', 'jenis_iuran_id']);
             $table->timestamps();
         });
     }

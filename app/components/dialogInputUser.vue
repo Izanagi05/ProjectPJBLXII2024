@@ -19,12 +19,15 @@
           <v-col lg="4" md="4">
             <v-img
               v-if="dataEdit?.foto_profil"
+              :max-width="$vuetify.breakpoint.smAndDown ?'200':'300'"
               :src="'http://127.0.0.1:8000/storage/' + dataEdit?.foto_profil"
+              class="rounded-xl mx-auto"
             ></v-img>
             <v-img
               v-else
               :src="require('~/assets/img/profil.jpg')"
-              class="rounded-xl"
+              :max-width="$vuetify.breakpoint.smAndDown ?'200':'300'"
+              class="rounded-xl mx-auto"
             ></v-img>
             <v-file-input
               clearable
@@ -45,7 +48,7 @@
                 label="Masukan Nama"
               ></v-text-field>
               <v-row>
-                <v-col lg="12">
+                <v-col cols="12">
                   <v-text-field
                     clearable
                     :rules="[required]"
@@ -54,7 +57,7 @@
                     v-model="dataEdit.nik"
                   ></v-text-field>
                 </v-col>
-                <v-col lg="12">
+                <v-col cols="12">
                   <v-text-field
                     clearable
                     :rules="[required]"
@@ -64,7 +67,7 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col lg="6">
+                <v-col lg="6" cols="12">
                   <v-autocomplete
                     class="rounded-xl"
                     v-model="dataEdit.status_berktp"
@@ -75,7 +78,7 @@
                     clearable
                   ></v-autocomplete>
                 </v-col>
-                <v-col lg="6">
+                <v-col lg="6" cols="12">
                   <v-file-input
                     clearable
                     accept="image/*"
@@ -83,7 +86,7 @@
                     label="Masukan foto KTP "
                   ></v-file-input>
                 </v-col>
-                <v-col lg="6">
+                <v-col lg="6" cols="12">
                   <v-file-input
                     clearable
                     accept="image/*"
@@ -91,7 +94,7 @@
                     label="Masukan foto KK"
                   ></v-file-input>
                 </v-col>
-                <v-col lg="5">
+                <v-col lg="5" cols="12">
                   <v-autocomplete
                     class="rounded-xl"
                     v-model="dataEdit.provinsi_lahir_id"
@@ -103,7 +106,7 @@
                     clearable
                   ></v-autocomplete>
                 </v-col>
-                <v-col lg="7">
+                <v-col lg="7" cols="12">
                   <v-menu
                     ref="menu"
                     v-model="menu"
@@ -217,9 +220,15 @@
 
 
             </div>
-            <div class="d-flex justify-end">
+            <div class="d-flex justify-space-between align-center">
               <v-btn
-                class="rounded-xl bg-2 text-capitalize mt-2 d-flex white--text"
+                class="rounded-xl  text-capitalize   black--text"
+                @click="closeaction"
+                >
+                Batal</v-btn
+              >
+              <v-btn
+                class="rounded-xl bg-2 text-capitalize  d-flex white--text"
                 @click="konfrimdataedit"
                 >
                 Ubah</v-btn

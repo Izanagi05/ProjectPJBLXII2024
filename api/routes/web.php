@@ -18,6 +18,7 @@ use App\Http\Controllers\RtController;
 use App\Http\Controllers\RWController;
 use App\Http\Controllers\TagihanBulananController;
 use App\Http\Controllers\TahunController;
+use App\Http\Controllers\TataTertibController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WAController;
 use App\Http\Controllers\WaGroupController;
@@ -75,6 +76,7 @@ Route::post('/TransaksiPembayaranIuran', [PembayaranIuranController::class, 'Tra
 Route::post('/buatAkunVia', [UserController::class, 'buatAkunVia']);
 Route::get('/getAgama', [AgamaController::class, 'getAgama']);
 Route::get('/getProvinsi', [ProvinsiController::class, 'getProvinsi']);
+Route::get('/getAllDetailAlamat', [DetailAlamatController::class, 'getAllDetailAlamat']);
 Route::get('/getallalamat', [AlamatController::class, 'getallalamat']);
 Route::group(['middleware' => 'adminpusat'], function () {
 
@@ -96,7 +98,13 @@ Route::group(['middleware' => 'userlogin'], function () {
 
 Route::get('/getwhereizinBerizin/{group_data_id}', [WaGroupController::class, 'getwhereizinBerizin']);
 Route::post('/createGroupData', [WaGroupController::class, 'createGroupData']);
+
+Route::get('/getTataTertib', [TataTertibController::class, 'getTataTertib']);
 Route::group(['middleware' => 'adminpusat'], function () {
+    Route::post('/createTagihanByUserIdIPL', [TagihanBulananController::class, 'createTagihanByUserIdIPL']);
+    Route::post('/tambahTataTertib', [TataTertibController::class, 'tambahTataTertib']);
+    Route::post('/updateTataTertib', [TataTertibController::class, 'updateTataTertib']);
+    Route::delete('/deleteTataTertib/{tata_tertib_id}', [TataTertibController::class, 'deleteTataTertib']);
     Route::post('/tambahallalamat', [AlamatController::class, 'tambahallalamat']);
     Route::post('/updateAlamat', [AlamatController::class, 'updateAlamat']);
     Route::delete('/deleteAlamat/{id}', [AlamatController::class, 'deleteAlamat']);
@@ -140,7 +148,7 @@ Route::group(['middleware' => 'admindata'], function () {
     Route::get('/getDataPembayaranIuran/{rt_id?}', [PemasukanController::class, 'getDataPembayaranIuran']);
     Route::get('/jumlahWargaAndTransaksiAndLaporan', [AdminController::class, 'jumlahWargaAndTransaksiAndLaporan']);
     Route::post('/storeUser', [AdminController::class, 'storeUser']);
-    Route::get('/getDataAlamatByRt', [RtController::class, 'getDataAlamatByRt']);
+    Route::get('/getDataAlamatByRt/{cookiesData}', [RtController::class, 'getDataAlamatByRt']);
     Route::get('/getDataDetailAlamatByRt/{alamat_id}', [RtController::class, 'getDataDetailAlamatByRt']);
     Route::get('/getAllUser', [AdminController::class, 'getAllUser']);
     Route::get('/getAllUserRt', [AdminController::class, 'getAllUserRt']);

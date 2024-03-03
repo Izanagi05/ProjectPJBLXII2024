@@ -98,8 +98,8 @@ export default{
      this.dialoglaporan=true
     },
    async konfirmexportlaporan(){
-    await this.$store.dispatch("user/exportDataLaporan", this.dataLaporanexport);
      this.dialoglaporan=false
+    await this.$store.dispatch("user/exportDataLaporan", this.dataLaporanexport);
     },
     async hapuslaporan(item){
       this.dataLaporan_id=item?.laporan_id

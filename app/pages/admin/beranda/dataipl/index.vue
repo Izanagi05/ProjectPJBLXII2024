@@ -21,10 +21,6 @@
         <p>{{ inputPembayaranIuran?.nama }}</p>
         <p>Bulan {{ inputPembayaranIuran?.bulan?.nama }}</p>
         <p>Jenis Tagihan {{ inputPembayaranIuran?.jenis_iuran?.nama }}</p>
-        {{inputPembayaranIuran?.jenis_iuran?.jumlah ===
-                  inputPembayaranIuran.jumlah_pembayaran
-                  ? false
-                  : true}}
         <p>Terbilang: Rp. {{ inputPembayaranIuran?.jenis_iuran?.jumlah }}</p>
         <v-text-field
           clearable

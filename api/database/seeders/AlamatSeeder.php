@@ -24,9 +24,10 @@ class AlamatSeeder extends Seeder
         ];
 
         foreach ($blok as $index => $b) {
+            $dummyrt_id = ($index % 3) + 1;
             $alamat = Alamat::create([
                 'nama' => 'Blok ' . $b,
-                'rt_id' => rand(1,3),
+                'rt_id' => $dummyrt_id
             ]);
             foreach ($jalan[$index] as $j) {
                 for ($i = 1; $i <= 6; $i++) {

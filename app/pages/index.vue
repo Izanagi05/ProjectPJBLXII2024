@@ -23,13 +23,11 @@
                           : 'display-2',
                       ]"
                     >
-                      Bersuara untuk Perubahan
+                    Solusi Digital untuk Kemudahan
                     </p>
 
                     <p class="text-1">
-                      tempat di mana suaramu menjadi kekuatan. Kami adalah
-                      panggung pengaduan daring yang memberdayakan setiap
-                      individu untuk beraksi dan membangun komunitas
+                      Selamat datang di Layanan Warga! Kami adalah solusi digital untuk memudahkan interaksi antara warga dan pemerintah tingkat RT dan RW. Dengan platform kami, Anda dapat dengan mudah berkomunikasi dengan pemerintah setempat
                     </p>
                     <v-btn
                       to="/login"
@@ -62,10 +60,9 @@
             <v-col cols="12" lg="4" md="8" sm="12" xs="12">
               <div class="d-flex align-center" style="height: 100%">
                 <div>
-                  <p class="text-h4">Lorem ipsum dolor sit.</p>
-                  <div class="text-caption grey--text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Error incidunt magnam excepturi eaque eum nesciunt ducimus
+                  <p class="text-h4">Layanan Kami</p>
+                  <div class="text-body-1 black--text">
+                    Kami menyediakan solusi yang memudahkan pendataan warga, pembuatan surat pengantar, dan interaksi dengan pemerintah melalui WhatsApp. Dengan fitur-fitur kami yang inovatif
                   </div>
                 </div>
               </div>
@@ -76,15 +73,15 @@
                   v-for="(item, index) in dataItems"
                   :key="index"
                   class="pa-10 rounded-xl py-10 bg-whiteblur mr-8"
-                  min-width="250px"
+                  min-width="300px"
                 >
                   <v-icon :color="item.iconColor" x-large>{{
                     item.icon
                   }}</v-icon>
-                  <p class="mt-4 font-weight-medium text-1 text-body-2">
+                  <p class="mt-4 font-weight-medium text-1 text-body-1">
                     {{ item.title }}
                   </p>
-                  <p class="text-caption text-1">{{ item.description }}</p>
+                  <p class="text-body-2 text-1">{{ item.description }}</p>
                 </v-card>
               </div>
             </v-col>
@@ -99,7 +96,7 @@
               $vuetify.breakpoint.smAndDown ? 'text-h5' : 'text-h4',
             ]"
           >
-           Lorem ipsum dolor, sit amet consectetur adipisicing
+          Solusi Terpadu Layanan Warga
           </p>
           <v-row>
             <v-col cols="12" lg="4" md="4" sm="12" xs="12" style="z-index: 9">
@@ -114,12 +111,10 @@
                     >
                   <div class="ml-4">
                     <p class=" font-weight-medium white--text text-h6">
-                      Lorem ipsum dolor sit amet consectetur adipisicing.
+                      Pendataan Warga yang Efisien
                     </p>
                     <p class="text-body-2 white--text text-1">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident voluptas laudantium reiciendis velit
-                      necessitatibus. Reprehenderit, odio!
+                      Dengan platform kami, pendataan warga dapat dilakukan dengan mudah dan cepat. Data yang terstruktur membantu pemerintah dalam mengelola informasi penting tentang penduduk setempat.
                     </p>
                   </div>
 
@@ -136,12 +131,10 @@
                     >
                   <div class="ml-4">
                     <p class=" font-weight-medium white--text text-h6">
-                      Lorem ipsum dolor sit amet consectetur adipisicing.
+                      Layanan Surat Pengantar Tanpa Ribet
                     </p>
                     <p class="text-body-2 white--text text-1">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident voluptas laudantium reiciendis velit
-                      necessitatibus. Reprehenderit, odio!
+                      Kami menyediakan layanan pembuatan surat pengantar yang otomatis, memudahkan warga untuk mendapatkan dokumen penting seperti surat pindah rumah tanpa harus melalui proses yang rumit
                     </p>
                   </div>
 
@@ -171,12 +164,10 @@
                     >
                   <div class="ml-4">
                     <p class=" font-weight-medium white--text text-h6">
-                      Lorem ipsum dolor sit amet consectetur adipisicing.
+                      Komunikasi Dua Arah dengan Pemerintah
                     </p>
                     <p class="text-body-2 white--text text-1">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident voluptas laudantium reiciendis velit
-                      necessitatibus. Reprehenderit, odio!
+                      Dapatkan akses langsung ke pemerintah setempat melalui WhatsApp. Tidak hanya untuk mendapatkan informasi, tetapi juga untuk memberikan masukan dan bertanya tentang kebijakan serta layanan pemerintah.
                     </p>
                   </div>
 
@@ -193,12 +184,10 @@
                     >
                   <div class="ml-4">
                     <p class=" font-weight-medium white--text text-h6">
-                      Lorem ipsum dolor sit amet consectetur adipisicing.
+                      Pengelolaan Data Keuangan yang Transparan
                     </p>
                     <p class="text-body-2 white--text text-1">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Provident voluptas laudantium reiciendis velit
-                      necessitatibus. Reprehenderit, odio!
+                      Melalui platform kami, warga dapat memantau dan mengelola data keuangan mereka dengan transparan. Informasi tentang iuran dengan mudah untuk menjaga kejelasan dan keterbukaan.
                     </p>
                   </div>
 
@@ -232,18 +221,10 @@
                   $vuetify.breakpoint.smAndDown ? 'text-h5' : 'text-h4',
                 ]"
               >
-                Lihat, semuanya ada disini
+              Mengapa Memilih Aplikasi Kami?
               </p>
               <p class="text-body-1 text-1 text-justify mt-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Corrupti nulla consequatur voluptatem provident incidunt, ex
-                omnis? Velit nobis explicabo temporibus reiciendis. Quas
-                consequatur sint dicta recusandae commodi eius aspernatur
-                excepturi minima neque. At possimus non accusamus deleniti
-                reiciendis dicta rerum. Lorem ipsum dolor sit amet, consectetur
-                adipisicing elit. Molestias, distinctio qui sint ea assumenda
-                veritatis quaerat molestiae consequatur est ipsum eaque sit eum
-                asperiores aliquid doloremque architecto ratione at quis?
+                Dengan aplikasi kami, Anda dapat mengakses berbagai layanan yang memudahkan hidup Anda sehari-hari. Dari pendataan yang cepat hingga pembuatan surat pengantar tanpa ribet, kami hadir untuk memberikan solusi terbaik bagi Anda. Dapatkan kemudahan akses, komunikasi yang efisien dengan pemerintah setempat, dan pengelolaan data keuangan yang transparan, semua dalam satu aplikasi yang mudah digunakan.
               </p>
               <v-btn color="#0E6AE3" class="rounded-xl mt-4" outlined
                 >Selengkapnya</v-btn

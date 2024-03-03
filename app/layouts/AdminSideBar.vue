@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app><div class="bgbrd-1">
+    <v-app><div class="bgbrd-1 pb-2">
         <v-row class="ma-0 " >
         <v-col
           v-if="!$vuetify.breakpoint.smAndDown"
@@ -79,7 +79,7 @@
           <navbar-beranda />
           <div
             class="view bgrbrd-1 pa-4"
-            style="height: 100%; overflow-y: scroll;padding-top: 80px !important;"
+            style="height: 100vh; overflow-y: scroll;padding-top: 80px !important;"
           >
             <nuxt />
           </div>

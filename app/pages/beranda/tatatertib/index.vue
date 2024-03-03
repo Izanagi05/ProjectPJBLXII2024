@@ -9,18 +9,17 @@
   <v-divider></v-divider>
   <v-row>
     <v-col
-        v-for="(item, index) in tatibs"
+        v-for="(item, index) in getAllTatib"
         :key="index"
         lg="4"
         md="4"
       >
         <v-card :class="['pa-6 mr-4   rounded-xl bg-whiteblur-card1']">
           <div class="d-flex justify-space-between align-center">
-            <p class="text-caption grey--text">{{ item.time }}</p>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>mdi-flag-outline</v-icon>
           </div>
-          <p class="mb-0 text-h6 text-1 font-weight-medium">{{ item.title }}</p>
-          <p class="text-body-1 text-1">{{ item.description }}</p>
+          <p class="mb-0 text-h6 text-1 font-weight-medium">{{ item.judul }}</p>
+          <p class="text-body-1 text-1">{{ item.deskripsi }}</p>
         </v-card>
       </v-col>
     </v-row>

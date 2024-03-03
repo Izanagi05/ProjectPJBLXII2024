@@ -23,7 +23,7 @@
             <v-text-field
               :disabled="!editActive"
               v-model="inputEditRW.tanggal"
-              label="Tanggal Lahir"
+              label="Tanggal Lantik"
               prepend-icon="mdi-calendar"
               readonly
               v-bind="attrs"

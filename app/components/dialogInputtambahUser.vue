@@ -17,15 +17,18 @@
           >
         </div>
         <v-row>
-          <v-col lg="4" md="4">
+          <v-col lg="4" md="4" sm="12" xs="12">
             <v-img
               v-if="dataTambah?.foto_profil"
+              :max-width="$vuetify.breakpoint.smAndDown ?'200':'300'"
               :src="'http://127.0.0.1:8000/storage/' + dataTambah?.foto_profil"
+              class="rounded-xl mx-auto"
             ></v-img>
             <v-img
               v-else
+              :max-width="$vuetify.breakpoint.smAndDown ?'200':'300'"
               :src="require('~/assets/img/profil.jpg')"
-              class="rounded-xl"
+              class="rounded-xl mx-auto"
             ></v-img>
             <v-file-input
               clearable
@@ -46,7 +49,7 @@
                 label="Masukan Nama"
               ></v-text-field>
               <v-row>
-                <v-col lg="12">
+                <v-col cols="12">
                   <v-text-field
                     clearable
                     :rules="[required]"
@@ -55,7 +58,7 @@
                     v-model="dataTambah.nik"
                   ></v-text-field>
                 </v-col>
-                <v-col lg="12">
+                <v-col cols="12">
                   <v-autocomplete
                     class="rounded-xl"
                     v-model="dataTambah.detail_alamat_id_and_alamat_id"
@@ -66,7 +69,7 @@
                     clearable
                   ></v-autocomplete>
                 </v-col>
-                <v-col lg="12">
+                <v-col cols="12">
                   <v-text-field
                     clearable
                     :rules="[required]"
@@ -76,7 +79,7 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col lg="6">
+                <v-col lg="6" cols="12">
                   <v-autocomplete
                     class="rounded-xl"
                     v-model="dataTambah.status_berktp"
@@ -87,7 +90,7 @@
                     clearable
                   ></v-autocomplete>
                 </v-col>
-                <v-col lg="6">
+                <v-col lg="6" cols="12">
                   <v-file-input
                     clearable
                     accept="image/*"
@@ -95,7 +98,7 @@
                     label="Masukan foto KTP "
                   ></v-file-input>
                 </v-col>
-                <v-col lg="6">
+                <v-col lg="6" cols="12">
                   <v-file-input
                     clearable
                     accept="image/*"
@@ -103,7 +106,7 @@
                     label="Masukan foto KK"
                   ></v-file-input>
                 </v-col>
-                <v-col lg="5">
+                <v-col lg="5" cols="12">
                   <v-autocomplete
                     class="rounded-xl"
                     v-model="dataTambah.provinsi_lahir_id"
@@ -115,7 +118,7 @@
                     clearable
                   ></v-autocomplete>
                 </v-col>
-                <v-col lg="7">
+                <v-col lg="7" cols="12">
                   <v-menu
                     ref="menu"
                     v-model="menu"
@@ -127,7 +130,7 @@
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
                         v-model="dataTambah.tgl_lahir"
-                        label="Birthday date"
+                        label="Tanggal Lahir"
                         prepend-icon="mdi-calendar"
                         readonly
                         v-bind="attrs"
@@ -226,17 +229,16 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
-
-              <v-textarea
-                :rules="[required]"
-                rows="3"
-                row-height="25"
-                label="Alamat"
-              ></v-textarea>
             </div>
-            <div class="d-flex justify-end">
+            <div class="d-flex pt-4 justify-space-between align-center">
               <v-btn
-                class="rounded-xl bg-2 text-capitalize mt-2 d-flex white--text"
+                class="rounded-xl  text-capitalize   black--text"
+                @click="closeaction"
+                >
+                Batal</v-btn
+              >
+              <v-btn
+                class="rounded-xl bg-2 text-capitalize d-flex white--text"
                 @click="konfrimdataTambah"
               >
                 Tambah</v-btn

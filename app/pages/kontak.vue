@@ -19,12 +19,12 @@
               :src="require('~/assets/img/landingimage4.png')"
               :max-width="$vuetify.breakpoint.smAndDown ? '250' : '300'"
             />
-            <a
+            <!-- <a
               href="https://storyset.com/business"
               target="_blank"
               class="text-caption white--text"
               >Business illustrations by Storyset</a
-            >
+            > -->
           </div>
         </div>
       </v-container>
@@ -41,11 +41,9 @@
               <div class="pr-lg-15">
                 <p class="font-weight-medium text-body-1">Kontak kami</p>
                 <p class="text-h4 font-weight-bold">Kirimkan masukan anda</p>
-                <p class="text-body-1">Sky took on a wonderful</p>
+                <p class="text-body-1"> Kami Senang Mendengar dari Anda!"</p>
                 <p class="text-body-2 grey--text text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                  facilis neque dolore quis voluptatum saepe libero non ullam
-                  laborum! Reiciendis tempora voluptatem quo! Culpa, incidunt?
+                  Kami percaya setiap masukan dari Anda adalah langkah menuju perbaikan dan inovasi. Kami siap mendengarkan setiap saran dan kritik yang Anda berikan untuk meningkatkan layanan kami lebih baik lagi
                 </p>
               </div>
             </div>
@@ -60,7 +58,7 @@
           >
             <div class="gradient5"></div>
             <v-card
-              class="pa-10 rounded-xl py-10 bg-whiteblur mr-8"
+              class="pa-10 rounded-xl py-10 bg-whiteblur "
               max-width="800px"
             >
               <div class="text-1 text-h6 font-weight-medium">

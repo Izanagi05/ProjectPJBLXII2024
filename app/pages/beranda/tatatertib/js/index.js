@@ -1,40 +1,17 @@
+import {mapGetters} from 'vuex'
 export default{
   layout: "UserSideBar",
   middleware:['guestmiddleware','adminrolemiddleware'],
   data() {
     return {
-      tatibs: [
-        {
-          time: 'Baru saja',
-          icon: 'mdi-flag-outline',
-          title: 'Lorem Ipsum',
-          description: 'Lorem ipsum nndolor sit amet consectetur'
-        },
-        {
-          time: '2 jam yang lalu',
-          icon: 'mdi-flag-outline',
-          title: 'Contoh Judul 2',
-          description: 'Deskripsi kedua'
-        },
-        {
-          time: '3 jam yang lalu',
-          icon: 'mdi-flag-outline',
-          title: 'Contoh Judul 3',
-          description: 'Deskripsi ketiga'
-        },
-        {
-          time: '4 jam yang lalu',
-          icon: 'mdi-flag-outline',
-          title: 'Contoh Judul 4',
-          description: 'Deskripsi keempat'
-        },
-        {
-          time: '5 jam yang lalu',
-          icon: 'mdi-flag-outline',
-          title: 'Contoh Judul 5',
-          description: 'Deskripsi kelima'
-        }
-      ]
     }
+  },
+  computed:{
+    ...mapGetters({
+      getAllTatib:'adminrw/getAllTatib'
+    })
+  },
+  async created() {
+    this.$store.dispatch('adminrw/getTataTertib')
   },
 }

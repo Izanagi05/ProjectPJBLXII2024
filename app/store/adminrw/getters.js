@@ -1,6 +1,15 @@
 export default {
+  getAllTatib (state) {
+    return state.AllTatib
+  },
   getadminDataControl (state) {
     return state.adminDataControl
+  },
+  getdataAllAlamat (state) {
+    return state.dataAllAlamat
+  },
+  getdataAllDetailAlamat (state) {
+    return state.dataAllDetailAlamat
   },
   getCategoryDetail (state) {
     return state.dataDetailCategory

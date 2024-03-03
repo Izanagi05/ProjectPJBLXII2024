@@ -7,7 +7,7 @@
           >mdi-close</v-icon
           >
         </div>
-        <p class="font-weight-medium">Tambah Data Pengeluaran</p>
+        <p class="font-weight-medium">Tambah Data Keluarga</p>
         <v-row>
           <v-col cols="6">
             <v-text-field

@@ -11,7 +11,6 @@ export default {
       dataIzin:[
         {key:'Berizin',value:'Berizin'},
         {key:'Belum Berizin', value:'Belum Berizin'},
-        {},
       ],
       header: [
         { text: "Nama Grup", value: "group_nama" },

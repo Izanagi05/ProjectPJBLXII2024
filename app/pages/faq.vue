@@ -78,8 +78,8 @@
         <p class="text-body-1 text-center text-1">
           Jangan lupa hubungi tim pengembang kami dibawah ini
         </p>
-        <div class="d-flex align-center justify-center" >
-          <div v-for="(dt, i) in datacontact" :key="i" class="mr-4" style="z-index: 9;">
+        <v-row class=" align-center justify-center" >
+          <v-col cols="6" lg="auto" v-for="(dt, i) in datacontact" :key="i" class="" style="z-index: 9;">
             <div class="d-flex align-center justify-center">
               <v-avatar size="80" class="">
                 <v-img :src="require('~/assets/img/' + dt.image)" style="background-position: top;"></v-img>
@@ -89,8 +89,8 @@
               {{ dt.name }}
             </div>
             <div class="text-caption text-center text-1">{{ dt.mail }}</div>
-          </div>
-        </div>
+          </v-col>
+        </v-row>
         <div class="d-flex justify-center">
           <v-btn style="z-index: 9;"
             class="rounded-xl bg-whiteblur text-1 mt-8 text-capitalize"

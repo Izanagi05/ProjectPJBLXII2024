@@ -11,13 +11,13 @@
         v-for="(item, index) in cardData"
         :key="index"
         ><v-card
-          :class="['pa-6 mr-4   rounded-xl bg-whiteblur-card1']"
+          :class="['pa-6   rounded-xl bg-whiteblur-card1']"
           :style="{ height: '100%'}"
           :to="item.rute"
         >
           <div class="align-center justify-space-between">
             <div class="d-flex justify-center">
-              <div style="width: 80px" class="">
+              <div :style="{width:$vuetify.breakpoint.smAndDown ?40+'px':80+'px'}" class="">
                 <v-img
                   :src="require(`~/assets/iconuser/${item.icon}.svg`)"
                 ></v-img>
@@ -25,7 +25,7 @@
             </div>
             <div class="mt-4">
               <p
-                class="text-h6 text-center font-weight-medium mb-2"
+                class="text-sm-h6 text-md-h6 text-6 text-xs-h6 text-center font-weight-medium mb-2"
               >
               <!-- <p
                 class="text-h6 text-center font-weight-medium mb-2" :style="{color: item.bgClass + ' !important' }"

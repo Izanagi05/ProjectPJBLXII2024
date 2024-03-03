@@ -165,9 +165,12 @@ export default {
   },
   async fetchDataAlamatByRt({ commit }, data) {
     try {
+      const role=this.$cookies.get("dataUser").data?.role
+      // const formData = new FormData();
+      // formData.append("cookiesData",role );
       await this.$axios
         .get(
-          "/getDataAlamatByRt",
+          "/getDataAlamatByRt/"+role,
           {
             headers: {
               Authorization:

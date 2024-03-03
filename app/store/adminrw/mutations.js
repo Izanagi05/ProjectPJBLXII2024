@@ -1,9 +1,18 @@
 export default {
+  GET_TATIB_DATA(state, data) {
+    state.AllTatib = data;
+  },
   GET_ADMIN_DATA_GROUP(state, data) {
     state.adminAllGroup = data;
   },
   GET_BOT_QR_CODE(state, data) {
     state.dataQRcODE = data;
+  },
+  GET_ALL_DATA_ALAMAT(state, data) {
+    state.dataAllAlamat = data;
+  },
+  GET_ALL_DATA_DETAIL_ALAMAT(state, data) {
+    state.dataAllDetailAlamat = data;
   },
   GET_RW_DATA(state, data) {
     state.dataRw = data;

@@ -15,6 +15,7 @@ class AlamatController extends Controller
             foreach ($datas as $key => $data) {
                 # code...
                 $data->DetailAlamats;
+                $data->RT;
             }
             return response()->json([
                 'data' => $datas,
@@ -58,14 +59,14 @@ class AlamatController extends Controller
         }
     }
 
-    public function updateAlamat(Request $request, $id)
+    public function updateAlamat(Request $request)
     {
         try {
             $validatedData = $request->validate([
                 'nama' => 'required|string',
                 'rt_id' => 'required|numeric|exists:rts,rt_id',
             ]);
-            $alamat = Alamat::findOrFail($id);
+            $alamat = Alamat::findOrFail($request->alamat_id);
             $dataRt = Rt::where('rt_id', $validatedData['rt_id'])->first();
             $alamat->update([
                 'nama' => $validatedData['nama'],
@@ -88,9 +89,12 @@ class AlamatController extends Controller
     public function deleteAlamat($id)
     {
         try {
-            $alamat = Alamat::findOrFail($id);
-            foreach ($alamat as $key => $dt) {
-                $dt->DetailAlamats->delete();
+            $alamat = Alamat::where('alamat_id', $id)->first();
+            foreach ($alamat->DetailAlamats as $key => $dtalamatdetail) {
+                foreach ($dtalamatdetail->UserAlamats as $key => $dtuseralamat) {
+                    $dtuseralamat->delete();
+                }
+                $dtalamatdetail->delete();
             }
             $alamat->delete();
             return response()->json([

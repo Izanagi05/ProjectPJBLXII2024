@@ -16,4 +16,7 @@ class DetailAlamat extends Model
     public function Wargas(){
         return $this->belongsToMany(User::class,'user_alamats','detail_alamat_id', 'user_id');
     }
+    public function UserAlamats(){
+        return $this->hasMany(UserAlamat::class,'detail_alamat_id');
+    }
 }

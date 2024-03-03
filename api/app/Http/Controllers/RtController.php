@@ -54,7 +54,7 @@ class RtController extends Controller
             ], 500);
         }
     }
-    public function getDataAlamatByRt(Request $request)
+    public function getDataAlamatByRt(Request $request, $cookiesData)
     {
         try {
             $authorizationHeader = $request->header('Authorization');
@@ -62,8 +62,9 @@ class RtController extends Controller
             $data = User::where('remember_token', $token)->where('role', 'Admin')
                 ->first();
             $data->admin_data_role = $data->AdminData->AdminRole;
+            $requestCookies=$cookiesData;
             // $data->user_alamats = $data->AdminData->AdminRole;
-            $dataAlamats =    $data->admin_data_role->nama === 'Admin' ? Alamat::where('rt_id', $data->admin_data_role->rt_id)->get() : Alamat::get();
+            $dataAlamats =    $requestCookies === 'Admin' ? Alamat::where('rt_id', $data->admin_data_role->rt_id)->get() : Alamat::get();
             return response()->json([
                 'data' => $dataAlamats,
                 'message' => 'Berhasil',
