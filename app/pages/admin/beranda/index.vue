@@ -23,7 +23,8 @@
         </div>
       </v-card>
     </div>
-    <div class="mt-4" v-if="dataCookies === 'Admin RW'">
+    <div class="mt-6" v-if="dataCookies === 'Admin RW'">
+      <p class="text-h6 ">Data Alamat</p>
       <v-dialog v-model="dialogTambahAlamat" max-width="800">
         <v-card class="pa-4 rounded-xl">
           <div class="d-flex justify-end">
@@ -137,7 +138,8 @@
         </template>
       </v-data-table>
     </div>
-    <div class="mt-4 "  v-if="dataCookies === 'Admin RW'">
+    <div class="mt-6 "  v-if="dataCookies === 'Admin RW'">
+      <p class="text-h6 ">Data Detail Alamat</p>
       <v-dialog v-model="dialogTambahDetailAlamat" max-width="800">
         <v-card class="pa-4 rounded-xl">
           <div class="d-flex justify-end">

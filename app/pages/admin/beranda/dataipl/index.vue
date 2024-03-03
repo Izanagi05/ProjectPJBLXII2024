@@ -2,6 +2,76 @@
   <div>
     <v-dialog
       persistent
+      v-model="dialogTambahTagihan"
+      class="rounded-xl"
+      max-width="800"
+    >
+      <v-card class="pa-4 rounded-xl">
+        <div class="d-flex justify-end">
+          <v-icon
+            @click="closetambahTagihan"
+            class="text-1 white rounded-xl mb-3"
+            >mdi-close</v-icon
+          >
+        </div>
+        <v-row>
+          <v-col cols="6">
+            <v-checkbox
+              v-model="inputTambahTagihan.semuabulan"
+              label="Terapkan ke semu Bulan?"
+              :value="true"
+            ></v-checkbox>
+          </v-col>
+
+          <v-col cols="6">
+            <v-autocomplete
+              class="rounded-xl"
+              v-model="inputTambahTagihan.jenis_iuran_id"
+              :items="getdataAllJenisIurans"
+              item-text="nama"
+              item-value="jenis_iuran_id"
+              label="Masukan untuk Jenis Iuran"
+              clearable
+            ></v-autocomplete>
+          </v-col>
+          <v-col cols="6">
+            <v-autocomplete
+              class="rounded-xl"
+              v-model="inputTambahTagihan.tahun_id"
+              :items="getdataAllYears"
+              item-text="tahun"
+              item-value="tahun_id"
+              label="Masukan untuk Tahun berapa"
+              clearable
+            ></v-autocomplete>
+          </v-col>
+          <v-col cols="6">
+            <v-autocomplete
+              :disabled="
+                inputTambahTagihan.semuabulan
+              "
+              class="rounded-xl"
+              v-model="inputTambahTagihan.bulan_id"
+              :items="getdataAlldataAllBulan"
+              item-text="nama"
+              item-value="bulan_id"
+              label="Masukan untuk Bulan apa"
+              clearable
+            ></v-autocomplete>
+          </v-col>
+        </v-row>
+
+        <div class="d-flex align-center justify-end mt-8">
+          <v-btn
+            class="rounded-xl px-8 text-capitalize white--text bgbrd-2"
+            @click="konfirmTambahTagihan"
+            >Tambah Tagihan</v-btn
+          >
+        </div>
+      </v-card>
+    </v-dialog>
+    <v-dialog
+      persistent
       class="rounded-xl dialog-event"
       v-model="dialoginputPembayaranIuran"
       style="box-shadow: 0px"
@@ -22,6 +92,7 @@
         <p>Bulan {{ inputPembayaranIuran?.bulan?.nama }}</p>
         <p>Jenis Tagihan {{ inputPembayaranIuran?.jenis_iuran?.nama }}</p>
         <p>Terbilang: Rp. {{ inputPembayaranIuran?.jenis_iuran?.jumlah }}</p>
+        <v-btn  class="rounded-xl text-capitalize d-flex bgbrd-2 white--text" :disabled="isDisable" @click="konfirmBuatPesanWa()">Kirim Pesan Whatsapp</v-btn>
         <v-text-field
           clearable
           type="number"
@@ -110,6 +181,11 @@
             </div>
           </v-data-table> -->
         </div>
+      </template>
+      <template v-if="dataCookies==='Admin'" v-slot:[`item.aksi`]="{ item }">
+        <div class="d-flex">
+          <v-btn @click="tambahTagihan(item)" class="rounded-xl text-capitalize d-flex bgbrd-2 white--text">Tambah Tagihan</v-btn>
+          </div>
       </template>
     </v-data-table>
   </div>

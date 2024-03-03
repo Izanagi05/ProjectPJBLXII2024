@@ -120,7 +120,6 @@ Route::group(['middleware' => 'adminpusat'], function () {
     Route::delete('/deleteGroupData/{id}', [WaGroupController::class, 'deleteGroupData']);
     Route::get('/getQrCodeinUrl', [WAController::class, 'getQrCodeinUrl']);
     Route::post('/updateIzinGroupData', [WaGroupController::class, 'updateIzinGroupData']);
-    Route::get('/getAllJenisIurans', [JenisIuranController::class, 'getAllJenisIuransData']);
     Route::get('/getAllGroupData', [WaGroupController::class, 'getAllGroupData']);
     Route::post('/updateRW', [RWController::class, 'updateRW']);
     Route::get('/getAllRT', [RtController::class, 'getAllRT']);
@@ -137,6 +136,8 @@ Route::group(['middleware' => 'adminpusat'], function () {
     Route::delete('/deleteDataAdmiControl/{userId}', [AdminRWController::class, 'deleteDataAdmiControl']);
 });
 Route::group(['middleware' => 'admindata'], function () {
+    Route::post('/postMessageNotifIplUser', [WAController::class, 'postMessageNotifIplUser']);
+    Route::get('/getAllJenisIurans', [JenisIuranController::class, 'getAllJenisIuransData']);
     Route::get('/getAllTahun', [TahunController::class, 'getAllTahun']);
     Route::get('/getAllBulan', [BulanController::class, 'getAllBulan']);
     Route::get('/getSumPengeluaranIuran/{rt_id?}', [PengeluaranController::class, 'getSumPengeluaranIuran']);

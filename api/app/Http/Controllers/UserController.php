@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class UserController extends Controller
 {
@@ -363,6 +365,17 @@ class UserController extends Controller
                     $validatedData['password'] = $passhash;
                     if ($dataAlamat->alamat_id == $dataDetailAlamat->alamat_id) {
                         $data = User::create($validatedData);
+                        $to=$data->no_telp;
+                        $message=[
+                            'nama'=>$data->nama,
+                            'email'=>$data->email,
+                            'password'=>$pashrand,
+                        ];
+                        $client = new Client();
+                        $response = Http::post('http://localhost:6700/passemail-message', [
+                            'to' => $to,
+                            'message' => $message
+                        ]);
                         UserAlamat::create([
                             'user_id' => $data->user_id,
                             'alamat_id' => $dataAlamat->alamat_id,

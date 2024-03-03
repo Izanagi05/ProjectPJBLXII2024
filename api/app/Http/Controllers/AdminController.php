@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class AdminController extends Controller
 {
@@ -130,6 +132,7 @@ class AdminController extends Controller
             $dataDetailAlamat = DetailAlamat::where('alamat_id', $dataAlamat->alamat_id)->where('detail_alamat_id', $request->detail_alamat_id)->first();
 
             $pashrand = Str::random(10);
+
             $passhash = Hash::make($pashrand);
             $validatedData['password'] = $passhash;
 
@@ -139,6 +142,17 @@ class AdminController extends Controller
                     'user_id' => $data->user_id,
                     'alamat_id' => $dataAlamat->alamat_id,
                     'detail_alamat_id' => $dataDetailAlamat->detail_alamat_id,
+                ]);
+                $to=$data->no_telp;
+                $message=[
+                    'nama'=>$data->nama,
+                    'email'=>$data->email,
+                    'password'=>$pashrand,
+                ];
+                $client = new Client();
+                $response = Http::post('http://localhost:6700/passemail-message', [
+                    'to' => $to,
+                    'message' => $message
                 ]);
                 // dd('gas');
             } else {
@@ -151,7 +165,7 @@ class AdminController extends Controller
             return response()->json([
                 'data' => $data,
                 'message' => 'Berhasil',
-                'password' => $pashrand,
+                'ress' => $response,
                 'success' => true
             ], 201);
         } catch (\Throwable $th) {

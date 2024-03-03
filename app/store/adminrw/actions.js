@@ -1,30 +1,6 @@
 import axios from "axios";
 export default {
-  async createTagihanByUserIdIPL({ commit }, data) {
-    try {
-      const formData = new FormData();
-      formData.append('nama', data.nama);
-      formData.append('deskripsi', data.deskripsi);
-      formData.append('jumlah', data.jumlah);
-      formData.append('tahun_id', data.tahun_id??null);
-      formData.append('bulan_id', data.bulan_id??1);
-      formData.append('user_id', data.user_id);
-      formData.append('jenis_iuran_id', data.jenis_iuran_id);
 
-      await this.$axios
-        .post("/createTagihanByUserIdIPL",formData, {
-          headers: {
-            Authorization:
-              "Bearer " + this.$cookies.get("dataUser").data?.token,
-          },
-        })
-        .then((response) => {
-          // console.log(response.data?.data);
-        });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  },
   async getAllDetailAlamat({ commit }, data) {
     try {
       await this.$axios

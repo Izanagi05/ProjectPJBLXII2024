@@ -334,4 +334,55 @@ export default {
       console.error("Error fetching data:", error);
     }
   },
+  async createTagihanByUserIdIPL({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append('semuabulan', data.semuabulan??null);
+      formData.append('tahun_id', data.tahun_id??null);
+      formData.append('bulan_id', data.bulan_id??1);
+      formData.append('user_id', data.user_id);
+      formData.append('jenis_iuran_id', data.jenis_iuran_id);
+
+      await this.$axios
+        .post("/createTagihanByUserIdIPL",formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+
+        });
+    } catch (error) {
+      this.$toast.error("Terjadi kesalahan atau tagihan sudah pernah dibuat", {
+        duration: 3000,
+      });
+      console.error("Error fetching data:", error);
+    }
+  },
+  async postMessageNotifIplUser({ commit }, data) {
+    try {
+      const formData = new FormData();
+      formData.append('tahun_id', data.tahun_id);
+      formData.append('bulan_id', data.bulan_id);
+      formData.append('user_id', data.user_id);
+      formData.append('jenis_iuran_id', data.jenis_iuran_id);
+
+      await this.$axios
+        .post("/postMessageNotifIplUser",formData, {
+          headers: {
+            Authorization:
+              "Bearer " + this.$cookies.get("dataUser").data?.token,
+          },
+        })
+        .then((response) => {
+
+        });
+    } catch (error) {
+      this.$toast.error("Terjadi kesalahan ", {
+        duration: 3000,
+      });
+      console.error("Error fetching data:", error);
+    }
+  },
 };

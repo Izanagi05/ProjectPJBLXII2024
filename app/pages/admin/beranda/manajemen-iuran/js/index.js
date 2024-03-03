@@ -161,9 +161,9 @@ export default {
     },
   },
   async created() {
-    this.loadingData = false;
     await this.$store.dispatch("adminrw/getAllJenisIurans");
     await this.$store.dispatch("adminrw/getAllBulan");
     await this.$store.dispatch("adminrw/getAllTahun");
+    this.loadingData = false;
   },
 };

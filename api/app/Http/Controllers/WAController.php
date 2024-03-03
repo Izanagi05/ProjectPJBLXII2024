@@ -15,27 +15,82 @@ class WAController extends Controller
     public function postMessageCustomToGroup(Request $request)
     {
         try {
-            $to = $request->to; // Get the recipient number from the request
-            $message = $request->message; // Get the message from the request
-
-            // Data yang akan dikirimkan dalam format JSON
+            $to = $request->to;
+            $message = $request->message;
             $data = [
                 'to' => $to,
                 'message' => $message
             ];
-
-            // Membuat permintaan HTTP POST dengan badan permintaan raw
             $client = new Client();
-            // $response = $client->request('POST', 'http://localhost:3000/incoming-message', [
-            //     'json' => [
-            //         'to' => $to,
-            //         'message' =>$message,
-            //     ]
-            // ]);
             $response = Http::post('http://localhost:6700/incoming-message', [
                 'to' => $to,
                 'message' => $message
-                // Add other data as needed
+            ]);
+            return response()->json([
+                'data' => $response,
+                'message' => 'Berhasil',
+                'success' => true
+            ], 201);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'data' => null,
+                'message' => 'Terjadi kesalahan: ' . $th,
+                'success' => false
+            ], 500);
+        }
+    }
+    public function postMessageNotifIplUser(Request $request)
+    {
+        try {
+            $validatedData =     $request->validate([
+                'tahun_id' => 'required|exists:tahuns,tahun_id',
+                'bulan_id' => 'required|exists:bulans,bulan_id',
+                'user_id' => 'required|exists:users,user_id',
+                'jenis_iuran_id' => 'required|exists:jenis_iurans,jenis_iuran_id',
+            ]);
+            $dataUser = User::where('user_id', $validatedData['user_id'])->first();
+            $tagihan = $dataUser->TagihanBulanans->where(
+                'tahun_id',
+                $validatedData['tahun_id']
+            )->where(
+                'bulan_id',
+                $validatedData['bulan_id']
+            )->where(
+                'jenis_iuran_id',
+                $validatedData['jenis_iuran_id']
+            )->first();
+
+            //    echo $dataUser;
+            if (!$tagihan) {
+                return response()->json([
+                    'data' => null,
+                    'message' => 'Tagihan tidak ditemukan untuk pengguna ini',
+                    'success' => false
+                ], 404);
+            }
+            $to = $dataUser->no_telp;
+            // $message = [
+            //     'nama' => $dataUser->nama,
+            //     'bulan' => $tagihan->Bulan->nama,
+            //     'jenis_iuran' => $tagihan->JenisIuran->nama,
+            //     'jumlah' => $tagihan->JenisIuran->jumlah
+
+            // ];
+            $message = 'Warga yang terhormat ' . $dataUser->nama .
+                "\n\nMohon segera membayar tagihan bulan " . $tagihan->Bulan->nama . " Tahun ".$tagihan->Tahun->tahun.
+                "\njenis iuran " . $tagihan->JenisIuran->nama .
+                "\nSebesar Rp. " . $tagihan->JenisIuran->jumlah .
+                "\nTerima Kasih";
+
+            $data = [
+                'to' => $to,
+                'message' => $message
+            ];
+            $client = new Client();
+            $response = Http::post('http://localhost:6700/iplnotif-message', [
+                'to' => $to,
+                'message' => $message
             ]);
             return response()->json([
                 'data' => $response,

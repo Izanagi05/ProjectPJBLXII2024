@@ -68,13 +68,13 @@ class TagihanBulananController extends Controller
                 ->first();
             $data->provinsi = $data->UserProvinsi->provinsi;
             $data->admin_data_role = $data->AdminData->AdminRole;
-            // $data->user_alamats = $data->AdminData->AdminRole;
             unset($data->AdminData);
             unset($data->UserProvinsi);
             if(!$tahunNama){
                 $tahunNama = $tahunSekarang;
             }
             $tahun= Tahun::where('tahun', $tahunNama)->first();
+            if($data->admin_data_role==!'Admin RW'){
             $userAllTagihanByTahun = User::where('role', 'User')->whereHas('UserAlamats', function ($query2) use($data){
                 $query2->whereHas('Alamat', function ($query3)use($data){
                     $query3->where('rt_id',  $data->admin_data_role->rt_id);
@@ -82,19 +82,20 @@ class TagihanBulananController extends Controller
             } )->with(['TagihanBulanans' => function ($query) use ($tahun) {
                 $query->where('tahun_id', $tahun->tahun_id)->orderBy('bulan_id', 'asc');;
             }])->get();
+        }else{
+            $userAllTagihanByTahun = User::where('role', 'User')->with(['TagihanBulanans' => function ($query) use ($tahun) {
+                $query->where('tahun_id', $tahun->tahun_id)->orderBy('bulan_id', 'asc');;
+            }])->get();
 
+        }
             foreach ($userAllTagihanByTahun as $key => $dt) {
-                // Di sini Anda dapat mengakses tagihan bulanan untuk tahun tertentu
                 $dt->TagihanBulanans;
                 foreach ($dt->TagihanBulanans as $key => $jenisiuran) {
                     $jenisiuran->JenisIuran;
                     $jenisiuran->Bulan;
                     $jenisiuran->Tahun;
                 }
-                // Lakukan sesuatu dengan $tagihanBulanansTahunIni...
             }
-            // $userAllTagihanByTahun= TagihanBulanan::where('tahun_id', $tahun->tahun_id)->get();
-
             return response()->json([
                 'data' => $userAllTagihanByTahun,
                 'message' => 'Berhasil get ',
@@ -140,11 +141,7 @@ class TagihanBulananController extends Controller
     }
     public function createTagihanByUserIdIPL(Request $request){
         try {
-            if ($request->withtagihan === 'true') {
                 $validatedData =     $request->validate([
-                    'nama' => 'required|string',
-                    'deskripsi' => 'required|string',
-                    'jumlah' => 'required|numeric|min:0',
                     'tahun_id' => 'required|exists:tahuns,tahun_id',
                     'bulan_id' => 'required|exists:bulans,bulan_id',
                     'user_id' => 'required|exists:users,user_id',
@@ -175,7 +172,7 @@ class TagihanBulananController extends Controller
                         ]);
 
                 }
-            }
+
 
             return response()->json([
                 'data' => $jenisIuran,

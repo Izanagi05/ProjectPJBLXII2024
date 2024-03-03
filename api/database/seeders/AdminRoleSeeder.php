@@ -16,9 +16,10 @@ class AdminRoleSeeder extends Seeder
         $adminRoles =['Admin RT 001','Admin RT 002','Admin RT 003','Admin RW'];
 
         foreach ($adminRoles as$key=> $role) {
+            $dummyrt_id = ($key % 3) + 1;
             AdminRole::create([
                 'nama' => $role,
-                'rt_id' =>  rand(1,3),
+                'rt_id' =>  $dummyrt_id,
             ]);
         }
     }
