@@ -24,7 +24,7 @@ class AdminController extends Controller
         $token = str_replace('Bearer ', '', $authorizationHeader);
         $data = User::where('remember_token', $token)->where('role', 'Admin')
            ->first();
-        $data->provinsi = $data->UserProvinsi->provinsi;
+        $data->provinsi = $data->UserProvinsi->provinsi??null;
         $data->admin_data_role = $data->AdminData->AdminRole;
         // $data->user_alamats = $data->AdminData->AdminRole;
         unset($data->AdminData);

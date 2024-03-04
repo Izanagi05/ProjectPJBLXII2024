@@ -2,7 +2,8 @@ import { mapGetters, mapActions } from "vuex";
 
 import dialogInputUser from "~/components/dialogInputUser.vue";
 export default {
-  middleware:['guestmiddleware','adminrolemiddleware'],
+  middleware:['guestmiddleware'],
+  // middleware:['guestmiddleware','adminrolemiddleware'],
   layout: "UserSideBar",
   components: {
     dialogInputUser,

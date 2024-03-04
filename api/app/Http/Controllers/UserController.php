@@ -21,7 +21,7 @@ class UserController extends Controller
             $authorizationHeader = $request->header('Authorization');
             $token = str_replace('Bearer ', '', $authorizationHeader);
             $data = User::where('remember_token', $token)->first();
-            $data->UserProvinsi ;
+            $data->UserProvinsi ??null;
            $detailalamats= $data->DetailAlamats ;
         //    unset($data->DetailAlamats);
            $wargaperalamats=[];

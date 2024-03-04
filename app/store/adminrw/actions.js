@@ -566,13 +566,13 @@ export default {
           },
         })
         .then((response) => {
-          this.$toast.success("Berhasil menambah password", {
+          this.$toast.success("Berhasil menambah daya", {
             duration: 3000,
           });
           console.log(response);
         });
     } catch (error) {
-      this.$toast.error("Terjadi kesalahan saat menambah password", {
+      this.$toast.error("Terjadi kesalahan saat menambah data", {
         duration: 3000,
       });
       console.error("Error fetching data:", error);

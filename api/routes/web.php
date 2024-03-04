@@ -101,7 +101,6 @@ Route::post('/createGroupData', [WaGroupController::class, 'createGroupData']);
 
 Route::get('/getTataTertib', [TataTertibController::class, 'getTataTertib']);
 Route::group(['middleware' => 'adminpusat'], function () {
-    Route::post('/createTagihanByUserIdIPL', [TagihanBulananController::class, 'createTagihanByUserIdIPL']);
     Route::post('/tambahTataTertib', [TataTertibController::class, 'tambahTataTertib']);
     Route::post('/updateTataTertib', [TataTertibController::class, 'updateTataTertib']);
     Route::delete('/deleteTataTertib/{tata_tertib_id}', [TataTertibController::class, 'deleteTataTertib']);
@@ -136,6 +135,7 @@ Route::group(['middleware' => 'adminpusat'], function () {
     Route::delete('/deleteDataAdmiControl/{userId}', [AdminRWController::class, 'deleteDataAdmiControl']);
 });
 Route::group(['middleware' => 'admindata'], function () {
+    Route::post('/createTagihanByUserIdIPL', [TagihanBulananController::class, 'createTagihanByUserIdIPL']);
     Route::post('/postMessageNotifIplUser', [WAController::class, 'postMessageNotifIplUser']);
     Route::get('/getAllJenisIurans', [JenisIuranController::class, 'getAllJenisIuransData']);
     Route::get('/getAllTahun', [TahunController::class, 'getAllTahun']);
