@@ -26,7 +26,6 @@ export default {
     );
 
     if (index !== -1) {
-      // Hapus item dari array
       state.adminDataControl.splice(index, 1);
     }
   },

@@ -1,4 +1,5 @@
 import NavbarBeranda from "~/components/NavbarBeranda.vue";
+
 export default {
   components: {
     NavbarBeranda,
